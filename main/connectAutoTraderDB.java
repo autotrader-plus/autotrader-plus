@@ -1,3 +1,5 @@
+package main;
+
 import java.sql.*;
 public class connectAutoTraderDB{
     public static void main(String[] args) {
