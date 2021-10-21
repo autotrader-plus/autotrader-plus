@@ -84,4 +84,6 @@ public class connectAutoTraderDB{
         System.out.println(t.returnCarDetailsString(2));
         System.out.println(t.returnCarDetails(2).values());
     }
+
 }
+
