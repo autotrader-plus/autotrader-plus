@@ -1,4 +1,4 @@
-package techStackDemo;
+package com.example.springboot;
 
 import java.sql.*;
 import java.util.HashMap;
