@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class connectAutoTraderDB{
+public class ConnectAutoTraderDB{
 
     /**
      * Represents a connection to AutoTraderDB.
@@ -16,8 +16,8 @@ public class connectAutoTraderDB{
     // This variable essentially represents the connection to the SQLDB; it holds information about that connection
     private final Statement objStatement;
 
-    public connectAutoTraderDB(){
-        this.objStatement = connectAutoTraderDB.establishConnection();
+    public ConnectAutoTraderDB(){
+        this.objStatement = ConnectAutoTraderDB.establishConnection();
     }
 
     private static Statement establishConnection(){
@@ -85,8 +85,8 @@ public class connectAutoTraderDB{
     }
 
     @GetMapping("/database")
-    public static void main(String[] args) throws SQLException {
-        connectAutoTraderDB t = new connectAutoTraderDB();
+    public static String main(String[] args) throws SQLException {
+        ConnectAutoTraderDB t = new ConnectAutoTraderDB();
         return t.returnCarDetailsString(2);
 //        System.out.println(t.returnCarDetails(2).values());
     }
