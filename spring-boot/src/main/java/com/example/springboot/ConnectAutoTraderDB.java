@@ -89,7 +89,7 @@ public class connectAutoTraderDB{
 
     public static void main(String[] args) throws SQLException {
         connectAutoTraderDB t = new connectAutoTraderDB();
-        return System.out.println(t.returnCarDetailsString(2));
+        return t.returnCarDetailsString(2);
 //        System.out.println(t.returnCarDetails(2).values());
     }
 
