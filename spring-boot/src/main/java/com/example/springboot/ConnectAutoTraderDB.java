@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 public class ConnectAutoTraderDB{
 
     /**
@@ -84,8 +83,7 @@ public class ConnectAutoTraderDB{
         return returnMap;
     }
 
-    @GetMapping("/database")
-    public static String main(String[] args) throws SQLException {
+    public static String getContent() throws SQLException {
         ConnectAutoTraderDB t = new ConnectAutoTraderDB();
         return t.returnCarDetailsString(2);
 //        System.out.println(t.returnCarDetails(2).values());
