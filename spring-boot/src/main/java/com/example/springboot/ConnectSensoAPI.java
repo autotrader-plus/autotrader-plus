@@ -1,12 +1,20 @@
+package com.example.springboot;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class connectSensoAPI {
 
-    public static void main(String[] args) throws IOException, InterruptedException{
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ConnectSensoAPI {
+
+    @GetMapping("/senso")
+    public static String main(String[] args) throws IOException, InterruptedException{
         String postEndpoint = "https://auto-loan-api.senso.ai/rate";
 
         String inputJson = "{\n" +
@@ -30,7 +38,8 @@ public class connectSensoAPI {
 
         var response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+//        System.out.println(response.statusCode());
+//        System.out.println(response.body());
+        return response.body();
     }
 }
