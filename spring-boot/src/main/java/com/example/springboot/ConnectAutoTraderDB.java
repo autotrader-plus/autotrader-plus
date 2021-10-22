@@ -13,9 +13,6 @@ public class connectAutoTraderDB{
      * Represents a connection to AutoTraderDB.
      * Can call data in string form and Dictionary form
      */
-
-    @GetMapping("/database")
-
     // This variable essentially represents the connection to the SQLDB; it holds information about that connection
     private final Statement objStatement;
 
@@ -87,6 +84,7 @@ public class connectAutoTraderDB{
         return returnMap;
     }
 
+    @GetMapping("/database")
     public static void main(String[] args) throws SQLException {
         connectAutoTraderDB t = new connectAutoTraderDB();
         return t.returnCarDetailsString(2);
