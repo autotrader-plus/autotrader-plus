@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.connectouterentity;
 
 import java.io.IOException;
 import java.net.URI;

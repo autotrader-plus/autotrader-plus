@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.returninfo;
 
 import java.sql.*;
 import java.io.IOException;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.responseformatting.*;
+import com.example.connectouterentity.*;
 
 @RestController
 @CrossOrigin(origins ="*")

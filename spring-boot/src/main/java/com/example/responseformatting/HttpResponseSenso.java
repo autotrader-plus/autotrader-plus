@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.responseformatting;
 
 public class HttpResponseSenso {
 

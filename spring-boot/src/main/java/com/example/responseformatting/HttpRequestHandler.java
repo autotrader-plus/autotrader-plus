@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.responseformatting;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class HttpRequestHandler {

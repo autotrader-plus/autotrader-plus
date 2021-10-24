@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.connectouterentity;
 
 import java.sql.*;
 import java.util.HashMap;
