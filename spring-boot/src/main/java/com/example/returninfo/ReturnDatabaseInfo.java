@@ -24,8 +24,11 @@ public class ReturnDatabaseInfo {
     private final AtomicLong counter = new AtomicLong();
 
     public String getContent() throws SQLException {
+        /**
+         * This will return the information queried by the ReturnDatabaseInfo class
+         */
         ConnectAutoTraderDB db_object = new ConnectAutoTraderDB();
-        return db_object.getContent();
+        return db_object.returnCarDetailsString(0);
 
     }
 
