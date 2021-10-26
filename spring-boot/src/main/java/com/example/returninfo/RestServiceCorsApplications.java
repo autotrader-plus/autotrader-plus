@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.example.responseformatting.*;
 import com.example.connectouterentity.*;
 
+/** This class configures the CORS Applications for the back end server. **/
 @SpringBootApplication
 public class RestServiceCorsApplications {
 
