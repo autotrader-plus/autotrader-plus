@@ -41,8 +41,8 @@ public class ReturnSensoAPI {
      * This method handles HTTP request coming into the "/senso" endpoint. It processes information from the request
      * body and returns information back to the client.
      *
-     * @param name
-     * @return
+     * @param name - the body of the http request from the client
+     * @return A HTTP Response back to the client.
      * @throws IOException
      * @throws InterruptedException
      */
