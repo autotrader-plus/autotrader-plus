@@ -1,5 +1,6 @@
 package com.example.responseformatting;
 
+/** This class helps provide the formatting for the response body of the HTTP request to the "/senso" endpoint. **/
 public class HttpResponseSenso {
 
 	private static long id;

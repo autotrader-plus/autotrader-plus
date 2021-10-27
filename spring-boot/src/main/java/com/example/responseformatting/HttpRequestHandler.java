@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+/**This is dummy class that demonstrates how to get request body from a http request into the server.**/
+/**TODO: Delete this class if it is not needed anymore **/
 @RestController
 public class HttpRequestHandler {
 
