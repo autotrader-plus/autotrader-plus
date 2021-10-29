@@ -43,7 +43,7 @@ public class ReturnMultipleCars {
     /**
      * Return all cars available in the database
      */
-    public ArrayList<HashMap<String, String>> returnAllCars() throws SQLException {
+    public static ArrayList<HashMap<String, String>> returnAllCars() throws SQLException {
 
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars;";
