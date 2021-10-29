@@ -43,7 +43,7 @@ public class ReturnMultipleCars {
     /**
      * Return all cars available in the database
      */
-    public ArrayList<HashMap<String, String>> returnAllCars() throws SQLException {
+    public static ArrayList<HashMap<String, String>> returnAllCars() throws SQLException {
 
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars;";
@@ -54,7 +54,7 @@ public class ReturnMultipleCars {
      * Return all cars that are of a specific car type
      * @param filter the type of car you want to filter out
      */
-    public ArrayList<HashMap<String, String>> returnFilteredCars(String filter) throws SQLException {
+    public static ArrayList<HashMap<String, String>> returnFilteredCars(String filter) throws SQLException {
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars " +
                 "WHERE car_type = \"" + filter + "\";";
