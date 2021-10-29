@@ -61,5 +61,9 @@ public class ConnectAutoTraderDB{
 
     }
 
+    public void exceuteQuery(String query) throws SQLException {
+
+        this.objStatement.executeUpdate(query);
+    }
 }
 
