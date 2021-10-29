@@ -1,11 +1,6 @@
 package com.example.returninfo;
 
 import java.sql.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -15,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.responseformatting.*;
-import com.example.connectouterentity.*;
+import com.example.informationmanipulation.*;
 
 @RestController
 @CrossOrigin(origins ="*")
@@ -23,12 +18,13 @@ public class ReturnDatabaseInfo {
 
     private final AtomicLong counter = new AtomicLong();
 
+    /**
+     * This will return the information queried by the ReturnDatabaseInfo class
+     */
     public String getContent() throws SQLException {
-        /**
-         * This will return the information queried by the ReturnDatabaseInfo class
-         */
-        ConnectAutoTraderDB db_object = new ConnectAutoTraderDB();
-        return db_object.returnCarDetailsString(0);
+
+        ReturnCarInformation db_object = new ReturnCarInformation();
+        return db_object.returnCarDetailsString(1);
 
     }
 
