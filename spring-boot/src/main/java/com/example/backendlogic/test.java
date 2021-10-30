@@ -14,7 +14,7 @@ public class test {
 
         ArrayList<HashMap<String, String>> carlist = ReturnMultipleCars.returnAllCars();
         //made method static temporarily
-
+        System.out.println(carlist);
     }
 
 
