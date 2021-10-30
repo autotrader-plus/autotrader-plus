@@ -1,6 +1,7 @@
 package com.example.informationmanipulation;
 
 import com.example.connectouterentity.ConnectAutoTraderDB;
+import com.example.backendlogic.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,64 +27,11 @@ public class AddUser {
         return Integer.toString(returnInt + 1);
     }
 
-    // TODO Import user class and use instance variables to clean up long parameter list
     /**
-     * Add a user to the database. Does not return anything. Note that this method is overloaded
-     * @see #addUser(String, String, String, String, String, String, String, String, String)
+     * Add a user to the database. Does not return anything.
+     * @param user the user who we are recording data for. Note that this parameter is type User.
      */
-    public static void addUser(String name,
-                               String creditScore,
-                               String location,
-                               String maxDownpayment,
-                               String maxMonthlyPayment) throws SQLException {
-
-        // Determine what userID to assign this individual
-        String userID = AddUser.getMaxIDAddOne();
-
-        // Write the SQL query
-        String query = "INSERT INTO `cars`.`Users`" +
-                "(`user_id`, `name`, `credit_score`, `location`, `max_downpayment`, `max_monthly_payment`," +
-                "`monthly_income`, `employment_status`, `homeowner`, `monthly_debt_obligations`)" +
-                " VALUES " +
-                "('" + userID +
-                "', '" + name +
-                "', '" + creditScore +
-                "', '" + location +
-                "', '" + maxDownpayment +
-                "', '" + maxMonthlyPayment +
-                "', '', '', '', '');";
-
-        // Establish a connection and create a set of results from that query
-        ConnectAutoTraderDB connection = new ConnectAutoTraderDB();
-        connection.exceuteQuery(query);
-
-    }
-
-    // TODO Import user class and use instance variables to clean up long parameter list
-    /**
-     *
-     * Add a user to the database. Does not return anything
-     * Note that this is an overloaded method. This method specifically deals with advanced users' inputs and
-     * hence has more parameters
-     * @param name Name of user
-     * @param creditScore creditScore of user
-     * @param location location of user
-     * @param maxDownpayment max down payment available for user
-     * @param maxMonthlyPayment max monthly payment available for user
-     * @param monthlyIncome monthly income of user
-     * @param employmentStatus employment status of user
-     * @param homeowner homeowner status of user
-     * @param monthlyDebt monthly debt payments of user
-     */
-    public static void addUser(String name,
-                               String creditScore,
-                               String location,
-                               String maxDownpayment,
-                               String maxMonthlyPayment,
-                               String monthlyIncome,
-                               String employmentStatus,
-                               String homeowner,
-                               String monthlyDebt) throws SQLException {
+    public static void addUser(User user) throws SQLException {
 
         // Determine what userId to assign this individual
         String userID = AddUser.getMaxIDAddOne();
@@ -94,15 +42,15 @@ public class AddUser {
                 "`monthly_income`, `employment_status`, `homeowner`, `monthly_debt_obligations`)" +
                 "VALUES " +
                 "('" + userID +
-                "', '" + name +
-                "', '" + creditScore +
-                "', '" + location +
-                "', '" + maxDownpayment +
-                "', '" + maxMonthlyPayment +
-                "', '" + monthlyIncome +
-                "', '" + employmentStatus +
-                "', '" + homeowner +
-                "', '" + monthlyDebt + "');";
+                "', '" + user.getName() +
+                "', '" + user.getCreditscore() +
+                "', '" + user.getLocation() +
+                "', '" + user.getDownpayment() +
+                "', '" + user.getMonthlybudget() +
+                "', '" + user.getMonthlyincome() +
+                "', '" + user.isEmployed() +
+                "', '" + user.isHomeowner() +
+                "', '" + user.getMonthlydebt() + "');";
 
         // Establish a connection and create a set of results from that query
         ConnectAutoTraderDB connection = new ConnectAutoTraderDB();

@@ -9,7 +9,7 @@ import com.example.connectouterentity.ConnectAutoTraderDB;
 public class ReturnCarInformation {
 
     /**
-     * Will return the detail of a specified car in a legible/comprehensive format
+     * Will return the details of a specified car in a legible/comprehensive format
      */
     public static String returnCarDetailsString(Integer car_id) throws SQLException {
 
@@ -27,7 +27,7 @@ public class ReturnCarInformation {
     }
 
     /**
-     * Will return the detail of a specified car in a a dictionary format
+     * Will return the detail of a specified car in a dictionary format
      */
     public static HashMap<String, String> returnCarDetails(Integer car_id) throws SQLException {
 
@@ -51,7 +51,7 @@ public class ReturnCarInformation {
     }
 
     /**
-     * A helper method to populate a map with a car's information
+     * A helper method to populate a map with a car's information. It is used in another class, hence being public.
      */
     public static HashMap<String, String> populateCarMap(ResultSet myResultSet) throws SQLException {
         HashMap<String, String> returnMap = new HashMap<>();
