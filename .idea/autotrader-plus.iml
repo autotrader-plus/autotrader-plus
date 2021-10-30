@@ -2,7 +2,11 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/spring-boot/src/main/java/com/example/connectouterentity" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/spring-boot/src/main/java/com/example/responseformatting" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/spring-boot/src/main/java/com/example/returninfo" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

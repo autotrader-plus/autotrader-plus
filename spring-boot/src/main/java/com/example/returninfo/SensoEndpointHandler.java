@@ -29,9 +29,9 @@ public class ReturnSensoAPI {
      * @throws IOException
      * @throws InterruptedException
      */
-    public String getContent() throws IOException, InterruptedException {
+    public String getSensoReturnInfo() throws IOException, InterruptedException {
         ConnectSensoAPI senso_object = new ConnectSensoAPI();
-        return senso_object.getContent();
+        return senso_object.getReturnInfo();
 
     }
 
@@ -49,10 +49,9 @@ public class ReturnSensoAPI {
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @GetMapping("/senso")
     public HttpResponseSenso httpResponseSenso(@RequestParam(required = false, defaultValue = "") String name) throws IOException, InterruptedException{
-        System.out.println("==== connect and respond to senso api ====");
-        HttpResponseSenso senso_response = new HttpResponseSenso(counter.incrementAndGet(), getContent());
+        System.out.println("==== Connecting to Senso API ====");
+        HttpResponseSenso senso_response = new HttpResponseSenso(counter.incrementAndGet(), getSensoReturnInfo());
         return senso_response;
     }
 
-    /** TODO: Create a method that parse information from front-end. **/
 }

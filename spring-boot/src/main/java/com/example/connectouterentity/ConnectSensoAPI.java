@@ -45,7 +45,7 @@ public class ConnectSensoAPI {
 
     /**TODO: Create a method that parse responses from Senso API.**/
 
-    public String getContent() {
+    public String getReturnInfo() {
         return this.content;
     }
 }
