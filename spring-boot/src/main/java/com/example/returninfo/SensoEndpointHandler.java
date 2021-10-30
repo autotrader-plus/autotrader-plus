@@ -1,11 +1,8 @@
 package com.example.returninfo;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.responseformatting.*;
 import com.example.connectouterentity.*;
 
-/** This class handles HTTP request to the "/senso" endpoint. **/
+/** This class handles HTTP request to the "/senso" endpoint. This class may be retired and deleted since we
+ * might not need to use this endpoint for the real project. For now, this class will remain here in case we decide that
+ * we need to call this endpoint in the future.**/
 @RestController
 @CrossOrigin(origins ="*")
-public class ReturnSensoAPI {
+public class SensoEndpointHandler {
 
     private final AtomicLong counter = new AtomicLong();
 
@@ -29,29 +28,34 @@ public class ReturnSensoAPI {
      * @throws IOException
      * @throws InterruptedException
      */
-    public String getSensoReturnInfo() throws IOException, InterruptedException {
-        ConnectSensoAPI senso_object = new ConnectSensoAPI();
+    private String getSensoReturnInfo(HashMap<String, String> senso_input) throws IOException, InterruptedException {
+
+        ConnectSensoAPI senso_object = new ConnectSensoAPI(senso_input);
         return senso_object.getReturnInfo();
 
     }
-
-    /** TODO: Create or modify the method below such that it can read the information in http request body,
+    /**
      * then further process the information before returning a response
      *
      * This method handles HTTP request coming into the "/senso" endpoint. It processes information from the request
      * body and returns information back to the client.
      *
-     * @param name - the body of the http request from the client
+     * @param req_body - the body of the http request from the client
      * @return A HTTP Response back to the client.
      * @throws IOException
      * @throws InterruptedException
      */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @GetMapping("/senso")
-    public HttpResponseSenso httpResponseSenso(@RequestParam(required = false, defaultValue = "") String name) throws IOException, InterruptedException{
+    public HttpResponseSenso httpResponseSenso(@RequestParam(required = false, defaultValue = "") String req_body) throws IOException, InterruptedException{
         System.out.println("==== Connecting to Senso API ====");
-        HttpResponseSenso senso_response = new HttpResponseSenso(counter.incrementAndGet(), getSensoReturnInfo());
-        return senso_response;
+        HashMap<String, String> request = toMapping(req_body);
+        return new HttpResponseSenso(counter.incrementAndGet(), getSensoReturnInfo(request));
+    }
+
+    private HashMap<String, String> toMapping(String req_body){
+        System.out.println(req_body);
+        return new HashMap<>();
     }
 
 }

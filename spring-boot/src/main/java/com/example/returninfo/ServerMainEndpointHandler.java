@@ -16,7 +16,7 @@ import com.example.connectouterentity.*;
 /** This class handles HTTP request to the "/senso" endpoint. **/
 @RestController
 @CrossOrigin(origins ="*")
-public class ReturnSensoAPI {
+public class ServerMainEndpointHandler {
 
     private final AtomicLong counter = new AtomicLong();
 
@@ -33,20 +33,21 @@ public class ReturnSensoAPI {
     @PostMapping("/traderauto-plus")
     public HttpResponseMain httpResponseSenso(@RequestParam(required = true) String req_body) throws IOException, InterruptedException{
         System.out.println("==== POST Request Received ====");
-        JSONObject body = parseRequestBody(req_body);
-        JSONObject return_body = getReturnInfo(body);
+//        JSONObject body = parseRequestBody(req_body);
+//        JSONObject return_body = getReturnInfo(body);
 
-        HttpResponseMain response = new HttpResponseMain(counter, return_body);
+//        HttpResponseMain response = new HttpResponseMain(counter, return_body);
         System.out.println("==== POST Response Sent ====");
-        return response;
+//        return response;
+        return null;
     }
 
-    private JSONObject getReturnInfo(JSONObject body) {
-        //TODO: Complete this method.
-    }
-
-    private JSONObject parseRequestBody(String req_body) {
-        //TODO: Complete this method.
-    }
+//    private JSONObject getReturnInfo(JSONObject body) {
+//        //TODO: Complete this method.
+//    }
+//
+//    private JSONObject parseRequestBody(String req_body) {
+//        //TODO: Complete this method.
+//    }
 
 }
