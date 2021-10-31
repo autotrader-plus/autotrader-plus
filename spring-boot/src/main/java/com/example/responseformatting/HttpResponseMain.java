@@ -2,18 +2,20 @@ package com.example.responseformatting;
 
 import org.json.JSONObject;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 /** This class helps provide the formatting for the response body of the HTTP request to the "/senso" endpoint. **/
 public class HttpResponseMain {
 
-    private static long id;
+    private static AtomicLong id;
     private static JSONObject content;
 
-    public HttpResponseMain(long id, JSONObject content) {
-        this.id = id;
-        this.content = content;
+    public HttpResponseMain(AtomicLong id, JSONObject content) {
+        HttpResponseMain.id = id;
+        HttpResponseMain.content = content;
     }
 
-    public long getId() {
+    public AtomicLong getId() {
         return id;
     }
 

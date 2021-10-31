@@ -20,6 +20,7 @@ public class ConnectSensoAPI {
     private static int vehicleYear;
     private static int vehicleKms;
 
+    // Constructor for the class
     public ConnectSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
         loanAmount = Integer.parseInt(senso_input.get("loan_amount"));
         creditScore = Integer.parseInt(senso_input.get("credit_score"));
@@ -33,6 +34,7 @@ public class ConnectSensoAPI {
         content = CallSensoAPI(input_body);
     }
 
+    // A helper method to create a JSON String
     private String createJson(){
         return String.format("{\n" +
                 "  \"loanAmount\": %s,\n" +
@@ -45,6 +47,8 @@ public class ConnectSensoAPI {
                 "}", loanAmount, creditScore, pytBudget, vehicleMake, vehicleModel, vehicleYear, vehicleKms);
     }
 
+
+    // A helper method to call senso api and get back response based on information given in inputJson.
     private String CallSensoAPI(String inputJson) throws IOException, InterruptedException{
 
         String postEndpoint = "https://auto-loan-api.senso.ai/rate";
