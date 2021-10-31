@@ -1,9 +1,10 @@
 package com.example.backendlogic;
 
 public class User {
-    private int creditscore;
-    private int monthlybudget;
-    private int downpayment;
+    private final String name;
+    private final int creditscore;
+    private final int monthlybudget;
+    private final int downpayment;
     private String zipcode;
     private String name;
     private int monthlyincome;
