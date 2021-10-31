@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,9 +68,12 @@ public class ServerMainEndpointHandler {
         return loan_info.toString();
     }
 
-//    // Parse the request body
-//    private JSONObject parseRequestBody(String req_body) {
+    // Parse the request body
+//    private JSONObject parseRequestBody(String req_body) throws JsonProcessingException {
 //        //TODO: Complete this method (Need to call a method from parse class).
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        HashMap<String, String> userInfoHash = objectMapper.readValue(req_body, HashMap.class);
+//
 //    }
 //
 //    // get a filtered car list based on http request body
