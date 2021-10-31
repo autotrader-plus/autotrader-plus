@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,12 +70,13 @@ public class ServerMainEndpointHandler {
     }
 
     // Parse the request body
-//    private JSONObject parseRequestBody(String req_body) throws JsonProcessingException {
-//        //TODO: Complete this method (Need to call a method from parse class).
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        HashMap<String, String> userInfoHash = objectMapper.readValue(req_body, HashMap.class);
-//
-//    }
+    static HashMap<String, String> parseRequestBody(String req_body) throws JsonProcessingException {
+        //TODO: Complete this method (Need to call a method from parse class).
+        ObjectMapper objectMapper = new ObjectMapper();
+        HashMap<String, String> userInfoHash = objectMapper.readValue(req_body, HashMap.class);
+
+        return userInfoHash;
+    }
 //
 //    // get a filtered car list based on http request body
 //    private ArrayList<HashMap<String, String>> getFilteredCars(String car_type){
