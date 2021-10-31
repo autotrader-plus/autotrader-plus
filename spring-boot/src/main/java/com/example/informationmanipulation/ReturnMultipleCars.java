@@ -25,13 +25,11 @@ public class ReturnMultipleCars {
 
         ArrayList<HashMap<String, String>> returnList = new ArrayList<>();
 
+        // This continuously moves the cursor to the next row to reproduce data
         while (myResultSet.next()){
 
-            // Make a map for a car
-            HashMap<String, String> carMap = new HashMap<>();
-
             // Populate that car's information
-            carMap = ReturnCarInformation.populateCarMap(myResultSet);
+            HashMap<String, String> carMap = ReturnCarInformation.populateCarMap(myResultSet);
 
             // Add it to the list
             returnList.add(carMap);
@@ -54,7 +52,7 @@ public class ReturnMultipleCars {
      * Return all cars that are of a specific car type
      * @param filter the type of car you want to filter out
      */
-    public ArrayList<HashMap<String, String>> returnFilteredCars(String filter) throws SQLException {
+    public static ArrayList<HashMap<String, String>> returnFilteredCars(String filter) throws SQLException {
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars " +
                 "WHERE car_type = \"" + filter + "\";";

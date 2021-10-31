@@ -1,24 +1,27 @@
 package com.example.backendlogic;
 
 public class User {
-    private int creditscore;
-    private int monthlybudget;
-    private int downpayment;
+    private final String name;
+    private final int creditscore;
+    private final int monthlybudget;
+    private final int downpayment;
     private String zipcode;
     private int monthlyincome;
     private boolean employed;
     private boolean homeowner;
     private int monthlydebt;
 
-    public User(int creditscore, int monthlybudget, int downpayment, String zipcode){
+    public User(String name, int creditscore, int monthlybudget, int downpayment, String zipcode){
+        this.name = name;
         this.creditscore = creditscore;
         this.monthlybudget = monthlybudget;
         this.downpayment = downpayment;
         this.zipcode = zipcode;
     }
 
-    public User(int creditscore, int monthlybudget, int downpayment, String zipcode, int monthlyincome,
+    public User(String name, int creditscore, int monthlybudget, int downpayment, String zipcode, int monthlyincome,
                  boolean employed, boolean homeowner, int monthlydebt){
+        this.name = name;
         this.creditscore = creditscore;
         this.monthlybudget = monthlybudget;
         this.downpayment = downpayment;
@@ -47,5 +50,29 @@ public class User {
 
     public String getLocation(){
         return this.zipcode;
+    }
+
+    public int getDownpayment() {
+        return this.downpayment;
+    }
+
+    public int getMonthlyincome() {
+        return this.monthlyincome;
+    }
+
+    public boolean isEmployed() {
+        return this.employed;
+    }
+
+    public boolean isHomeowner() {
+        return this.homeowner;
+    }
+
+    public int getMonthlydebt() {
+        return this.monthlydebt;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }

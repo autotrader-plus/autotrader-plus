@@ -1,7 +1,6 @@
 package com.example.connectouterentity;
 
 import java.sql.*;
-import java.util.HashMap;
 
 public class ConnectAutoTraderDB{
 
@@ -62,5 +61,9 @@ public class ConnectAutoTraderDB{
 
     }
 
+    public void exceuteQuery(String query) throws SQLException {
+
+        this.objStatement.executeUpdate(query);
+    }
 }
 
