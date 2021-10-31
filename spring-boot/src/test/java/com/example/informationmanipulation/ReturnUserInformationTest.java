@@ -19,7 +19,9 @@ class ReturnUserInformationTest {
         Integer user_id = 1;
 
         HashMap<String, String> testMap = new HashMap<>();
+
         // TODO: Populate testMap with a user that exists in the database
+        
         testMap.put("ID", "");
         testMap.put("Name", "");
         testMap.put("Credit Score", "");
