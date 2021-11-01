@@ -1,5 +1,10 @@
 package com.example.returninfo;
 
+import com.example.backendlogic.Loans;
+import com.example.informationmanipulation.*;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -9,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.responseformatting.*;
@@ -30,38 +35,32 @@ public class ServerMainEndpointHandler {
      */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/traderauto-plus")
-    public HttpResponseMain httpResponseSenso(@RequestParam() String req_body) throws JsonProcessingException {
+    public HttpResponseMain httpResponseSenso(@RequestBody() String req_body) throws IOException, SQLException, InterruptedException {
         System.out.println("==== POST Request Received ====");
         HashMap<String, String> body = parseRequestBody(req_body);
 
-        ArrayList<HashMap<String, String>> filtered_cars = getFilteredCars((String) body.get("car-preference"));
-        ArrayList<HashMap<String, String>> loans = DummyMethod(filtered_cars); //TODO: Call Daniel's loan class
+        ArrayList<HashMap<String, String>> filtered_cars = getFilteredCars(body.get("car-preference"));
+        body.remove("car-preference");
+        Loans loans = new Loans(body, filtered_cars);
+        ArrayList<String> loans_list = loans.getLoans();
+        String response = createLoanResponse(loans_list);
 
-        String response = createLoanResponse(loans);
-
-        HttpResponseMain http_response = new HttpResponseMain(counter, response);
+        HttpResponseMain http_response = new HttpResponseMain(counter.incrementAndGet(), response);
         System.out.println("==== POST Response Sent ====");
         return http_response;
 
     }
 
-    // Create a String representation of all the loans information to be sent back as the http response
-    static String createLoanResponse(ArrayList<HashMap<String, String>> loans) {
+    // Create a String representation of the loan information for the first month to be sent back as the http response
+    public static String createLoanResponse(ArrayList<String> loans) {
         StringBuilder loan_info = new StringBuilder();
 
         loan_info.append("{");
 
-        for (HashMap<String, String> loan : loans) {
+        for (String loan : loans) {
             loan_info.append("{");
-            for (String key : loan.keySet()){
-
-                loan_info.append("\"").append(key).append("\"").append(": ");
-                loan_info.append("\"").append(loan.get(key)).append("\"");
-                loan_info.append(", ");
-            }
-            loan_info.delete(loan_info.length()-2, loan_info.length());
+            loan_info.append(loan);
             loan_info.append("}");
-            loan_info.append(",\n");
         }
 
         loan_info.append("}");
@@ -78,7 +77,7 @@ public class ServerMainEndpointHandler {
     }
 
     // get a filtered car list based on http request body
-    private ArrayList<HashMap<String, String>> getFilteredCars(String car_type){
-        // TODO: Call Ameen's returnFilteredCars(car_type)
+    private ArrayList<HashMap<String, String>> getFilteredCars(String car_type) throws SQLException {
+        return ReturnMultipleCars.returnFilteredCars(car_type);
     }
 }

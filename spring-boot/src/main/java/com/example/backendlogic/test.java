@@ -1,5 +1,5 @@
 package com.example.backendlogic;
-import com.example.connectouterentity.ConnectSensoAPI;
+
 import com.example.informationmanipulation.ReturnMultipleCars;
 
 import java.io.IOException;
@@ -18,30 +18,31 @@ public class test {
       //  ArrayList<Integer> buyable_carID = new ArrayList<Integer>();
         //made method static temporarily
         HashMap<String, String> userinfo = new HashMap();
-        userinfo.put("creditscore", "770");
+        userinfo.put("credit-score", "770");
         userinfo.put("monthlybudget", "600");
         userinfo.put("downpayment", "200");
-        userinfo.put("zipcode", "M4y111");
+        userinfo.put("zip-code", "M4y111");
         userinfo.put("name", "Bob");
         Loans loan = new Loans(userinfo, carlist);
         ArrayList output = loan.getLoans();
         System.out.println(output);
         System.out.println(output.size());
 
-        HashMap<String, String> userinfo2 = new HashMap();
-        userinfo2.put("creditscore", "600");
-        userinfo2.put("monthlybudget", "620");
-        userinfo2.put("downpayment", "100");
-        userinfo2.put("zipcode", "123456");
-        userinfo2.put("name", "HiHi");
-        userinfo2.put("monthlyincome", "10000");
-        userinfo2.put("employed", "employed");
-        userinfo2.put("homeowner", "homeowner");
-        userinfo2.put("monthlydebt", "3000");
-        Loans loan2 = new Loans(userinfo2, carlist);
-        ArrayList output2 = loan2.getLoans();
-        System.out.println(output2);
-        System.out.println(output2.size());
+//        HashMap<String, String> userinfo2 = new HashMap();
+//        userinfo2.put("credit-score", "600");
+//        userinfo2.put("monthlybudget", "620");
+//        userinfo2.put("downpayment", "100");
+//        userinfo2.put("zip-code", "123456");
+//        userinfo2.put("name", "HiHi");
+//        userinfo2.put("monthlyincome", "10000");
+//        userinfo2.put("employed", "employed");
+//        userinfo2.put("homeowner", "homeowner");
+//        userinfo2.put("monthlydebt", "3000");
+//        Loans loan2 = new Loans(userinfo2, carlist);
+//        ArrayList output2 = loan2.getLoans();
+//        System.out.println(output2);
+//        System.out.println(output2.size());
+
         //ArrayList succ = loan.getSuccesses();
         //CarList cars = loan.getCars();
         //System.out.println(loan.getCars());
@@ -103,6 +104,7 @@ public class test {
             System.out.println(car.show());
         }*/
 
+//        ServerMainEndpointHandler.createLoanResponse(output2);
 
     }
 
