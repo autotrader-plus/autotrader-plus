@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /** This class handles all calls to the root endpoint. **/
 @RestController
-public class HelloController {
+public class RootEndpointHandler {
 
     @GetMapping("/")
     public String index() {

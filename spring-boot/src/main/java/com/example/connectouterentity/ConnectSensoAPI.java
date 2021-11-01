@@ -5,27 +5,53 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.HashMap;
 
 
 /** This is a class that calls Senso API, and return information from Senso API.**/
 public class ConnectSensoAPI {
 
-    private final String content;
+    private static String content;
+    private static int loanAmount;
+    private static int creditScore;
+    private static int pytBudget;
+    private static String vehicleMake;
+    private static String vehicleModel;
+    private static int vehicleYear;
+    private static int vehicleKms;
 
-    public ConnectSensoAPI() throws IOException, InterruptedException{
+    // Constructor for the class
+    public ConnectSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
+        loanAmount = Integer.parseInt(senso_input.get("loan_amount"));
+        creditScore = Integer.parseInt(senso_input.get("credit_score"));
+        pytBudget = Integer.parseInt(senso_input.get("payment_budget"));
+        vehicleMake = senso_input.get("vehicle_make");
+        vehicleModel = senso_input.get("vehicle_model");
+        vehicleYear = Integer.parseInt(senso_input.get("vehicle_year"));
+        vehicleKms = Integer.parseInt(senso_input.get("vehicle_kms"));
+
+        String input_body = createJson();
+        content = CallSensoAPI(input_body);
+    }
+
+    // A helper method to create a JSON String
+    private String createJson(){
+        return String.format("{\n" +
+                "  \"loanAmount\": %s,\n" +
+                "  \"creditScore\": %s,\n" +
+                "  \"pytBudget\": %s,\n" +
+                "  \"vehicleMake\": \"%s\",\n" +
+                "  \"vehicleModel\": \"%s\",\n" +
+                "  \"vehicleYear\": %s,\n" +
+                "  \"vehicleKms\": %s\n" +
+                "}", loanAmount, creditScore, pytBudget, vehicleMake, vehicleModel, vehicleYear, vehicleKms);
+    }
+
+
+    // A helper method to call senso api and get back response based on information given in inputJson.
+    private String CallSensoAPI(String inputJson) throws IOException, InterruptedException{
 
         String postEndpoint = "https://auto-loan-api.senso.ai/rate";
-
-        /**TODO: Create a method that takes in user and car information, instead of harcoding values.**/
-        String inputJson = "{\n" +
-                "  \"loanAmount\": 10000,\n" +
-                "  \"creditScore\": 780,\n" +
-                "  \"pytBudget\": 800,\n" +
-                "  \"vehicleMake\": \"Honda\",\n" +
-                "  \"vehicleModel\": \"Civic\",\n" +
-                "  \"vehicleYear\": 2021,\n" +
-                "  \"vehicleKms\": 1000\n" +
-                "}";
 
         // Build and send a POST request to senso endpoint
         var request = HttpRequest.newBuilder()
@@ -40,12 +66,10 @@ public class ConnectSensoAPI {
         // Get response from senso api
         var response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        this.content = response.body();
+        return response.body();
     }
 
-    /**TODO: Create a method that parse responses from Senso API.**/
-
-    public String getContent() {
-        return this.content;
+    public String getReturnInfo() {
+        return content;
     }
 }
