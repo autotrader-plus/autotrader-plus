@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Loans {
-    private ArrayList loans;
+    private ArrayList<String> loans;
     private CarList cars;
     private User buyer;
 
@@ -16,9 +16,9 @@ public class Loans {
         //creates User object (buyer) based on length of given user Hashmap
         this.loans = new ArrayList();
         if (user.size() == 5){
-            this.buyer = new User(Integer.parseInt((String) user.get("creditscore")),
+            this.buyer = new User(Integer.parseInt((String) user.get("credit-score")),
                     Integer.parseInt((String) user.get("monthlybudget")),
-                    Integer.parseInt((String) user.get("downpayment")), (String) user.get("zipcode"),
+                    Integer.parseInt((String) user.get("downpayment")), (String) user.get("zip-code"),
                     (String) user.get("name"));
 
             // gets buyer pricerange
@@ -34,9 +34,9 @@ public class Loans {
             callApi();
         }
         else {
-            this.buyer = new User(Integer.parseInt((String) user.get("creditscore")),
+            this.buyer = new User(Integer.parseInt((String) user.get("credit-score")),
                     Integer.parseInt((String) user.get("monthlybudget")),
-                    Integer.parseInt((String) user.get("downpayment")), (String) user.get("zipcode"),
+                    Integer.parseInt((String) user.get("downpayment")), (String) user.get("zip-code"),
                     (String) user.get("name"), Integer.parseInt((String) user.get("monthlyincome")),
                     (String) user.get("employed") == "employed",
                     (String) user.get("homeowner") == "homeowner",
@@ -71,7 +71,7 @@ public class Loans {
             mapping.put("vehicle_kms", car.getKMS());
 
             ConnectSensoAPI connector = new ConnectSensoAPI(mapping);
-            this.loans.add(car.getBrand() + "  " + connector.getReturnInfo());
+            this.loans.add(car.getBrand() + ": " + connector.getReturnInfo());
         }
     }
 
@@ -90,7 +90,7 @@ public class Loans {
             }
         }
     }
-    public ArrayList getLoans(){return this.loans;}
+    public ArrayList<String> getLoans(){return this.loans;}
 
     public CarList getCars(){return this.cars;}
 

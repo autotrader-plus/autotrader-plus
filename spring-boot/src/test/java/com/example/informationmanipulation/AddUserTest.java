@@ -13,7 +13,7 @@ class AddUserTest {
     @Test
     @DisplayName("addUser: Basic Case")
     void addUser() throws SQLException {
-        User user = new User("Mike", 730, 1000, 5000, "M4Y111",
+        User user = new User(5000, 730, 1000, "M4Y111", "Mike",
                 8500, true, true, 500);
 
         AddUser.addUser(user);
