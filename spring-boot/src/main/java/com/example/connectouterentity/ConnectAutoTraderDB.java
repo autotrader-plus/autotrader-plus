@@ -1,10 +1,6 @@
 package com.example.connectouterentity;
 
 import java.sql.*;
-import java.util.HashMap;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 public class ConnectAutoTraderDB{
 
@@ -12,22 +8,24 @@ public class ConnectAutoTraderDB{
      * Represents a connection to AutoTraderDB.
      * Can call data in string form and Dictionary form
      */
+
     // This variable essentially represents the connection to the SQLDB; it holds information about that connection
     private final Statement objStatement;
 
+    /**
+     * Initialize a Connection. We will automatically establish the DB connection at each instaitation of
+     * an object.
+     */
     public ConnectAutoTraderDB(){
-        /**
-         * Initialize a Connection. We will automatically establish the DB connection at each instaitation of
-         * an object.
-         */
+
         this.objStatement = ConnectAutoTraderDB.establishConnection();
     }
 
+    /**
+     * Establishing a connection to the database. This method is private as it should only be accessed by the
+     * initializer.
+     */
     private static Statement establishConnection(){
-        /**
-         * Establishing a connection to the database. This method is private as it should only be accessed by the
-         * initializer.
-         */
 
         try{
             try{
@@ -54,62 +52,18 @@ public class ConnectAutoTraderDB{
         return null;
     }
 
-    private ResultSet writeQuery(String query) throws SQLException {
-        /**
-         * Write a query for the SQL database to access
-         */
+    /**
+     * Write a query for the SQL database to access
+     */
+    public ResultSet writeQuery(String query) throws SQLException {
 
         return this.objStatement.executeQuery(query);
 
     }
 
-    public String returnCarDetailsString(Integer car_id) throws SQLException {
-        /**
-         * Will return the detail of a specified car in a legible/comprehensive format
-         */
+    public void exceuteQuery(String query) throws SQLException {
 
-        // Writing SQL query
-        String query = "SELECT * FROM cars.AvailableCars " +
-                "WHERE id_car = " + car_id.toString() + ";";
-
-        // Creating a set of results from that query
-        ResultSet myResultSet = writeQuery(query);
-
-        // Creating the string
-        String returnString = "";
-
-        // This if statement moves the cursor that's within the result set
-        if(myResultSet.next()) {
-            returnString = "Car: " + myResultSet.getString("name") + "\n" +
-                    "Cost: $" + myResultSet.getString("cost");
-        }
-
-        return returnString;
+        this.objStatement.executeUpdate(query);
     }
-
-    public HashMap<String, Object> returnCarDetails(Integer car_id) throws SQLException {
-        /**
-         * Will return the detail of a specified car in a a dictionary format
-         */
-
-        // Writing a SQL query
-        String query = "SELECT * FROM cars.AvailableCars " +
-                "WHERE id_car = " + car_id.toString() + ";";
-
-        // Creating a set of results from that query
-        ResultSet myResultSet = writeQuery(query);
-
-        // Creating the map
-        HashMap<String, Object> returnMap = new HashMap<>();
-
-        // This if statement moves the cursor that's within the result set
-        if(myResultSet.next()) {
-            returnMap.put("Car", myResultSet.getString("name"));
-            returnMap.put("Cost", myResultSet.getString("cost"));
-        }
-
-        return returnMap;
-    }
-
 }
 
