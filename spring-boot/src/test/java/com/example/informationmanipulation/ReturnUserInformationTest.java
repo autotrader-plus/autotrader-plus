@@ -19,19 +19,16 @@ class ReturnUserInformationTest {
         Integer user_id = 1;
 
         HashMap<String, String> testMap = new HashMap<>();
-
-        // TODO: Populate testMap with a user that exists in the database
-        
-        testMap.put("ID", "");
-        testMap.put("Name", "");
-        testMap.put("Credit Score", "");
-        testMap.put("Location", "");
-        testMap.put("Max Downpayment", "");
-        testMap.put("Max Monthly Payment", "");
-        testMap.put("Monthly Income", "");
-        testMap.put("Employment Status", "");
-        testMap.put("Homeowner", "");
-        testMap.put("Monthly Debt Obligation", "");
+        testMap.put("ID", "1");
+        testMap.put("Name", "Ameen");
+        testMap.put("Credit Score", "750");
+        testMap.put("Location", "M5V0P5");
+        testMap.put("Max Downpayment", "150");
+        testMap.put("Max Monthly Payment", "2000");
+        testMap.put("Monthly Income", "1000");
+        testMap.put("Employment Status", "true");
+        testMap.put("Homeowner", "false");
+        testMap.put("Monthly Debt Obligation", "1000");
 
         assert Objects.equals(testMap, ReturnUserInformation.returnUser(user_id));
     }
