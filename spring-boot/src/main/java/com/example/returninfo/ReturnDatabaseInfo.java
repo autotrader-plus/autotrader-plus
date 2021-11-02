@@ -30,9 +30,9 @@ public class ReturnDatabaseInfo {
 
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @GetMapping("/database")
-    public HttpResponseDatabase httpResponseDatabase(@RequestParam(required = false, defaultValue = "") String name) throws SQLException{
+    public HttpResponseMain httpResponseMain(@RequestParam(required = false, defaultValue = "") String name) throws SQLException{
         System.out.println("==== Connecting to Autotrader Database ====");
-        HttpResponseDatabase db_response = new HttpResponseDatabase(counter.incrementAndGet(), getContent());
+        HttpResponseMain db_response = new HttpResponseMain(counter.incrementAndGet(), getContent());
         return db_response;
     }
 }
