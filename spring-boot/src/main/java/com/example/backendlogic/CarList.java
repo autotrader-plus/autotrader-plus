@@ -1,14 +1,14 @@
 package com.example.backendlogic;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CarList<Car> {
-    private ArrayList<Car> carlist;
+    private final ArrayList<Car> carlist;
 
     public CarList(){
-        this.carlist = new ArrayList<Car>();
+        this.carlist = new ArrayList<>();
     }
 
+    // will be used in the future
     public CarList(ArrayList<Car> carlist){
         this.carlist = carlist;
     }

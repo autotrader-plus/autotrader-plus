@@ -9,13 +9,13 @@ import java.lang.*;
 
 public class test {
     public static void main(String[] args) throws SQLException, IOException, InterruptedException {
-       // User bob = new User(750, 1000, 200, "M4Y111", "Bob");
-       // int budget = Integer.parseInt(bob.getPriceRange());
-       // int upsold_budget = budget - (int)Math.min(budget*0.1, 2000);
+        // User bob = new User(750, 1000, 200, "M4Y111", "Bob");
+        // int budget = Integer.parseInt(bob.getPriceRange());
+        // int upsold_budget = budget - (int)Math.min(budget*0.1, 2000);
         //System.out.println(upsold_budget);
         ArrayList<HashMap<String, String>> carlist = ReturnMultipleCars.returnAllCars();
         //System.out.println(carlist);
-      //  ArrayList<Integer> buyable_carID = new ArrayList<Integer>();
+        //  ArrayList<Integer> buyable_carID = new ArrayList<Integer>();
         //made method static temporarily
         HashMap<String, String> userinfo = new HashMap();
         userinfo.put("credit-score", "770");
@@ -64,15 +64,15 @@ public class test {
         ConnectSensoAPI connector = new ConnectSensoAPI(mapping);
         assert connector.getReturnInfo() != null; */
         //System.out.print(connector.getReturnInfo() instanceof String);
-       // User hello = loan.getBuyer();
-      //  System.out.println(hello.getCreditscore());
-       // System.out.println(hello.getName());
+        // User hello = loan.getBuyer();
+        //  System.out.println(hello.getCreditscore());
+        // System.out.println(hello.getName());
         //System.out.println(carlist.size());
         //System.out.println(cars.size());
         //for (int j = 0; j < cars.size(); j++){
-       //    Car car = (Car) cars.getCar(j);
-      //      System.out.println(car.show());
-      //  }
+        //    Car car = (Car) cars.getCar(j);
+        //      System.out.println(car.show());
+        //  }
        /* CarList test = loan.makecars(carlist, 40000);
         for (int j = 0; j < test.size(); j++){
             Car car = (Car) test.getCar(j);
@@ -80,11 +80,11 @@ public class test {
         }*/
         //System.out.println(test.size());
 
-     //   CarList carrr = loan.getCars();
-     //   for (int j = 0; j < carrr.size(); j++){
-      //      Car car = (Car) carrr.getCar(j);
-       //     System.out.println(car.show());
-      //  }
+        //   CarList carrr = loan.getCars();
+        //   for (int j = 0; j < carrr.size(); j++){
+        //      Car car = (Car) carrr.getCar(j);
+        //     System.out.println(car.show());
+        //  }
         //System.out.println(carrr.size());
 
        /* CarList cars = new CarList();
@@ -110,3 +110,4 @@ public class test {
 
 
 }
+

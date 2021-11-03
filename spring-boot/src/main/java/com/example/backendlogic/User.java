@@ -4,8 +4,8 @@ public class User {
     private final int creditscore;
     private final int monthlybudget;
     private final int downpayment;
-    private String zipcode;
-    private String name;
+    private final String zipcode;
+    private final String name;
     private int monthlyincome;
     private boolean employed;
     private boolean homeowner;
@@ -17,6 +17,10 @@ public class User {
         this.downpayment = downpayment;
         this.zipcode = zipcode;
         this.name = name;
+        this.monthlyincome = 0; //set to 0 as default
+        this.employed = false;  //set to false as default
+        this.homeowner = false; //set to false as default
+        this.monthlydebt = 0;   //set to 0 as default
     }
 
     public User(int creditscore, int monthlybudget, int downpayment, String zipcode, String name, int monthlyincome,
@@ -36,6 +40,7 @@ public class User {
         return Integer.toString((36 * this.monthlybudget) + this.downpayment);
     }
 
+    // will be used in the future
     public String getPriceRange(int term){
         return Integer.toString((term * this.monthlybudget) + this.downpayment);
     }
