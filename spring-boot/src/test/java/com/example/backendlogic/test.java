@@ -17,14 +17,14 @@ public class test {
         //System.out.println(carlist);
         //  ArrayList<Integer> buyable_carID = new ArrayList<Integer>();
         //made method static temporarily
-        HashMap<String, String> userinfo = new HashMap();
+        HashMap<String, String> userinfo = new HashMap<>();
         userinfo.put("credit-score", "770");
         userinfo.put("monthlybudget", "600");
         userinfo.put("downpayment", "200");
         userinfo.put("zip-code", "M4y111");
         userinfo.put("name", "Bob");
         Loans loan = new Loans(userinfo, carlist);
-        ArrayList output = loan.getLoans();
+        ArrayList<String> output = loan.getLoans();
         System.out.println(output);
         System.out.println(output.size());
 
