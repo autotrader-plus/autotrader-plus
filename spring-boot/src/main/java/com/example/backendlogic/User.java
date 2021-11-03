@@ -6,10 +6,10 @@ public class User {
     private final int downpayment;
     private final String zipcode;
     private final String name;
-    private int monthlyincome;
-    private boolean employed;
-    private boolean homeowner;
-    private int monthlydebt;
+    private final int monthlyincome;
+    private final boolean employed;
+    private final boolean homeowner;
+    private final int monthlydebt;
 
     public User(int creditscore, int monthlybudget, int downpayment, String zipcode, String name){
         this.creditscore = creditscore;
