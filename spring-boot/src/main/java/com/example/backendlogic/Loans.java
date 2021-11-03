@@ -58,23 +58,28 @@ public class Loans {
     private void callApi() throws IOException, InterruptedException {
         for (int j = 0; j < this.cars.size(); j++){
             Car car = this.cars.getCar(j);
-            HashMap<String, String> mapping = new HashMap<>();
-            mapping.put("loan_amount", Integer.toString(car.getPrice() -
-                    Integer.parseInt(this.buyer.getDownpayment())));
-            mapping.put("credit_score", this.buyer.getCreditscore());
-            mapping.put("payment_budget", this.buyer.getMonthlybudget());
-            mapping.put("vehicle_make", car.getBrand());
-            mapping.put("vehicle_model", "Daniel");
-            mapping.put("vehicle_year", car.getYear());
-            mapping.put("vehicle_kms", car.getKMS());
+            HashMap<String, String> mapping = makeUserInfo(car);
 
             ConnectSensoAPI connector = new ConnectSensoAPI(mapping);
             this.loans.add(car.getBrand() + ": " + connector.getReturnInfo());
         }
     }
 
+    private HashMap<String, String> makeUserInfo(Car car) {
+        HashMap<String, String> mapping = new HashMap<>();
+        mapping.put("loan_amount", Integer.toString(car.getPrice() -
+                Integer.parseInt(this.buyer.getDownpayment())));
+        mapping.put("credit_score", this.buyer.getCreditscore());
+        mapping.put("payment_budget", this.buyer.getMonthlybudget());
+        mapping.put("vehicle_make", car.getBrand());
+        mapping.put("vehicle_model", "Daniel");
+        mapping.put("vehicle_year", car.getYear());
+        mapping.put("vehicle_kms", car.getKMS());
+        return mapping;
+    }
+
     // creates CarList object (cars) based on length of given carlist Arraylist
-    public void makecars(ArrayList<HashMap<String, String>> carlist, int budget) {
+    private void makecars(ArrayList<HashMap<String, String>> carlist, int budget) {
         for (HashMap<String, String> stringStringHashMap : carlist) {
             String cost = stringStringHashMap.get("Cost");
             String year = stringStringHashMap.get("Model Year");
