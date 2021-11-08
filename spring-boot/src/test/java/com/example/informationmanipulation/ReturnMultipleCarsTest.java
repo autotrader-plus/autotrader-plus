@@ -1,8 +1,10 @@
 package com.example.informationmanipulation;
 
 import net.bytebuddy.asm.Advice;
+import java.lang.Object;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 
 import java.sql.Array;
 import java.sql.SQLException;
@@ -19,11 +21,9 @@ class ReturnMultipleCarsTest {
     @Test
     @DisplayName("AllCars: Basic Case")
     void returnAllCars() throws SQLException {
-        // TODO: Still need to run to see if this works
         ArrayList<HashMap<String, String>> testList = new ArrayList<>();
-        ArrayList<HashMap<String, String>> returnedList = ReturnMultipleCars.returnAllCars();
 
-        // Making all hashmaps of cars
+        // Adding all hashmaps of car information
         testList.add(0, new HashMap<>() {{
             put("Model Year", "2021");
             put("Car", "Chevrolet Corvette Stingray");
@@ -57,8 +57,8 @@ class ReturnMultipleCarsTest {
             put("Mileage", "19950");
             put("Car Type", "Convertible");
             put("ID", "3");
-            put("Cost", "28560");
-            put("Dealership", "Barrie Honda");
+            put("Cost", "91888");
+            put("Dealership", "Auto|One");
         }});
         testList.add(4, new HashMap<>() {{
             put("Model Year", "2017");
@@ -137,7 +137,7 @@ class ReturnMultipleCarsTest {
             put("Car", "Jeep Grand Cherokee");
             put("Mileage", "207599");
             put("Car Type", "SUV");
-            put("ID", "13");
+            put("ID", "12");
             put("Cost", "19900");
             put("Dealership", "Daleo Motors");
         }});
@@ -227,7 +227,7 @@ class ReturnMultipleCarsTest {
             put("Car", "Chevrolet Colorado WT");
             put("Mileage", "27899");
             put("Car Type", "Truck");
-            put("ID", "23");
+            put("ID", "22");
             put("Cost", "27995");
             put("Dealership", "Wilson's");
         }});
@@ -241,24 +241,17 @@ class ReturnMultipleCarsTest {
             put("Dealership", "Dixie Infiniti");
         }});
 
-        for (int i = 0; i < testList.size(); i++ ){
-            assert testList.get(i).equals(returnedList.get(i));
-        }
-        assert true;
+        assert Objects.equals(testList, ReturnMultipleCars.returnAllCars());
     }
 
     @Test
     @DisplayName("FilteredCars: Basic Case")
     void returnFilteredCars() throws SQLException {
-        // TODO: Still need to actually run to see if this test works
-
         String filter = "SUV";
 
         ArrayList<HashMap<String, String>> testList = new ArrayList<>();
 
-        ArrayList<HashMap<String, String>> returnedList = ReturnMultipleCars.returnFilteredCars(filter);
-
-        testList.add(1, new HashMap<>() {{
+        testList.add(0, new HashMap<>() {{
             put("Model Year", "2017");
             put("Car", "Honda Pillot 4WD");
             put("Mileage", "145174");
@@ -267,7 +260,7 @@ class ReturnMultipleCarsTest {
             put("Cost", "28560");
             put("Dealership", "Barrie Honda");
         }});
-        testList.add(2, new HashMap<>() {{
+        testList.add(1, new HashMap<>() {{
             put("Model Year", "2014");
             put("Car", "Lexus GX 460");
             put("Mileage", "114781");
@@ -276,7 +269,7 @@ class ReturnMultipleCarsTest {
             put("Cost", "41998");
             put("Dealership", "Porche of London");
         }});
-        testList.add(3, new HashMap<>() {{
+        testList.add(2, new HashMap<>() {{
             put("Model Year", "2021");
             put("Car", "Dodge Durango");
             put("Mileage", "22709");
@@ -299,7 +292,7 @@ class ReturnMultipleCarsTest {
             put("Car", "Jeep Grand Cherokee");
             put("Mileage", "207599");
             put("Car Type", "SUV");
-            put("ID", "13");
+            put("ID", "12");
             put("Cost", "19900");
             put("Dealership", "Daleo Motors");
         }});
@@ -331,12 +324,8 @@ class ReturnMultipleCarsTest {
             put("Dealership", "Vaughan Chrysler");
         }});
 
-        // Since Hashmaps are unordered objects, need to use equals() on each Hashmap objects
-        for (int i = 0; i < min(testList.size(), returnedList.size()); i++){
-            assert testList.get(i).equals(returnedList.get(i));
-        }
-
-//        assert Objects.equals(testList, ReturnMultipleCars.returnFilteredCars(filter));
+//        assert Objects.equals(testList, returnedList);
+        assert Objects.equals(testList, ReturnMultipleCars.returnFilteredCars(filter));
     }
 
 }
