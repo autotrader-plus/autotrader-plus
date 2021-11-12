@@ -12,27 +12,23 @@ class AddUserTest {
     @Test
     @DisplayName("addUser: Basic Case with Simple User")
     void addUserSimple() throws SQLException {
-        User user = new User(720, 1000, 5000, "M4Y111", "Mike");
+        User user = new User(740, 1000, 5000, "M4Y111", "Mike");
 
         AddUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
-        testMap.put("ID", "9");
+        testMap.put("ID", "12");
         testMap.put("Name", "Mike");
-        testMap.put("Credit Score", "730");
+        testMap.put("Credit Score", "740");
         testMap.put("Location", "M4Y111");
         testMap.put("Max Downpayment", "5000");
         testMap.put("Max Monthly Payment", "1000");
-        // TODO: Determine if we're expecting null or strings
         testMap.put("Monthly Income", null);
         testMap.put("Employment Status", null);
         testMap.put("Homeowner", null);
         testMap.put("Monthly Debt Obligation", null);
 
-        System.out.println(testMap);
-        System.out.println(ReturnUserInformation.returnUser(9));
-
-        assert testMap.equals(ReturnUserInformation.returnUser(9));
+        assert testMap.equals(ReturnUserInformation.returnUser(12));
     }
 
     @Test

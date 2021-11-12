@@ -324,7 +324,6 @@ class ReturnMultipleCarsTest {
             put("Dealership", "Vaughan Chrysler");
         }});
 
-//        assert Objects.equals(testList, returnedList);
         assert Objects.equals(testList, ReturnMultipleCars.returnFilteredCars(filter));
     }
 
