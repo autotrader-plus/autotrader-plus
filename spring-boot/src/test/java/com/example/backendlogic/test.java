@@ -24,9 +24,9 @@ public class test {
         userinfo.put("zip-code", "M4y111");
         userinfo.put("name", "Bob");
         Loans loan = new Loans(userinfo, carlist);
-        ArrayList<String> output = loan.getLoans();
-        System.out.println(output);
-        System.out.println(output.size());
+        //ArrayList<String> output = loan.getLoans();
+        //System.out.println(output);
+        //System.out.println(output.size());
 
 //        HashMap<String, String> userinfo2 = new HashMap();
 //        userinfo2.put("credit-score", "600");

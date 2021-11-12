@@ -6,111 +6,112 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
-
+    User basic;
+    User advanced;
     @BeforeEach
     void setUp() {
-        User basic = new User(750, 300, 200, "M4Y111", "Bob Du");
-        User advanced = new User(700, 400, 100, "111M4Y", "Dod Bu",
+        this.basic = new User(750, 300, 200, "M4Y111", "Bob Du");
+        this.advanced = new User(700, 400, 100, "111M4Y", "Dod Bu",
                 4000, true, true, 1000);
     }
 
     @Test
-    void getPriceRangeBasic(User basic) {
-        assert basic.getPriceRange().equals("10800");
+    void getPriceRangeBasic() {
+        assert this.basic.getPriceRange().equals("11000");
     }
 
     @Test
-    void getPriceRangeAdvanced(User advanced) {
-        assert advanced.getPriceRange().equals("14400");
+    void getPriceRangeAdvanced() {
+        assert this.advanced.getPriceRange().equals("14500");
     }
 
     @Test
-    void getMonthlybudgetBasic(User basic) {
-        assert basic.getMonthlybudget().equals("300");
+    void getMonthlybudgetBasic() {
+        assert this.basic.getMonthlybudget().equals("300");
     }
 
     @Test
-    void getMonthlybudgetAdvanced(User advanced) {
-        assert advanced.getMonthlybudget().equals("400");
+    void getMonthlybudgetAdvanced() {
+        assert this.advanced.getMonthlybudget().equals("400");
     }
 
     @Test
-    void getCreditscoreBasic(User basic) {
-        assert basic.getCreditscore().equals("750");
+    void getCreditscoreBasic() {
+        assert this.basic.getCreditscore().equals("750");
     }
 
     @Test
-    void getCreditscoreAdvanced(User advanced) {
-        assert advanced.getCreditscore().equals("700");
+    void getCreditscoreAdvanced() {
+        assert this.advanced.getCreditscore().equals("700");
     }
 
     @Test
-    void getLocationBasic(User basic) {
-        assert basic.getLocation().equals("M4Y111");
+    void getLocationBasic() {
+        assert this.basic.getLocation().equals("M4Y111");
     }
 
     @Test
-    void getLocationAdvanced(User advanced) {
-        assert advanced.getLocation().equals("111M4Y");
+    void getLocationAdvanced() {
+        assert this.advanced.getLocation().equals("111M4Y");
     }
 
     @Test
-    void getNameBasic(User basic) {
-        assert basic.getName().equals("Bob Du");
+    void getNameBasic() {
+        assert this.basic.getName().equals("Bob Du");
     }
 
     @Test
-    void getNameAdvanced(User advanced) {
-        assert advanced.getName().equals("Dod Bu");
+    void getNameAdvanced() {
+        assert this.advanced.getName().equals("Dod Bu");
     }
 
     @Test
-    void getDownpaymentBasic(User basic) {
-        assert basic.getDownpayment().equals("200");
+    void getDownpaymentBasic() {
+        assert this.basic.getDownpayment().equals("200");
     }
 
     @Test
-    void getDownpaymentAdvanced(User advanced) {
-        assert advanced.getDownpayment().equals("100");
+    void getDownpaymentAdvanced() {
+        assert this.advanced.getDownpayment().equals("100");
     }
 
     @Test
-    void getMonthlyincomeBasic(User basic) {
-        assert basic.getMonthlyincome().equals("0");
+    void getMonthlyincomeBasic() {
+        assert this.basic.getMonthlyincome().equals("0");
     }
 
     @Test
-    void getMonthlyincomeAdvanced(User advanced) {
-        assert advanced.getMonthlyincome().equals("4000");
+    void getMonthlyincomeAdvanced() {
+        assert this.advanced.getMonthlyincome().equals("4000");
     }
 
     @Test
-    void isEmployedBasic(User basic) {
-        assert basic.isEmployed().equals("not Employed");
+    void isEmployedBasic() {
+        assert this.basic.isEmployed().equals("not Employed");
     }
 
     @Test
-    void isEmployedAdvanced(User advanced) {
-        assert advanced.isEmployed().equals("Employed");
+    void isEmployedAdvanced() {
+        assert this.advanced.isEmployed().equals("Employed");
     }
 
     @Test
-    void isHomeownerBasic(User basic) {
-        assert basic.isHomeowner().equals("not Homeowner");
+    void isHomeownerBasic() {
+        assert this.basic.isHomeowner().equals("not Homeowner");
     }
 
     @Test
-    void isHomeownerAdvanced(User advanced) {
-        assert advanced.isHomeowner().equals("Homeowner");
+    void isHomeownerAdvanced() {
+        assert this.advanced.isHomeowner().equals("Homeowner");
     }
 
     @Test
-    void getMonthlydebtBasic(User basic) {
-        assert basic.getMonthlydebt().equals("0");
+    void getMonthlydebtBasic() {
+        assert this.basic.getMonthlydebt().equals("0");
     }
 
     @Test
-    void getMonthlydebtAdvanced(User advanced) {
-        assert advanced.getMonthlydebt().equals("1000");
+    void getMonthlydebtAdvanced() {
+        assert this.advanced.getMonthlydebt().equals("1000");
     }
 }
