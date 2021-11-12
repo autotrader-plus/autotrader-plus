@@ -1,5 +1,8 @@
 package com.example.backendlogic;
 
+/**
+ * This class creates an User Object based on the user info inputted by the user from the frontend
+ */
 public class User {
     private final int creditscore;
     private final int monthlybudget;
@@ -11,6 +14,14 @@ public class User {
     private final boolean homeowner;
     private final int monthlydebt;
 
+    /**
+     * creates basic User Object based on provided info
+     * @param creditscore User credit score
+     * @param monthlybudget User monthly budget
+     * @param downpayment User downpayment
+     * @param zipcode User zipcode
+     * @param name User name
+     */
     public User(int creditscore, int monthlybudget, int downpayment, String zipcode, String name){
         this.creditscore = creditscore;
         this.monthlybudget = monthlybudget;
@@ -23,6 +34,18 @@ public class User {
         this.monthlydebt = 0;   //set to 0 as default
     }
 
+    /**
+     * Creates advanced User Object based on provided info
+     * @param creditscore User credit score
+     * @param monthlybudget User monthly budget
+     * @param downpayment User downpayment
+     * @param zipcode User zipcode
+     * @param name User name
+     * @param monthlyincome User monthly income
+     * @param employed User employment status
+     * @param homeowner User homeowner status
+     * @param monthlydebt User monthlydebt
+     */
     public User(int creditscore, int monthlybudget, int downpayment, String zipcode, String name, int monthlyincome,
                 boolean employed, boolean homeowner, int monthlydebt){
         this.creditscore = creditscore;
@@ -36,6 +59,10 @@ public class User {
         this.monthlydebt = monthlydebt;
     }
 
+    /**
+     * The following are getter methods
+     * @return returns User Object info when called
+     */
     public String getPriceRange(){
         return Integer.toString((36 * this.monthlybudget) + this.downpayment);
     }
