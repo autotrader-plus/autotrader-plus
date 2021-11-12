@@ -12,10 +12,10 @@ import java.util.HashMap;
 class ServerMainEndpointHandlerTest {
     public static void main(String[] args) throws IOException, SQLException, InterruptedException {
         testParseRequestBody();
-        testCreateLoanResponse2();
+        testCreateLoanResponse();
     }
 
-    private static void testCreateLoanResponse2() throws IOException, InterruptedException, SQLException {
+    private static void testCreateLoanResponse() throws IOException, InterruptedException, SQLException {
         ArrayList<HashMap<String, String>> carlist = ReturnMultipleCars.returnAllCars();
         HashMap<String, String> userinfo = new HashMap<>();
         userinfo.put("credit-score", "770");
