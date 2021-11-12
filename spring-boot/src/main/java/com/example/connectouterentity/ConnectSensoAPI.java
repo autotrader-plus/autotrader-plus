@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken;
 
 
 /** This is a class that calls Senso API, and return information from Senso API.**/
-public class ConnectSensoAPI {
+public class ConnectSensoAPI implements SensoAPIInterface{
 
     private static HashMap<Object, Object> api_content; // the return info from senso api call
     // the following static variables are the fields needed for senso api call
@@ -27,7 +27,12 @@ public class ConnectSensoAPI {
     private static int listPrice;
     private static int downpayment;
 
-    // Constructor for the class
+    //constructor
+    public ConnectSensoAPI() {
+
+    }
+
+    //overloading constructor
     /**
      * This is a method that collects input data for SensoAPI, then pings the senso API using the input data
      * @param senso_input - a hashmap that contains all input information used to ping senso API
@@ -123,5 +128,11 @@ public class ConnectSensoAPI {
      */
     public HashMap<Object, Object> getReturnInfo() {
         return api_content;
+    }
+
+    @Override
+    public HashMap<Object, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
+        ConnectSensoAPI senso_connector = new ConnectSensoAPI(senso_input);
+        return senso_connector.getReturnInfo();
     }
 }

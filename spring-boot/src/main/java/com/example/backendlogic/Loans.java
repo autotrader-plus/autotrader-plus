@@ -1,6 +1,7 @@
 package com.example.backendlogic;
 
 import com.example.connectouterentity.ConnectSensoAPI;
+import com.example.connectouterentity.SensoAPIInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,11 +11,18 @@ import java.util.HashMap;
  * This class creates a Loans object that is a HashMap with keys corresponding to the IDs of Car Objects and values
  * corresponding to the possible car loans for each Car based on the SensoApi
  */
-public class Loans {
-    private final HashMap<String, Object> loans;
-    private final CarList<Car> cars;
-    private final User buyer;
+public class Loans implements LoanInfoInterface{
+    private static HashMap<String, Object> loans;
+    private static CarList<Car> cars;
+    private static User buyer;
 
+    // constructor
+    public Loans() {
+
+    }
+
+
+    //overloaded constructor
     /**
      * Creates an empty HashMap Loans that will be storing the SensoApi return values
      * Creates an advanced or basic User Object based on the amount of info given
@@ -29,27 +37,27 @@ public class Loans {
      */
     public Loans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
         //creates User object (buyer) based on length of given user Hashmap
-        this.loans = new HashMap<>();
+        loans = new HashMap<>();
         if (user.size() == 5){
             //create user object
-            this.buyer = new User(Integer.parseInt(user.get("credit-score")),
+            buyer = new User(Integer.parseInt(user.get("credit-score")),
                     Integer.parseInt( user.get("monthlybudget")),
                     Integer.parseInt( user.get("downpayment")), user.get("zip-code"),
                     user.get("name"));
 
             // gets buyer pricerange
-            int budget = Integer.parseInt(this.buyer.getPriceRange());
+            int budget = Integer.parseInt(buyer.getPriceRange());
             int upsold_budget = budget - (int)Math.min(budget*0.1, 2000);
 
             // creates CarList object (cars) based on length of given carlist Arraylist
-            this.cars = new CarList<>();
+            cars = new CarList<>();
             makecars(carlist, upsold_budget);
 
 
             // preps info and calls SensoAPI
         }
         else {
-            this.buyer = new User(Integer.parseInt( user.get("credit-score")),
+            buyer = new User(Integer.parseInt( user.get("credit-score")),
                     Integer.parseInt( user.get("monthlybudget")),
                     Integer.parseInt( user.get("downpayment")), user.get("zip-code"),
                     user.get("name"), Integer.parseInt( user.get("monthlyincome")),
@@ -58,11 +66,11 @@ public class Loans {
                     Integer.parseInt( user.get("monthlydebt")));
 
             // gets buyer pricerange
-            int budget = Integer.parseInt(this.buyer.getPriceRange());
+            int budget = Integer.parseInt(buyer.getPriceRange());
             int upsold_budget = budget - (int)Math.min(budget*0.1, 2000);
 
             // creates CarList object (cars) based on length of given carlist Arraylist
-            this.cars = new CarList<>();
+            cars = new CarList<>();
             makecars(carlist, upsold_budget);
 
             // preps info and calls SensoAPI
@@ -76,12 +84,12 @@ public class Loans {
      * @throws InterruptedException
      */
     private void callApi() throws IOException, InterruptedException {
-        for (int j = 0; j < this.cars.size(); j++){
-            Car car = this.cars.getCar(j);
+        for (int j = 0; j < cars.size(); j++){
+            Car car = cars.getCar(j);
             HashMap<String, String> mapping = makeUserInfo(car);
 
-            ConnectSensoAPI connector = new ConnectSensoAPI(mapping);
-            this.loans.put( car.returnID() ,connector.getReturnInfo().get("installments")); // edited
+            SensoAPIInterface connector = new ConnectSensoAPI();
+            loans.put(car.returnID(), connector.pingSensoAPI(mapping).get("installments")); // edited
         }
     }
 
@@ -93,15 +101,15 @@ public class Loans {
     private HashMap<String, String> makeUserInfo(Car car) {
         HashMap<String, String> mapping = new HashMap<>();
         mapping.put("loan_amount", Integer.toString(car.getPrice() -
-                Integer.parseInt(this.buyer.getDownpayment())));
-        mapping.put("credit_score", this.buyer.getCreditscore());
-        mapping.put("payment_budget", this.buyer.getMonthlybudget());
+                Integer.parseInt(buyer.getDownpayment())));
+        mapping.put("credit_score", buyer.getCreditscore());
+        mapping.put("payment_budget", buyer.getMonthlybudget());
         mapping.put("vehicle_make", car.getBrand());
         mapping.put("vehicle_model", "Daniel");
         mapping.put("vehicle_year", car.getYear());
         mapping.put("vehicle_kms", car.getKMS());
         mapping.put("list_price", Integer.toString(car.getPrice()));
-        mapping.put("downpayment", this.buyer.getDownpayment());
+        mapping.put("downpayment", buyer.getDownpayment());
         return mapping;
     }
 
@@ -118,7 +126,7 @@ public class Loans {
             String ID = stringStringHashMap.get("ID");
             String Dealership = stringStringHashMap.get("Dealership");
             if (Integer.parseInt(cost) <= budget) {
-                this.cars.AddtoList(new Car(year, brand, kms, cartype, ID, cost, Dealership));
+                cars.AddtoList(new Car(year, brand, kms, cartype, ID, cost, Dealership));
             }
         }
     }
@@ -127,11 +135,17 @@ public class Loans {
      * The following are getter methods
      * @return
      */
-    public HashMap<String, Object> getLoans(){return this.loans;}
+    public HashMap<String, Object> getLoans(){return loans;}
 
     //will be used in future
-    public CarList<Car> getCars(){return this.cars;}
+    public CarList<Car> getCars(){return cars;}
 
     //will be used in future
-    public User getBuyer(){return this.buyer;}
+    public User getBuyer(){return buyer;}
+
+    @Override
+    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
+        Loans loans = new Loans(user, carlist);
+        return loans.getLoans();
+    }
 }
