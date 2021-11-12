@@ -29,5 +29,6 @@ class ConnectSensoAPITest {
     @Test
     public void getReturnInfo() {
         assert connector.getReturnInfo() != null;
+        System.out.print(connector.getReturnInfo());
     }
 }
