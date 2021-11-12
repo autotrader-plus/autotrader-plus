@@ -3,44 +3,51 @@ package com.example.returninfo;
 import com.example.backendlogic.Loans;
 import com.example.informationmanipulation.ReturnMultipleCars;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 class ServerMainEndpointHandlerTest {
-    public static void main(String[] args) throws IOException, SQLException, InterruptedException {
-        testParseRequestBody();
-        testCreateLoanResponse();
+
+
+    @Test
+    void httpResponseSenso() {
+        // This test is for testing whether the server can be called and can process data as intended.
+        // Test replaced with manual testing using Postman, but other associated methods are tested below.
     }
 
-    private static void testCreateLoanResponse() throws IOException, InterruptedException, SQLException {
-        ArrayList<HashMap<String, String>> carlist = ReturnMultipleCars.returnAllCars();
-        HashMap<String, String> userinfo = new HashMap<>();
-        userinfo.put("credit-score", "770");
-        userinfo.put("monthlybudget", "600");
-        userinfo.put("downpayment", "200");
-        userinfo.put("zip-code", "M4y111");
-        userinfo.put("name", "Bob");
-        Loans loan = new Loans(userinfo, carlist);
-        ArrayList output = loan.getLoans();
+    @Test
+    void createLoanResponse() {
+        HashMap<String, Object> loans = new HashMap<>();
+        ArrayList<String> installments = new ArrayList<>();
+        installments.add("{capital=268.8, interest=18.67, installment=287.47, remain=9731.2, interestSum=18.67}");
+        loans.put("car1", installments);
 
-        System.out.print(ServerMainEndpointHandler.createLoanResponse(output));
+        System.out.print(ServerMainEndpointHandler.createLoanResponse(loans));
+        assert(Objects.equals(ServerMainEndpointHandler.createLoanResponse(loans),
+                "{\"car1\":[\"{capital\\u003d268.8, interest\\u003d18.67, installment\\u003d287.47, remain\\u003d9731.2, interestSum\\u003d18.67}\"]}"));
 
     }
 
-    private static void testParseRequestBody() throws JsonProcessingException {
-        String json = "{\"car-preference\": \"SUV\", \"Downpayment\": \"3000\", \"credit-score\": \"780\", \"name\": \"Paul\", \"zip code\": \"M5S 1S5\", \"monthlybudget\": \"500\"}";
-        HashMap<String, String> returnHashmap = new HashMap<>();
-        returnHashmap.put("car-preference", "SUV");
-        returnHashmap.put("downpayment", "3000");
-        returnHashmap.put("credit-score", "780");
-        returnHashmap.put("name", "3000");
-        returnHashmap.put("zip-code", "M5S 1S5");
-        returnHashmap.put("monthlybudget", "500");
-
-        System.out.println(ServerMainEndpointHandler.parseRequestBody(json));
+    @Test
+    void parseRequestBody() throws JsonProcessingException {
+        HashMap<String, String> info = new HashMap<>();
+        info.put("credit_score", "3000");
+        info.put("car_preference", "SUV");
+        info.put("name", "Paul");
+        System.out.print(ServerMainEndpointHandler.parseRequestBody("{\"name\": \"Paul\", \"car_preference\": \"SUV\", \"credit_score\": \"3000\"}"));
+        assert(Objects.equals(ServerMainEndpointHandler.parseRequestBody("{\"name\": \"Paul\", \"car_preference\": \"SUV\", \"credit_score\": \"3000\"}"), info));
     }
 
+    @Test
+    void getFilteredCars() throws SQLException {
+        assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Model Year").equals("2017"));
+        assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Car").equals("Honda Pillot 4WD"));
+    }
 }
