@@ -30,10 +30,10 @@ public class Loans implements LoanInfoInterface{
      * Creates a CarList Object consisting of only cars affordable by the User based on User budget
      * Collects and organizes Car and User data for the SensoApi call
      * Stores the SensoApi return values in HashMap Loans
-     * @param user
-     * @param carlist
-     * @throws IOException
-     * @throws InterruptedException
+     * @param user The User Object from User.java
+     * @param carlist The CarList Object CarList.java
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
      */
     public Loans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
 
@@ -58,8 +58,8 @@ public class Loans implements LoanInfoInterface{
 
     /**
      * calls the SensoApi and adds the Api return values into the Loans Object
-     * @throws IOException
-     * @throws InterruptedException
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
      */
     private void callApi() throws IOException, InterruptedException {
         for (int j = 0; j < cars.size(); j++){
@@ -73,8 +73,8 @@ public class Loans implements LoanInfoInterface{
 
     /**
      * Creates a HashMap containing User and Car info for the SensoApi call
-     * @param car
-     * @return
+     * @param car The Car Object from Car.java
+     * @return returns HashMap mapping, which is all the info required for SensoApi call
      */
     private HashMap<String, String> makeUserInfo(Car car) {
         HashMap<String, String> mapping = new HashMap<>();
@@ -111,7 +111,7 @@ public class Loans implements LoanInfoInterface{
 
     /**
      * The following are getter methods
-     * @return
+     * @return returns Loans/CarList/User Object info when called
      */
     public HashMap<String, Object> getLoans(){return loans;}
 
