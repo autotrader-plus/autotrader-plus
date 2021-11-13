@@ -36,45 +36,23 @@ public class Loans implements LoanInfoInterface{
      * @throws InterruptedException
      */
     public Loans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
-        //creates User object (buyer) based on length of given user Hashmap
+
         loans = new HashMap<>();
-        if (user.size() == 5){
-            //create user object
-            buyer = new User(Integer.parseInt(user.get("credit-score")),
-                    Integer.parseInt( user.get("monthlybudget")),
-                    Integer.parseInt( user.get("downpayment")), user.get("zip-code"),
-                    user.get("name"));
 
-            // gets buyer pricerange
-            int budget = Integer.parseInt(buyer.getPriceRange());
-            int upsold_budget = budget - (int)Math.min(budget*0.1, 2000);
-
-            // creates CarList object (cars) based on length of given carlist Arraylist
-            cars = new CarList<>();
-            makecars(carlist, upsold_budget);
+        //creates User object (buyer) based on length of given user Hashmap
+        UserFactory userfactory = new UserFactory();
+        buyer = userfactory.createUser(user);
 
 
-            // preps info and calls SensoAPI
-        }
-        else {
-            buyer = new User(Integer.parseInt( user.get("credit-score")),
-                    Integer.parseInt( user.get("monthlybudget")),
-                    Integer.parseInt( user.get("downpayment")), user.get("zip-code"),
-                    user.get("name"), Integer.parseInt( user.get("monthlyincome")),
-                    user.get("employed").equals("employed"),
-                    user.get("homeowner").equals("homeowner"),
-                    Integer.parseInt( user.get("monthlydebt")));
+        // gets buyer pricerange
+        int budget = Integer.parseInt(buyer.getPriceRange());
+        int upsold_budget = budget - (int)Math.min(budget*0.1, 2000);
 
-            // gets buyer pricerange
-            int budget = Integer.parseInt(buyer.getPriceRange());
-            int upsold_budget = budget - (int)Math.min(budget*0.1, 2000);
+        // creates CarList object (cars) based on length of given carlist Arraylist
+        cars = new CarList<>();
+        makecars(carlist, upsold_budget);
 
-            // creates CarList object (cars) based on length of given carlist Arraylist
-            cars = new CarList<>();
-            makecars(carlist, upsold_budget);
-
-            // preps info and calls SensoAPI
-        }
+        // preps info and calls SensoAPI
         callApi();
     }
 
