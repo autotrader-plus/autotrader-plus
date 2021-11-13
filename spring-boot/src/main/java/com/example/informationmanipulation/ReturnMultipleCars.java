@@ -1,5 +1,6 @@
 package com.example.informationmanipulation;
 
+import com.example.connectouterentity.AutoTraderDBInterface;
 import com.example.connectouterentity.ConnectAutoTraderDB;
 
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ public class ReturnMultipleCars {
 
 
         // Establish a connection and create a set of results from that query
-        ConnectAutoTraderDB connection = new ConnectAutoTraderDB();
+        AutoTraderDBInterface connection = new ConnectAutoTraderDB();
         ResultSet myResultSet = connection.writeQuery(query);
 
         ArrayList<HashMap<String, String>> returnList = new ArrayList<>();
