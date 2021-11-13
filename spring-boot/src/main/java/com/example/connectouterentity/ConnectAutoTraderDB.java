@@ -2,7 +2,7 @@ package com.example.connectouterentity;
 
 import java.sql.*;
 
-public class ConnectAutoTraderDB{
+public class ConnectAutoTraderDB {
 
     /**
      * Represents a connection to AutoTraderDB.
