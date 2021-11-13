@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -38,8 +39,17 @@ public class ServerMainEndpointHandler {
         System.out.println("==== POST Request Received ====");
         HashMap<String, String> body = parseRequestBody(req_body);
 
-        ArrayList<HashMap<String, String>> filtered_cars = getFilteredCars(body.get("car-preference"));
+        //get car list based on user's preference, otherwise get all cars from database
+        ArrayList<HashMap<String, String>> filtered_cars;
+        if (!Objects.equals(body.get("car-preference"), "")) {
+            filtered_cars = getFilteredCars(body.get("car-preference"));
+        } else {
+            filtered_cars = getAllCars();
+        }
+
         body.remove("car-preference");
+
+        // calculate loans for all cars that are filtered and create a response to send back to the client
         LoanInfoInterface loans = new Loans();
         HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
         String response = createLoanResponse(loans_list);
@@ -72,7 +82,6 @@ public class ServerMainEndpointHandler {
         return userInfoHash;
     }
 
-    // get a filtered car list based on http request body
 
     /**
      * Get filtered car list based on car_type specified in the http request body
@@ -82,5 +91,14 @@ public class ServerMainEndpointHandler {
      */
     static ArrayList<HashMap<String, String>> getFilteredCars(String car_type) throws SQLException {
         return ReturnMultipleCars.returnFilteredCars(car_type);
+    }
+
+    /**
+     * A helper methods to return all cars in the database
+     * @return an array list containg the information for all cars
+     * @throws SQLException - error thrown if encounter problem when connecting to database
+     */
+    private ArrayList<HashMap<String, String>> getAllCars() throws SQLException {
+        return ReturnMultipleCars.returnAllCars();
     }
 }
