@@ -3,7 +3,6 @@ package com.example.connectouterentity;
 import java.sql.*;
 
 public class ConnectAutoTraderDB implements AutoTraderDBInterface {
-
     /**
      * Represents a connection to AutoTraderDB.
      * Can call data in string form and Dictionary form

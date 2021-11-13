@@ -1,5 +1,6 @@
 package com.example.returninfo;
 
+import com.example.backendlogic.LoanInfoInterface;
 import com.example.backendlogic.Loans;
 import com.example.informationmanipulation.*;
 
@@ -39,8 +40,8 @@ public class ServerMainEndpointHandler {
 
         ArrayList<HashMap<String, String>> filtered_cars = getFilteredCars(body.get("car-preference"));
         body.remove("car-preference");
-        Loans loans = new Loans(body, filtered_cars);
-        HashMap<String, Object> loans_list = loans.getLoans();
+        LoanInfoInterface loans = new Loans();
+        HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
         String response = createLoanResponse(loans_list);
 
         System.out.println("==== POST Response Sent ====");
