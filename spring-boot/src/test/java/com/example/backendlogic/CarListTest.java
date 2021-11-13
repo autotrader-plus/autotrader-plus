@@ -20,7 +20,7 @@ class CarListTest {
     @Test
     void AddToList(CarList<Car> testCarList, Car c1) {
         testCarList.AddtoList(c1);
-        assert testCarList.getCar(1).equals(c1);
+        assert testCarList.getCar(0).equals(c1);
     }
 
     @Test
@@ -30,6 +30,6 @@ class CarListTest {
 
     @Test
     void getCar(CarList<Car> testCarList, Car c1) {
-        assert testCarList.getCar(1).equals(c1);
+        assert testCarList.getCar(0).equals(c1);
     }
 }
