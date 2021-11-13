@@ -6,15 +6,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class creates a Loans object that is a HashMap with keys corresponding to the IDs of Car Objects and values
+ * corresponding to the possible car loans for each Car based on the SensoApi
+ */
 public class Loans {
-    private final ArrayList<String> loans;
+    private final HashMap<String, Object> loans;
     private final CarList<Car> cars;
     private final User buyer;
 
+    /**
+     * Creates an empty HashMap Loans that will be storing the SensoApi return values
+     * Creates an advanced or basic User Object based on the amount of info given
+     * Calculates the budget of the User
+     * Creates a CarList Object consisting of only cars affordable by the User based on User budget
+     * Collects and organizes Car and User data for the SensoApi call
+     * Stores the SensoApi return values in HashMap Loans
+     * @param user The User Object from User.java
+     * @param carlist The CarList Object CarList.java
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
+     */
     public Loans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
         //creates User object (buyer) based on length of given user Hashmap
-        this.loans = new ArrayList<>();
+        this.loans = new HashMap<>();
         if (user.size() == 5){
+            //create user object
             this.buyer = new User(Integer.parseInt(user.get("credit-score")),
                     Integer.parseInt( user.get("monthlybudget")),
                     Integer.parseInt( user.get("downpayment")), user.get("zip-code"),
@@ -51,20 +68,28 @@ public class Loans {
             // preps info and calls SensoAPI
         }
         callApi();
-
-
     }
 
+    /**
+     * calls the SensoApi and adds the Api return values into the Loans Object
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
+     */
     private void callApi() throws IOException, InterruptedException {
         for (int j = 0; j < this.cars.size(); j++){
             Car car = this.cars.getCar(j);
             HashMap<String, String> mapping = makeUserInfo(car);
 
             ConnectSensoAPI connector = new ConnectSensoAPI(mapping);
-            this.loans.add(car.getBrand() + ": " + connector.getReturnInfo());
+            this.loans.put( car.returnID() ,connector.getReturnInfo().get("installments")); // edited
         }
     }
 
+    /**
+     * Creates a HashMap containing User and Car info for the SensoApi call
+     * @param car The Car Object from Car.java
+     * @return returns HashMap mapping, which is all the info required for SensoApi call
+     */
     private HashMap<String, String> makeUserInfo(Car car) {
         HashMap<String, String> mapping = new HashMap<>();
         mapping.put("loan_amount", Integer.toString(car.getPrice() -
@@ -75,10 +100,14 @@ public class Loans {
         mapping.put("vehicle_model", "Daniel");
         mapping.put("vehicle_year", car.getYear());
         mapping.put("vehicle_kms", car.getKMS());
+        mapping.put("list_price", Integer.toString(car.getPrice()));
+        mapping.put("downpayment", this.buyer.getDownpayment());
         return mapping;
     }
 
-    // creates CarList object (cars) based on length of given carlist Arraylist
+    /**
+     * creates CarList object (cars) based on length of given carlist Arraylist
+     */
     private void makecars(ArrayList<HashMap<String, String>> carlist, int budget) {
         for (HashMap<String, String> stringStringHashMap : carlist) {
             String cost = stringStringHashMap.get("Cost");
@@ -93,7 +122,12 @@ public class Loans {
             }
         }
     }
-    public ArrayList<String> getLoans(){return this.loans;}
+
+    /**
+     * The following are getter methods
+     * @return returns Loans/CarList/User Object info when called
+     */
+    public HashMap<String, Object> getLoans(){return this.loans;}
 
     //will be used in future
     public CarList<Car> getCars(){return this.cars;}
