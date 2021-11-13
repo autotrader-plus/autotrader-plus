@@ -2,8 +2,7 @@ package com.example.connectouterentity;
 
 import java.sql.*;
 
-public class ConnectAutoTraderDB{
-
+public class ConnectAutoTraderDB implements AutoTraderDBInterface {
     /**
      * Represents a connection to AutoTraderDB.
      * Can call data in string form and Dictionary form
@@ -55,12 +54,13 @@ public class ConnectAutoTraderDB{
     /**
      * Write a query for the SQL database to access
      */
+    @Override
     public ResultSet writeQuery(String query) throws SQLException {
 
         return this.objStatement.executeQuery(query);
 
     }
-
+    @Override
     public void exceuteQuery(String query) throws SQLException {
 
         this.objStatement.executeUpdate(query);
