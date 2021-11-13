@@ -130,6 +130,13 @@ public class ConnectSensoAPI implements SensoAPIInterface{
         return api_content;
     }
 
+    /**
+     * A overriden method from SensoAPIInterface.
+     * @param senso_input - the input mapping for senso api call
+     * @return a hashmap representation of return info from senso api
+     * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
+     * @throws InterruptedException - exception thrown when api call is interrupted or failed
+     */
     @Override
     public HashMap<Object, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
         ConnectSensoAPI senso_connector = new ConnectSensoAPI(senso_input);
