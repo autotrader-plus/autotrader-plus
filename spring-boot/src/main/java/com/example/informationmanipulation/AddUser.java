@@ -1,5 +1,6 @@
 package com.example.informationmanipulation;
 
+import com.example.connectouterentity.AutoTraderDBInterface;
 import com.example.connectouterentity.ConnectAutoTraderDB;
 import com.example.backendlogic.User;
 
@@ -16,7 +17,7 @@ public class AddUser {
         String query = "SELECT MAX(user_id) FROM cars.Users;";
 
         // Establish a connection and create a set of results from that query
-        ConnectAutoTraderDB connection = new ConnectAutoTraderDB();
+        AutoTraderDBInterface connection = new ConnectAutoTraderDB();
         ResultSet myResultSet = connection.writeQuery(query);
 
         int returnInt = 0;
@@ -53,7 +54,7 @@ public class AddUser {
                 "', '" + user.getMonthlydebt() + "');";
 
         // Establish a connection and create a set of results from that query
-        ConnectAutoTraderDB connection = new ConnectAutoTraderDB();
+        AutoTraderDBInterface connection = new ConnectAutoTraderDB();
         connection.exceuteQuery(query);
 
     }

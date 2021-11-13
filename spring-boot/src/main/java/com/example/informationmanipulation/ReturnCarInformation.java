@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import com.example.connectouterentity.AutoTraderDBInterface;
 import com.example.connectouterentity.ConnectAutoTraderDB;
 
 public class ReturnCarInformation {
@@ -36,7 +37,7 @@ public class ReturnCarInformation {
                 "WHERE id_car = " + car_id.toString() + ";";
 
         // Establish a connection and create a set of results from that query
-        ConnectAutoTraderDB connection = new ConnectAutoTraderDB();
+        AutoTraderDBInterface connection = new ConnectAutoTraderDB();
         ResultSet myResultSet = connection.writeQuery(query);
 
         // Creating the map
