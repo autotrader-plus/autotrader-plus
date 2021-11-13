@@ -50,4 +50,10 @@ class ServerMainEndpointHandlerTest {
         assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Model Year").equals("2017"));
         assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Car").equals("Honda Pillot 4WD"));
     }
+
+    @Test
+    void getAllCars(){
+        // this is an analagous test for ReturnMultipleCars.returnAllCars();
+        // See ReturnMultipleCarsTest for the test.
+    }
 }
