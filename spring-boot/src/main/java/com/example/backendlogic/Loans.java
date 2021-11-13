@@ -121,6 +121,15 @@ public class Loans implements LoanInfoInterface{
     //will be used in future
     public User getBuyer(){return buyer;}
 
+    /**
+     * Overriden method for LoanInfoInterface that allows other classes to directly access this class through this
+     * interface method.
+     * @param user - a mapping of user info
+     * @param carlist - a list of cars we want the loan info for
+     * @return a hashmap of cars with the loan info for the car
+     * @throws IOException - exception thrown when input/output error
+     * @throws InterruptedException - exception thrown when call to senso api is interrupted
+     */
     @Override
     public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
         Loans loans = new Loans(user, carlist);
