@@ -25,8 +25,14 @@ class CarListTest {
     }
 
     @Test
-    void size() {
+    void sizeEmpty() {
         assert testCarList.size() == 0;
+    }
+
+    @Test
+    void sizeNonEmpty() {
+        testCarList.AddtoList(c1);
+        assert testCarList.size() == 1;
     }
 
     @Test
