@@ -14,7 +14,6 @@ class ReturnUserInformationTest {
     @Test
     @DisplayName("User: Basic Case with Simple User")
     void returnUserSimple() throws SQLException {
-        // TODO: Actually run with refactored code to make sure it works (run along with AddUserTest, simple case)
         Integer user_id = 8;
 
         HashMap<String, String> testMap = new HashMap<>();
