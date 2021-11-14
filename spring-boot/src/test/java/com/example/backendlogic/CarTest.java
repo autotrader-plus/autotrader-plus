@@ -7,9 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
+    Car c1;
+
     @BeforeEach
     void setUp() {
-        Car c1 = new Car("2016", "Infiniti QX50", "71935", "Wagon",
+        c1 = new Car("2016", "Infiniti QX50", "71935", "Wagon",
                 "24", "25895", "Dixie Infiniti");
     }
 
@@ -19,27 +21,27 @@ class CarTest {
 //    }
 
     @Test
-    void getPrice(Car c1) {
+    void getPrice() {
         assert c1.getPrice() == 25895;
     }
 
     @Test
-    void getBrand(Car c1) {
+    void getBrand() {
         assert c1.getBrand().equals("Infiniti QX50");
     }
 
     @Test
-    void getYear(Car c1) {
+    void getYear() {
         assert c1.getYear().equals("2016");
     }
 
     @Test
-    void getKMS(Car c1) {
+    void getKMS() {
         assert c1.getKMS().equals("71935");
     }
 
     @Test
-    void returnID(Car c1) {
+    void returnID() {
         assert c1.returnID().equals("24");
     }
 

@@ -14,19 +14,18 @@ class ReturnUserInformationTest {
     @Test
     @DisplayName("User: Basic Case with Simple User")
     void returnUserSimple() throws SQLException {
-        // TODO: Actually run with refactored code to make sure it works (run along with AddUserTest, simple case)
-        Integer user_id = 12;
+        Integer user_id = 8;
 
         HashMap<String, String> testMap = new HashMap<>();
-        testMap.put("ID", "12");
+        testMap.put("ID", "8");
         testMap.put("Name", "Mike");
-        testMap.put("Credit Score", "740");
+        testMap.put("Credit Score", "730");
         testMap.put("Location", "M4Y111");
         testMap.put("Max Downpayment", "5000");
         testMap.put("Max Monthly Payment", "1000");
         testMap.put("Monthly Income", "0");
-        testMap.put("Employment Status", "false");
-        testMap.put("Homeowner", "false");
+        testMap.put("Employment Status", "not Employed");
+        testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
 
         assert Objects.equals(testMap, ReturnUserInformation.returnUser(user_id));
