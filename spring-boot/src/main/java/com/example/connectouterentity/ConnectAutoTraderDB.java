@@ -37,9 +37,9 @@ public class ConnectAutoTraderDB implements AutoTraderDBInterface {
             }
             // JDBC URL. Tells Java where to find the DB to connect to. Also give username and password to
             // grant permission
-            String dburl="jdbc:mysql://traderautoplusdb.cs3kq1tsgpar.ca-central-1.rds.amazonaws.com:3306/cars";
-            String username="sweatless";
-            String password="PaulGries123";
+            String dburl = System.getenv("TRADERAUTO_SQLDB_URL");
+            String username= System.getenv("TRADERAUTO_SQLDB_USER");
+            String password= System.getenv("TRADERAUTO_SQLDB_PWD");
 
             // Establish and return a connection
             Connection myConnection= DriverManager.getConnection(dburl, username, password);

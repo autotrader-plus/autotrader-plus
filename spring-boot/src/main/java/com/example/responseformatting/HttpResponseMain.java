@@ -14,7 +14,7 @@ public class HttpResponseMain {
     /**
      * Constructor for the class
      * @param id - the id of the request
-     * @param content - the response body for the requet
+     * @param content - the response body for the request
      */
     public HttpResponseMain(long id, String content) {
         HttpResponseMain.id = id;

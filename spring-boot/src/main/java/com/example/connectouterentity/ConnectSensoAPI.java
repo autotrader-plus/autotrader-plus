@@ -102,13 +102,13 @@ public class ConnectSensoAPI implements SensoAPIInterface{
      */
     private HashMap<Object, Object> CallSensoAPI(String inputJson) throws IOException, InterruptedException{
 
-        String postEndpoint = "https://auto-loan-api.senso.ai/rate";
+        String postEndpoint = System.getenv("SENSO_API_URL");
 
         // Build and send a POST request to senso endpoint
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(postEndpoint))
                 .header("Content-Type", "application/json")
-                .header("x-api-key", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs")
+                .header("x-api-key", System.getenv("SENSO_API_KEY"))
                 .POST(HttpRequest.BodyPublishers.ofString(inputJson))
                 .build();
 
