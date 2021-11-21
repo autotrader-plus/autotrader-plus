@@ -19,6 +19,11 @@ public class HttpResponseMain {
     }
 
     // Getter
+
+    /**
+     * Get the Json string representation of the HTTP response content.
+     * @return Json string representation of the HTTP response content
+     */
     public String getContent() {
         Gson gsonObj = new Gson();
         return gsonObj.toJson(response_content);
