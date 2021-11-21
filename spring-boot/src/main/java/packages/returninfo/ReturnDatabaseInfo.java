@@ -14,11 +14,9 @@ import packages.responseformatting.HttpResponseMain;
 @CrossOrigin(origins ="*")
 public class ReturnDatabaseInfo {
 
-    private final AtomicLong counter = new AtomicLong();
-
     /**
      * This will return the information queried by the ReturnDatabaseInfo class
-     * @return
+     * @return a hashmap for the car inforamtion
      */
     public HashMap<String, Object> getContent(int carId) throws SQLException {
 
@@ -28,6 +26,12 @@ public class ReturnDatabaseInfo {
 
     }
 
+    /**
+     * This method handles all POST request to the "/database" endpoint.
+     * @param carId the request body needs to contain the carID
+     * @return a JSON string representation of the information regarding the car with carID
+     * @throws SQLException exception thrown if connection to database fails
+     */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/database")
     public String httpResponseMain(@RequestBody String carId) throws SQLException{
