@@ -41,19 +41,6 @@ class ServerMainEndpointHandlerTest {
     }
 
     @Test
-    void createLoanResponse() {
-        HashMap<String, Object> loans = new HashMap<>();
-        ArrayList<String> installments = new ArrayList<>();
-        installments.add("{capital=268.8, interest=18.67, installment=287.47, remain=9731.2, interestSum=18.67}");
-        loans.put("car1", installments);
-
-        System.out.print(ServerMainEndpointHandler.createLoanResponse(loans));
-        assert(Objects.equals(ServerMainEndpointHandler.createLoanResponse(loans),
-                "{\"car1\":[\"{capital\\u003d268.8, interest\\u003d18.67, installment\\u003d287.47, remain\\u003d9731.2, interestSum\\u003d18.67}\"]}"));
-
-    }
-
-    @Test
     void parseRequestBody() throws JsonProcessingException {
         HashMap<String, String> info = new HashMap<>();
         info.put("credit_score", "3000");

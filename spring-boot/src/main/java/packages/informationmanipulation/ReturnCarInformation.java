@@ -3,6 +3,7 @@ package packages.informationmanipulation;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.function.IntBinaryOperator;
 
 import packages.connectouterentity.AutoTraderDBInterface;
 import packages.connectouterentity.ConnectAutoTraderDB;
@@ -15,7 +16,7 @@ public class ReturnCarInformation {
     public static String returnCarDetailsString(Integer car_id) throws SQLException {
 
         // Converting the dictionary with the values to a string
-        HashMap<String, String> dict = returnCarDetails(car_id);
+        HashMap<String, Object> dict = returnCarDetails(car_id);
 
 
         return "ID: " + dict.get("ID") + "\n" +
@@ -30,7 +31,7 @@ public class ReturnCarInformation {
     /**
      * Will return the detail of a specified car in a dictionary format
      */
-    public static HashMap<String, String> returnCarDetails(Integer car_id) throws SQLException {
+    public static HashMap<String, Object> returnCarDetails(Integer car_id) throws SQLException {
 
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars " +
@@ -41,7 +42,7 @@ public class ReturnCarInformation {
         ResultSet myResultSet = connection.writeQuery(query);
 
         // Creating the map
-        HashMap<String, String> returnMap = new HashMap<>();
+        HashMap<String, Object> returnMap = new HashMap<>();
 
         // This if statement moves the cursor that's within the result set
         if(myResultSet.next()) {
@@ -54,8 +55,8 @@ public class ReturnCarInformation {
     /**
      * A helper method to populate a map with a car's information. It is used in another class, hence being public.
      */
-    public static HashMap<String, String> populateCarMap(ResultSet myResultSet) throws SQLException {
-        HashMap<String, String> returnMap = new HashMap<>();
+    public static HashMap<String, Object> populateCarMap(ResultSet myResultSet) throws SQLException {
+        HashMap<String, Object> returnMap = new HashMap<>();
         returnMap.put("ID", myResultSet.getString("id_car"));
         returnMap.put("Car", myResultSet.getString("name"));
         returnMap.put("Cost", myResultSet.getString("cost"));
