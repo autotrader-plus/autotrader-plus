@@ -64,6 +64,7 @@ public class ReturnCarInformation {
         returnMap.put("Model Year", myResultSet.getString("model_year"));
         returnMap.put("Dealership", myResultSet.getString("dealership"));
         returnMap.put("Car Type", myResultSet.getString("car_type"));
+        returnMap.put("Photo", myResultSet.getString("photo"));
 
         return returnMap;
     }

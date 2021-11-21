@@ -28,6 +28,7 @@ class ReturnMultipleCarsTest {
             put("ID", "0");
             put("Cost", "143944");
             put("Dealership", "Georgian Chevrolet");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2019-10-03-at-9-52-03-pm-1570154537.png");
         }});
         testList.add(1, new HashMap<>() {{
             put("Model Year", "2021");
@@ -37,6 +38,7 @@ class ReturnMultipleCarsTest {
             put("ID", "1");
             put("Cost", "35649");
             put("Dealership", "Guelph Hyundai");
+            put("Photo", "https://www.hyundaionhuntclub.com/vimgs/usd00hyc031d022004/IOF_H600/ColourPhotoSample_0.jpg");
         }});
         testList.add(2, new HashMap<>() {{
             put("Model Year", "2021");
@@ -46,6 +48,7 @@ class ReturnMultipleCarsTest {
             put("ID", "2");
             put("Cost", "40779");
             put("Dealership", "Dixie Mazdda");
+            put("Photo", "https://images.wheels.ca/wp-content/uploads/2019/02/Review-2019-Mazda-CX-5-GT-12.jpg");
         }});
         testList.add(3, new HashMap<>() {{
             put("Model Year", "2018");
@@ -55,6 +58,7 @@ class ReturnMultipleCarsTest {
             put("ID", "3");
             put("Cost", "91888");
             put("Dealership", "Auto|One");
+            put("Photo", "https://cdn.bmwblog.com/wp-content/uploads/2020/11/2022-bmw-m3-cs-g80-00.jpg");
         }});
         testList.add(4, new HashMap<>() {{
             put("Model Year", "2017");
@@ -64,6 +68,7 @@ class ReturnMultipleCarsTest {
             put("ID", "4");
             put("Cost", "28560");
             put("Dealership", "Barrie Honda");
+            put("Photo", "https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/800x450/format/jpg/quality/85/http://www.blogcdn.com/www.autoblog.com/media/2011/04/01-2011-honda-pilot-opt.jpg");
         }});
         testList.add(5, new HashMap<>() {{
             put("Model Year", "2014");
@@ -73,6 +78,7 @@ class ReturnMultipleCarsTest {
             put("ID", "5");
             put("Cost", "41998");
             put("Dealership", "Porche of London");
+            put("Photo", "https://media.ed.edmunds-media.com/lexus/gx-460/2022/oem/2022_lexus_gx-460_4dr-suv_base_fq_oem_1_1600.jpg");
         }});
         testList.add(6, new HashMap<>() {{
             put("Model Year", "2021");
@@ -82,6 +88,7 @@ class ReturnMultipleCarsTest {
             put("ID", "6");
             put("Cost", "64724");
             put("Dealership", "Galt");
+            put("Photo", "https://www.autotrader.com/wp-content/uploads/2021/09/2022-dodge-durango-front-right-driving.jpg");
         }});
         testList.add(7, new HashMap<>() {{
             put("Model Year", "2018");
@@ -91,6 +98,7 @@ class ReturnMultipleCarsTest {
             put("ID", "7");
             put("Cost", "37599");
             put("Dealership", "Special Interest Automobiles");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2022-mercedes-benz-c-class-118-1613767289.jpg?crop=0.781xw:0.781xh;0.145xw,0.219xh&resize=640:*");
         }});
         testList.add(8, new HashMap<>() {{
             put("Model Year", "2019");
@@ -100,6 +108,7 @@ class ReturnMultipleCarsTest {
             put("ID", "8");
             put("Cost", "35800");
             put("Dealership", "Special Interest Automobiles");
+            put("Photo", "https://media.ed.edmunds-media.com/honda/accord-hybrid/2018/oem/2018_honda_accord-hybrid_sedan_touring_fq_oem_1_600.jpg");
         }});
         testList.add(9, new HashMap<>() {{
             put("Model Year", "2019");
@@ -109,6 +118,7 @@ class ReturnMultipleCarsTest {
             put("ID", "9");
             put("Cost", "22988");
             put("Dealership", "Special Interest Automobiles");
+            put("Photo", "https://s.aolcdn.com/os/ab/_cms/2020/06/03024835/2020-hyundai-santa-fe-official-16.jpg");
         }});
         testList.add(10, new HashMap<>() {{
             put("Model Year", "2016");
@@ -118,6 +128,7 @@ class ReturnMultipleCarsTest {
             put("ID", "10");
             put("Cost", "21899");
             put("Dealership", "Airport Ford");
+            put("Photo", "https://media.ed.edmunds-media.com/lincoln/mkx/2017/oem/2017_lincoln_mkx_4dr-suv_reserve_fq_oem_1_1600.jpg");
         }});
         testList.add(11, new HashMap<>() {{
             put("Model Year", "2020");
@@ -127,6 +138,7 @@ class ReturnMultipleCarsTest {
             put("ID", "11");
             put("Cost", "20995");
             put("Dealership", "Attrell Hyundai");
+            put("Photo", "https://www.cnet.com/a/img/resize/c04ff4d7e00e4f669ed109ff24f6e2528320fc3c/hub/2021/03/05/6562dfd2-d038-44b2-8a98-dd4bae1aae3d/2021-hyundai-elantra-sel-1.jpg?auto=webp&width=768");
         }});
         testList.add(12, new HashMap<>() {{
             put("Model Year", "2014");
@@ -136,6 +148,7 @@ class ReturnMultipleCarsTest {
             put("ID", "12");
             put("Cost", "19900");
             put("Dealership", "Daleo Motors");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2022-jeep-grand-cherokee-summit-reserve-4xe-114-1632861119.jpg");
         }});
         testList.add(13, new HashMap<>() {{
             put("Model Year", "2009");
@@ -145,6 +158,7 @@ class ReturnMultipleCarsTest {
             put("ID", "13");
             put("Cost", "16888");
             put("Dealership", "Northline");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2021-mercedes-benz-s-class-110-1598983698.jpg");
         }});
         testList.add(14, new HashMap<>() {{
             put("Model Year", "2019");
@@ -154,6 +168,7 @@ class ReturnMultipleCarsTest {
             put("ID", "14");
             put("Cost", "30152");
             put("Dealership", "Dixie Mitsubishi");
+            put("Photo", "https://media.ed.edmunds-media.com/mitsubishi/outlander/2019/oem/2019_mitsubishi_outlander_4dr-suv_gt_fq_oem_1_1600.jpg");
         }});
         testList.add(15, new HashMap<>() {{
             put("Model Year", "2020");
@@ -163,6 +178,7 @@ class ReturnMultipleCarsTest {
             put("ID", "15");
             put("Cost", "28000");
             put("Dealership", "Eagle Motors");
+            put("Photo", "https://s.aolcdn.com/commerce/autodata/images/USC90KIS021A021001_2.jpg");
         }});
         testList.add(16, new HashMap<>() {{
             put("Model Year", "2021");
@@ -172,6 +188,7 @@ class ReturnMultipleCarsTest {
             put("ID", "16");
             put("Cost", "26328");
             put("Dealership", "Class Honda");
+            put("Photo", "https://s.aolcdn.com/commerce/autodata/images/USC90HOC021A121001.jpg");
         }});
         testList.add(17, new HashMap<>() {{
             put("Model Year", "2016");
@@ -181,6 +198,7 @@ class ReturnMultipleCarsTest {
             put("ID", "17");
             put("Cost", "20478");
             put("Dealership", "Vaughan Chrysler");
+            put("Photo", "https://s.aolcdn.com/commerce/autodata/images/USD00TOS112A021001.jpg");
         }});
         testList.add(18, new HashMap<>() {{
             put("Model Year", "2021");
@@ -190,6 +208,7 @@ class ReturnMultipleCarsTest {
             put("ID", "18");
             put("Cost", "70128");
             put("Dealership", "Mercedes-Benz Oakville");
+            put("Photo", "https://www.motortrend.com/uploads/sites/5/2020/03/2021-Mercedes-Benz-E-Class-04.jpg?fit=around%7C875:492");
         }});
         testList.add(19, new HashMap<>() {{
             put("Model Year", "2017");
@@ -198,6 +217,7 @@ class ReturnMultipleCarsTest {
             put("Car Type", "Wagon");
             put("ID", "19");
             put("Cost", "33850");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/images/13q1/494258/2014-bmw-328d-diesel-sedan-first-drive-review-car-and-driver-photo-510760-s-original.jpg?fill=2:1&resize=1200:*");
             put("Dealership", "BMW Laval");
         }});
         testList.add(20, new HashMap<>() {{
@@ -208,6 +228,7 @@ class ReturnMultipleCarsTest {
             put("ID", "20");
             put("Cost", "52099");
             put("Dealership", "Unique Jeep");
+            put("Photo", "https://s.aolcdn.com/commerce/autodata/images/USD00RMT11BD021001.jpg");
         }});
         testList.add(21, new HashMap<>() {{
             put("Model Year", "2019");
@@ -217,6 +238,7 @@ class ReturnMultipleCarsTest {
             put("ID", "21");
             put("Cost", "46990");
             put("Dealership", "canadadrives");
+            put("Photo", "https://www.chevrolet.com/content/dam/chevrolet/na/us/english/index/vehicles/2021/trucks/silverado-ld/mov/colorizer/02-images/2021-silverado1500-1sp-gaz-colorizer.jpg?imwidth=960");
         }});
         testList.add(22, new HashMap<>() {{
             put("Model Year", "2017");
@@ -226,6 +248,7 @@ class ReturnMultipleCarsTest {
             put("ID", "22");
             put("Cost", "27995");
             put("Dealership", "Wilson's");
+            put("Photo", "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/2021-colorado/colorizer/01-images/2021-colorado%20-4z7-gaz-colorizer.jpg?imwidth=960");
         }});
         testList.add(23, new HashMap<>() {{
             put("Model Year", "2016");
@@ -235,6 +258,7 @@ class ReturnMultipleCarsTest {
             put("ID", "23");
             put("Cost", "25895");
             put("Dealership", "Dixie Infiniti");
+            put("Photo", "https://www.motortrend.com/uploads/sites/10/2018/01/2019-Infiniti-QX50-front-three-quarter-in-motion-05.jpg");
         }});
 
         assert Objects.equals(testList, ReturnMultipleCars.returnAllCars());
@@ -255,6 +279,7 @@ class ReturnMultipleCarsTest {
             put("ID", "4");
             put("Cost", "28560");
             put("Dealership", "Barrie Honda");
+            put("Photo", "https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/800x450/format/jpg/quality/85/http://www.blogcdn.com/www.autoblog.com/media/2011/04/01-2011-honda-pilot-opt.jpg");
         }});
         testList.add(1, new HashMap<>() {{
             put("Model Year", "2014");
@@ -264,6 +289,7 @@ class ReturnMultipleCarsTest {
             put("ID", "5");
             put("Cost", "41998");
             put("Dealership", "Porche of London");
+            put("Photo", "https://media.ed.edmunds-media.com/lexus/gx-460/2022/oem/2022_lexus_gx-460_4dr-suv_base_fq_oem_1_1600.jpg");
         }});
         testList.add(2, new HashMap<>() {{
             put("Model Year", "2021");
@@ -273,6 +299,7 @@ class ReturnMultipleCarsTest {
             put("ID", "6");
             put("Cost", "64724");
             put("Dealership", "Galt");
+            put("Photo", "https://www.autotrader.com/wp-content/uploads/2021/09/2022-dodge-durango-front-right-driving.jpg");
         }});
         testList.add(3, new HashMap<>() {{
             put("Model Year", "2019");
@@ -282,6 +309,7 @@ class ReturnMultipleCarsTest {
             put("ID", "9");
             put("Cost", "22988");
             put("Dealership", "Special Interest Automobiles");
+            put("Photo", "https://s.aolcdn.com/os/ab/_cms/2020/06/03024835/2020-hyundai-santa-fe-official-16.jpg");
         }});
         testList.add(4, new HashMap<>() {{
             put("Model Year", "2014");
@@ -291,6 +319,7 @@ class ReturnMultipleCarsTest {
             put("ID", "12");
             put("Cost", "19900");
             put("Dealership", "Daleo Motors");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2022-jeep-grand-cherokee-summit-reserve-4xe-114-1632861119.jpg");
         }});
         testList.add(5, new HashMap<>() {{
             put("Model Year", "2019");
@@ -300,6 +329,7 @@ class ReturnMultipleCarsTest {
             put("ID", "14");
             put("Cost", "30152");
             put("Dealership", "Dixie Mitsubishi");
+            put("Photo", "https://media.ed.edmunds-media.com/mitsubishi/outlander/2019/oem/2019_mitsubishi_outlander_4dr-suv_gt_fq_oem_1_1600.jpg");
         }});
         testList.add(6, new HashMap<>() {{
             put("Model Year", "2020");
@@ -309,6 +339,7 @@ class ReturnMultipleCarsTest {
             put("ID", "15");
             put("Cost", "28000");
             put("Dealership", "Eagle Motors");
+            put("Photo", "https://s.aolcdn.com/commerce/autodata/images/USC90KIS021A021001_2.jpg");
         }});
         testList.add(7, new HashMap<>() {{
             put("Model Year", "2016");
@@ -318,6 +349,7 @@ class ReturnMultipleCarsTest {
             put("ID", "17");
             put("Cost", "20478");
             put("Dealership", "Vaughan Chrysler");
+            put("Photo", "https://s.aolcdn.com/commerce/autodata/images/USD00TOS112A021001.jpg");
         }});
 
         assert Objects.equals(testList, ReturnMultipleCars.returnFilteredCars(filter));
