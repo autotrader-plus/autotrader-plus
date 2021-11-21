@@ -1,33 +1,31 @@
 package packages.responseformatting;
 
-/** This class helps provide the formatting for the response body of the HTTP request to the
- * "/traderauto-plus" endpoint. **/
+import com.google.gson.Gson;
+import java.util.HashMap;
 
-// This class may not be necessary (we need to look through where this class is used and decide whether it is safe
-// to delete this class
+/** This class helps provide the formatting for the response body of the HTTP request to the
+ * server. **/
 
 public class HttpResponseMain {
 
-    private static long id;
-    private static String content;
+    private HashMap<String, Object> response_content;
 
     /**
      * Constructor for the class
-     * @param id - the id of the request
-     * @param content - the response body for the requet
+     * @param content - the response body for the http request
      */
-    public HttpResponseMain(long id, String content) {
-        HttpResponseMain.id = id;
-        HttpResponseMain.content = content;
+    public HttpResponseMain(HashMap<String, Object> content) {
+        response_content = content;
     }
 
     // Getter
-    public long getId() {
-        return id;
-    }
 
-    // Getter
+    /**
+     * Get the Json string representation of the HTTP response content.
+     * @return Json string representation of the HTTP response content
+     */
     public String getContent() {
-        return content;
+        Gson gsonObj = new Gson();
+        return gsonObj.toJson(response_content);
     }
 }

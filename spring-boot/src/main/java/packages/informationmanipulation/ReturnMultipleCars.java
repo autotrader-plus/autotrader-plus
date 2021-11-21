@@ -17,20 +17,20 @@ public class ReturnMultipleCars {
      * A helper method that iterates through the returned result set of a query.
      * It will return every car in dictionary form and place it into an arraylist
      */
-    private static ArrayList<HashMap<String, String>> returnAllCarsQuery(String query) throws SQLException{
+    private static ArrayList<HashMap<String, Object>> returnAllCarsQuery(String query) throws SQLException{
 
 
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();
         ResultSet myResultSet = connection.writeQuery(query);
 
-        ArrayList<HashMap<String, String>> returnList = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> returnList = new ArrayList<>();
 
         // This continuously moves the cursor to the next row to reproduce data
         while (myResultSet.next()){
 
             // Populate that car's information
-            HashMap<String, String> carMap = ReturnCarInformation.populateCarMap(myResultSet);
+            HashMap<String, Object> carMap = ReturnCarInformation.populateCarMap(myResultSet);
 
             // Add it to the list
             returnList.add(carMap);
@@ -42,7 +42,7 @@ public class ReturnMultipleCars {
     /**
      * Return all cars available in the database
      */
-    public static ArrayList<HashMap<String, String>> returnAllCars() throws SQLException {
+    public static ArrayList<HashMap<String, Object>> returnAllCars() throws SQLException {
 
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars;";
@@ -53,7 +53,7 @@ public class ReturnMultipleCars {
      * Return all cars that are of a specific car type
      * @param filter the type of car you want to filter out
      */
-    public static ArrayList<HashMap<String, String>> returnFilteredCars(String filter) throws SQLException {
+    public static ArrayList<HashMap<String, Object>> returnFilteredCars(String filter) throws SQLException {
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars " +
                 "WHERE car_type = \"" + filter + "\";";

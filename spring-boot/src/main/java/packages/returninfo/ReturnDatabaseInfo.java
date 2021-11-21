@@ -2,38 +2,43 @@ package packages.returninfo;
 
 import java.sql.*;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import packages.responseformatting.*;
 import packages.informationmanipulation.*;
+import packages.responseformatting.HttpResponseMain;
 
 @RestController
 @CrossOrigin(origins ="*")
 public class ReturnDatabaseInfo {
 
-    private final AtomicLong counter = new AtomicLong();
-
     /**
      * This will return the information queried by the ReturnDatabaseInfo class
+     * @return a hashmap for the car inforamtion
      */
-    public String getContent() throws SQLException {
+    public HashMap<String, Object> getContent(int carId) throws SQLException {
 
         ReturnCarInformation db_object = new ReturnCarInformation();
-        return db_object.returnCarDetailsString(1);
+        return db_object.returnCarDetails(carId);
 
 
     }
 
+    /**
+     * This method handles all POST request to the "/database" endpoint.
+     * @param carId the request body needs to contain the carID
+     * @return a JSON string representation of the information regarding the car with carID
+     * @throws SQLException exception thrown if connection to database fails
+     */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
-    @GetMapping("/database")
-    public HttpResponseMain httpResponseMain(@RequestParam(required = false, defaultValue = "") String name) throws SQLException{
+    @PostMapping("/database")
+    public String httpResponseMain(@RequestBody String carId) throws SQLException{
         System.out.println("==== Connecting to Autotrader Database ====");
-        HttpResponseMain db_response = new HttpResponseMain(counter.incrementAndGet(), getContent());
-        return db_response;
+        HashMap<String, Object> response = getContent(Integer.parseInt(carId));
+        HttpResponseMain http_response = new HttpResponseMain(response);
+        System.out.println(String.format("==== Returning Car Information for Car %s ====", carId));
+        return http_response.getContent();
     }
 }

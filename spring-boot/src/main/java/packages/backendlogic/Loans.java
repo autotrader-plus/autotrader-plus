@@ -35,7 +35,7 @@ public class Loans implements LoanInfoInterface{
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
-    public Loans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
+    public Loans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws IOException, InterruptedException {
 
         loans = new HashMap<>();
 
@@ -94,15 +94,15 @@ public class Loans implements LoanInfoInterface{
     /**
      * creates CarList object (cars) based on length of given carlist Arraylist
      */
-    private void makecars(ArrayList<HashMap<String, String>> carlist, int budget) {
-        for (HashMap<String, String> stringStringHashMap : carlist) {
-            String cost = stringStringHashMap.get("Cost");
-            String year = stringStringHashMap.get("Model Year");
-            String brand = stringStringHashMap.get("Car");
-            String kms = stringStringHashMap.get("Mileage");
-            String cartype = stringStringHashMap.get("Car Type");
-            String ID = stringStringHashMap.get("ID");
-            String Dealership = stringStringHashMap.get("Dealership");
+    private void makecars(ArrayList<HashMap<String, Object>> carlist, int budget) {
+        for (HashMap<String, Object> stringStringHashMap : carlist) {
+            String cost = (String) stringStringHashMap.get("Cost");
+            String year = (String) stringStringHashMap.get("Model Year");
+            String brand = (String) stringStringHashMap.get("Car");
+            String kms = (String) stringStringHashMap.get("Mileage");
+            String cartype = (String) stringStringHashMap.get("Car Type");
+            String ID = (String) stringStringHashMap.get("ID");
+            String Dealership = (String) stringStringHashMap.get("Dealership");
             if (Integer.parseInt(cost) <= budget) {
                 cars.AddtoList(new Car(year, brand, kms, cartype, ID, cost, Dealership));
             }
@@ -131,7 +131,7 @@ public class Loans implements LoanInfoInterface{
      * @throws InterruptedException - exception thrown when call to senso api is interrupted
      */
     @Override
-    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, String>> carlist) throws IOException, InterruptedException {
+    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws IOException, InterruptedException {
         Loans loans = new Loans(user, carlist);
         return loans.getLoans();
     }

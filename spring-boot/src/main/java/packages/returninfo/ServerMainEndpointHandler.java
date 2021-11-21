@@ -9,22 +9,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicLong;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import packages.responseformatting.HttpResponseMain;
 
-/** This class handles HTTP request to the "/senso" endpoint. **/
+/** This class handles HTTP request to the "/traderauto-plus" endpoint. **/
 @RestController
 @CrossOrigin(origins ="*")
 public class ServerMainEndpointHandler {
-
-    private final AtomicLong counter = new AtomicLong();
 
     /**
      * This method handles HTTP request coming into the "/traderauto-plus" endpoint. It processes information from the request
@@ -40,7 +37,7 @@ public class ServerMainEndpointHandler {
         HashMap<String, String> body = parseRequestBody(req_body);
 
         //get car list based on user's preference, otherwise get all cars from database
-        ArrayList<HashMap<String, String>> filtered_cars;
+        ArrayList<HashMap<String, Object>> filtered_cars;
         if (!Objects.equals(body.get("car-preference"), "")) {
             filtered_cars = getFilteredCars(body.get("car-preference"));
         } else {
@@ -52,22 +49,11 @@ public class ServerMainEndpointHandler {
         // calculate loans for all cars that are filtered and create a response to send back to the client
         LoanInfoInterface loans = new Loans();
         HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
-        String response = createLoanResponse(loans_list);
 
+        HttpResponseMain http_response = new HttpResponseMain(loans_list);
         System.out.println("==== POST Response Sent ====");
-        return response;
+        return http_response.getContent();
     }
-
-    /**
-     * Create a json string representation of the loan information for the cars to be sent back as the POST response
-     * @param loans - a list of loans
-     * @return - a json string representation of all the loan information
-     */
-    static String createLoanResponse(HashMap<String, Object> loans) {
-        Gson gsonObj = new Gson();
-        return gsonObj.toJson(loans);
-    }
-
 
     /**
      * Parse the request body
@@ -89,7 +75,7 @@ public class ServerMainEndpointHandler {
      * @return an array list of cars that fit the car_type
      * @throws SQLException - error thrown if encounter problem when connecting to database
      */
-    static ArrayList<HashMap<String, String>> getFilteredCars(String car_type) throws SQLException {
+    static ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws SQLException {
         return ReturnMultipleCars.returnFilteredCars(car_type);
     }
 
@@ -98,7 +84,7 @@ public class ServerMainEndpointHandler {
      * @return an array list containg the information for all cars
      * @throws SQLException - error thrown if encounter problem when connecting to database
      */
-    private ArrayList<HashMap<String, String>> getAllCars() throws SQLException {
+    private ArrayList<HashMap<String, Object>> getAllCars() throws SQLException {
         return ReturnMultipleCars.returnAllCars();
     }
 }

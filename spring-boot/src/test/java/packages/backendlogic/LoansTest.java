@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 class LoansTest {
 
-    ArrayList<HashMap<String, String>> carlist;
+    ArrayList<HashMap<String, Object>> carlist;
     HashMap<String, String> userinfo;
     Loans loan;
 
