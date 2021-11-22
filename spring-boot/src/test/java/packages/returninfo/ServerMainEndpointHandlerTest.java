@@ -2,20 +2,18 @@ package packages.returninfo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import org.junit.jupiter.api.Test;
+import packages.exceptions.DatabaseConnectionFailureException;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
-import java.sql.SQLException;
 import java.util.*;
 
 class ServerMainEndpointHandlerTest {
 
 
     @Test
-    void httpResponseSenso() throws SQLException, IOException, InterruptedException {
+    void httpResponseSenso() {
         HashMap<String, String> mapping = new HashMap<String, String>();
         mapping.put("car-preference", "SUV");
         mapping.put("zip-code", "M11 1S6");
@@ -51,14 +49,14 @@ class ServerMainEndpointHandlerTest {
     }
 
     @Test
-    void getFilteredCars() throws SQLException {
+    void getFilteredCars() throws DatabaseConnectionFailureException {
         assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Model Year").equals("2017"));
         assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Car").equals("Honda Pillot 4WD"));
     }
 
     @Test
     // SImilar test to the first test, except now it calls all cars in the database since no car preference is indicated.
-    void httpResponseSenso2() throws SQLException, IOException, InterruptedException {
+    void httpResponseSenso2() {
         HashMap<String, String> mapping = new HashMap<String, String>();
         mapping.put("car-preference", "");
         mapping.put("zip-code", "M11 1S6");

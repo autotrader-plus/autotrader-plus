@@ -2,9 +2,10 @@ package packages.returninfo;
 
 import packages.backendlogic.LoanInfoInterface;
 import packages.backendlogic.Loans;
+import packages.exceptions.DatabaseConnectionFailureException;
+import packages.exceptions.SensoConnectionFailureException;
 import packages.informationmanipulation.*;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,27 +33,36 @@ public class ServerMainEndpointHandler {
      */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/traderauto-plus")
-    public String httpResponseSenso(@RequestBody() String req_body) throws IOException, SQLException, InterruptedException {
+    public String httpResponseSenso(@RequestBody() String req_body) {
         System.out.println("==== POST Request Received ====");
-        HashMap<String, String> body = parseRequestBody(req_body);
+        try {
+            HashMap<String, String> body = parseRequestBody(req_body);
 
-        //get car list based on user's preference, otherwise get all cars from database
-        ArrayList<HashMap<String, Object>> filtered_cars;
-        if (!Objects.equals(body.get("car-preference"), "")) {
-            filtered_cars = getFilteredCars(body.get("car-preference"));
-        } else {
-            filtered_cars = getAllCars();
+            //get car list based on user's preference, otherwise get all cars from database
+            ArrayList<HashMap<String, Object>> filtered_cars;
+            if (!Objects.equals(body.get("car-preference"), "")) {
+                filtered_cars = getFilteredCars(body.get("car-preference"));
+            } else {
+                filtered_cars = getAllCars();
+            }
+
+
+            body.remove("car-preference");
+
+            // calculate loans for all cars that are filtered and create a response to send back to the client
+            LoanInfoInterface loans = new Loans(body, filtered_cars);
+            HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
+
+            HttpResponseMain http_response = new HttpResponseMain(loans_list);
+            System.out.println("==== POST Response Sent ====");
+            return http_response.getContent();
+        } catch (SensoConnectionFailureException|JsonProcessingException|DatabaseConnectionFailureException e){
+            e.printStackTrace();
+            System.err.println("Error: " + e.getMessage());
         }
 
-        body.remove("car-preference");
-
-        // calculate loans for all cars that are filtered and create a response to send back to the client
-        LoanInfoInterface loans = new Loans();
-        HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
-
-        HttpResponseMain http_response = new HttpResponseMain(loans_list);
-        System.out.println("==== POST Response Sent ====");
-        return http_response.getContent();
+        // loans information is not returned due to senso api connection failure, returns error message instead
+        return "Unable to retrieve loan information. Please try again!";
     }
 
     /**
@@ -73,18 +83,26 @@ public class ServerMainEndpointHandler {
      * Get filtered car list based on car_type specified in the http request body
      * @param car_type - the car_type to return from the database
      * @return an array list of cars that fit the car_type
-     * @throws SQLException - error thrown if encounter problem when connecting to database
      */
-    static ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws SQLException {
-        return ReturnMultipleCars.returnFilteredCars(car_type);
+    static ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws DatabaseConnectionFailureException {
+        try {
+            return ReturnMultipleCars.returnFilteredCars(car_type);
+        } catch(SQLException e){
+            e.printStackTrace();
+            throw new DatabaseConnectionFailureException();
+        }
     }
 
     /**
      * A helper methods to return all cars in the database
      * @return an array list containg the information for all cars
-     * @throws SQLException - error thrown if encounter problem when connecting to database
      */
-    private ArrayList<HashMap<String, Object>> getAllCars() throws SQLException {
-        return ReturnMultipleCars.returnAllCars();
+    private ArrayList<HashMap<String, Object>> getAllCars() throws DatabaseConnectionFailureException {
+        try {
+            return ReturnMultipleCars.returnAllCars();
+        } catch(SQLException e){
+            e.printStackTrace();
+            throw new DatabaseConnectionFailureException();
+        }
     }
 }

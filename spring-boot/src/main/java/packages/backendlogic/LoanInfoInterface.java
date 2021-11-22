@@ -1,5 +1,7 @@
 package packages.backendlogic;
 
+import packages.exceptions.SensoConnectionFailureException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,5 +15,5 @@ public interface LoanInfoInterface {
      * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
      * @throws InterruptedException - exception thrown when api call is interrupted or failed
      */
-    HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws IOException, InterruptedException;
+    HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws SensoConnectionFailureException;
 }
