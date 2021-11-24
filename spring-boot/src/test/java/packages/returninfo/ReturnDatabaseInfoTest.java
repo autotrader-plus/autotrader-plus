@@ -19,6 +19,8 @@ class ReturnDatabaseInfoTest {
         expected.put("ID", "1");
         expected.put("Cost", "35649");
         expected.put("Dealership", "Guelph Hyundai");
+        expected.put("Photo", "https://www.hyundaionhuntclub.com/vimgs/usd00hyc031d022004/IOF_H600/ColourPhotoSample_0.jpg");
+        System.out.print(test.getContent(1));
         assert (Objects.equals(test.getContent(1), expected));
     }
 
@@ -26,7 +28,9 @@ class ReturnDatabaseInfoTest {
     void httpResponseMain() {
         ReturnDatabaseInfo test = new ReturnDatabaseInfo();
         String expected = "{\"Model Year\":\"2021\",\"Car\":\"Hyundai Sonata Ultimate\"," +
-                "\"Mileage\":\"10323\",\"Car Type\":\"Convertible\",\"ID\":\"1\",\"Cost\":\"35649\"," +
+                "\"Mileage\":\"10323\",\"Car Type\":\"Convertible\"," +
+                "\"Photo\":\"https://www.hyundaionhuntclub.com/vimgs/usd00hyc031d022004/IOF_H600/ColourPhotoSample_0.jpg\"," +
+                "\"ID\":\"1\",\"Cost\":\"35649\"," +
                 "\"Dealership\":\"Guelph Hyundai\"}";
         String result = test.httpResponseMain("1");
         assert(Objects.equals(result, expected));

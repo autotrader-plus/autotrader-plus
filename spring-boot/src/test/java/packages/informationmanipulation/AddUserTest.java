@@ -17,7 +17,7 @@ class AddUserTest {
         AddUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
-        testMap.put("ID", "14");
+        testMap.put("ID", "2");
         testMap.put("Name", "Mike");
         testMap.put("Credit Score", "740");
         testMap.put("Location", "M4Y111");
@@ -28,7 +28,9 @@ class AddUserTest {
         testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
 
-        assert testMap.equals(ReturnUserInformation.returnUser(14));
+        System.out.print(ReturnUserInformation.returnUser(2));
+
+        assert testMap.equals(ReturnUserInformation.returnUser(2));
     }
 
     @Test
@@ -40,18 +42,18 @@ class AddUserTest {
         AddUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
-        testMap.put("ID", "2");
+        testMap.put("ID", "1");
         testMap.put("Name", "Mike");
         testMap.put("Credit Score", "730");
         testMap.put("Location", "M4Y111");
         testMap.put("Max Downpayment", "5000");
         testMap.put("Max Monthly Payment", "1000");
         testMap.put("Monthly Income", "8500");
-        testMap.put("Employment Status", "true");
-        testMap.put("Homeowner", "true");
+        testMap.put("Employment Status", "Employed");
+        testMap.put("Homeowner", "Homeowner");
         testMap.put("Monthly Debt Obligation", "500");
 
-        assert testMap.equals(ReturnUserInformation.returnUser(2));
+        assert testMap.equals(ReturnUserInformation.returnUser(1));
     }
 
 }

@@ -29,6 +29,7 @@ class ReturnCarInformationTest {
         testMap.put("Model Year", "2021");
         testMap.put("Dealership", "Guelph Hyundai");
         testMap.put("Car Type", "Convertible");
+        testMap.put("Photo", "https://www.hyundaionhuntclub.com/vimgs/usd00hyc031d022004/IOF_H600/ColourPhotoSample_0.jpg");
         
         assert Objects.equals(testMap, ReturnCarInformation.returnCarDetails(1));
     }
