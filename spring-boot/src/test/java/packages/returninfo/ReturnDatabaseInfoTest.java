@@ -1,19 +1,15 @@
 package packages.returninfo;
 
 import org.junit.jupiter.api.Test;
-import packages.responseformatting.HttpResponseMain;
+import packages.exceptions.DatabaseConnectionFailureException;
 
-import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ReturnDatabaseInfoTest {
 
     @Test
-    void getContent() throws SQLException {
+    void getContent() throws DatabaseConnectionFailureException {
         ReturnDatabaseInfo test = new ReturnDatabaseInfo();
         HashMap<String, String> expected = new HashMap<String, String>();
         expected.put("Model Year", "2021");
@@ -27,7 +23,7 @@ class ReturnDatabaseInfoTest {
     }
 
     @Test
-    void httpResponseMain() throws SQLException {
+    void httpResponseMain() {
         ReturnDatabaseInfo test = new ReturnDatabaseInfo();
         String expected = "{\"Model Year\":\"2021\",\"Car\":\"Hyundai Sonata Ultimate\"," +
                 "\"Mileage\":\"10323\",\"Car Type\":\"Convertible\",\"ID\":\"1\",\"Cost\":\"35649\"," +

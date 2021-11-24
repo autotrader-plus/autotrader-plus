@@ -2,6 +2,7 @@ package packages.backendlogic;
 
 import packages.connectouterentity.ConnectSensoAPI;
 import packages.connectouterentity.SensoAPIInterface;
+import packages.exceptions.SensoConnectionFailureException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,13 +17,6 @@ public class Loans implements LoanInfoInterface{
     private static CarList<Car> cars;
     private static User buyer;
 
-    // constructor
-    public Loans() {
-
-    }
-
-
-    //overloaded constructor
     /**
      * Creates an empty HashMap Loans that will be storing the SensoApi return values
      * Creates an advanced or basic User Object based on the amount of info given
@@ -32,10 +26,8 @@ public class Loans implements LoanInfoInterface{
      * Stores the SensoApi return values in HashMap Loans
      * @param user The User Object from User.java
      * @param carlist The CarList Object CarList.java
-     * @throws IOException exception thrown when failure in reading/writing/searching files
-     * @throws InterruptedException exception thrown when process interrupted
      */
-    public Loans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws IOException, InterruptedException {
+    public Loans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws SensoConnectionFailureException {
 
         loans = new HashMap<>();
 
@@ -53,7 +45,12 @@ public class Loans implements LoanInfoInterface{
         makecars(carlist, upsold_budget);
 
         // preps info and calls SensoAPI
-        callApi();
+        try {
+            callApi();
+        } catch(IOException|InterruptedException e) {
+            e.printStackTrace();
+            throw new SensoConnectionFailureException();
+        }
     }
 
     /**
@@ -61,12 +58,12 @@ public class Loans implements LoanInfoInterface{
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
-    private void callApi() throws IOException, InterruptedException {
+    private void callApi() throws IOException, InterruptedException{
         for (int j = 0; j < cars.size(); j++){
             Car car = cars.getCar(j);
             HashMap<String, String> mapping = makeUserInfo(car);
 
-            SensoAPIInterface connector = new ConnectSensoAPI();
+            SensoAPIInterface connector = new ConnectSensoAPI(mapping);
             loans.put(car.returnID(), connector.pingSensoAPI(mapping).get("installments")); // edited
         }
     }
@@ -127,11 +124,9 @@ public class Loans implements LoanInfoInterface{
      * @param user - a mapping of user info
      * @param carlist - a list of cars we want the loan info for
      * @return a hashmap of cars with the loan info for the car
-     * @throws IOException - exception thrown when input/output error
-     * @throws InterruptedException - exception thrown when call to senso api is interrupted
      */
     @Override
-    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws IOException, InterruptedException {
+    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws SensoConnectionFailureException {
         Loans loans = new Loans(user, carlist);
         return loans.getLoans();
     }

@@ -45,7 +45,7 @@ class ConnectSensoAPITest {
         mapping.put("list_price", "10000");
         mapping.put("downpayment", "10000");
 
-        SensoAPIInterface connector = new ConnectSensoAPI();
+        SensoAPIInterface connector = new ConnectSensoAPI(mapping);
         assert connector.pingSensoAPI(mapping) != null;
         System.out.print(connector.pingSensoAPI(mapping));
     }

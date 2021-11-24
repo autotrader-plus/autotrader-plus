@@ -27,12 +27,6 @@ public class ConnectSensoAPI implements SensoAPIInterface{
     private static int listPrice;
     private static int downpayment;
 
-    //constructor
-    public ConnectSensoAPI() {
-
-    }
-
-    //overloading constructor
     /**
      * This is a method that collects input data for SensoAPI, then pings the senso API using the input data
      * @param senso_input - a hashmap that contains all input information used to ping senso API

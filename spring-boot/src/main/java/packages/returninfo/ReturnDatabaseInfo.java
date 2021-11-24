@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.*;
 
+import packages.exceptions.DatabaseConnectionFailureException;
 import packages.informationmanipulation.*;
 import packages.responseformatting.HttpResponseMain;
 
@@ -18,27 +19,38 @@ public class ReturnDatabaseInfo {
      * This will return the information queried by the ReturnDatabaseInfo class
      * @return a hashmap for the car inforamtion
      */
-    public HashMap<String, Object> getContent(int carId) throws SQLException {
+    public HashMap<String, Object> getContent(int carId) throws DatabaseConnectionFailureException {
 
-        ReturnCarInformation db_object = new ReturnCarInformation();
-        return db_object.returnCarDetails(carId);
-
-
+        try {
+            ReturnCarInformation db_object = new ReturnCarInformation();
+            return db_object.returnCarDetails(carId);
+        } catch(SQLException e){
+            e.printStackTrace();
+            throw new DatabaseConnectionFailureException();
+        }
     }
 
     /**
      * This method handles all POST request to the "/database" endpoint.
      * @param carId the request body needs to contain the carID
      * @return a JSON string representation of the information regarding the car with carID
-     * @throws SQLException exception thrown if connection to database fails
      */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/database")
-    public String httpResponseMain(@RequestBody String carId) throws SQLException{
+    public String httpResponseMain(@RequestBody String carId) {
         System.out.println("==== Connecting to Autotrader Database ====");
-        HashMap<String, Object> response = getContent(Integer.parseInt(carId));
-        HttpResponseMain http_response = new HttpResponseMain(response);
-        System.out.println(String.format("==== Returning Car Information for Car %s ====", carId));
-        return http_response.getContent();
+
+        try {
+            HashMap<String, Object> response = getContent(Integer.parseInt(carId));
+            HttpResponseMain http_response = new HttpResponseMain(response);
+            System.out.printf("==== Returning Car Information for Car %s ====%n", carId);
+            return http_response.getContent();
+        } catch(DatabaseConnectionFailureException e){
+            e.printStackTrace();
+            System.err.println("Error:" + e.getMessage());
+        }
+
+        // loans information is not returned due to database connection failure, returns error message instead
+        return "Unable to retrieve database information. Please try again!";
     }
 }

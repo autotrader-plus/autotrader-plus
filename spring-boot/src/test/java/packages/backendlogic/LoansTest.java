@@ -1,10 +1,10 @@
 package packages.backendlogic;
 
+import packages.exceptions.SensoConnectionFailureException;
 import packages.informationmanipulation.ReturnMultipleCars;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ class LoansTest {
     Loans loan;
 
     @BeforeEach
-    void setUp() throws SQLException, IOException, InterruptedException {
+    void setUp() throws SQLException, SensoConnectionFailureException {
         carlist = ReturnMultipleCars.returnAllCars();
         userinfo = new HashMap<>();
         userinfo.put("credit-score", "750");
@@ -46,8 +46,8 @@ class LoansTest {
     }
 
     @Test
-    void calculateLoans() throws IOException, InterruptedException {
-        LoanInfoInterface getLoans = new Loans();
+    void calculateLoans() throws SensoConnectionFailureException {
+        LoanInfoInterface getLoans = new Loans(userinfo, carlist);
         assert(getLoans.calculateLoans(userinfo, carlist) != null);
     }
 }
