@@ -52,7 +52,10 @@ public class ConnectAutoTraderDB implements AutoTraderDBInterface {
     }
 
     /**
-     * Write a query for the SQL database to access
+     *Write the query for database
+     * @param query - the query for the database
+     * @return the result of the query
+     * @throws SQLException - exception thrown when connection to database fails
      */
     @Override
     public ResultSet writeQuery(String query) throws SQLException {
@@ -60,8 +63,14 @@ public class ConnectAutoTraderDB implements AutoTraderDBInterface {
         return this.objStatement.executeQuery(query);
 
     }
+
+    /**
+     * Execute the query for the database
+     * @param query - the query for the database
+     * @throws SQLException - exception thrown when connection to database fails
+     */
     @Override
-    public void exceuteQuery(String query) throws SQLException {
+    public void executeQuery(String query) throws SQLException {
 
         this.objStatement.executeUpdate(query);
     }

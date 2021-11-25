@@ -61,7 +61,7 @@ public class SignInEndpointHandler {
      * @return a hashmap representation of the request json
      * @throws JsonProcessingException - error thrown when json cannot be processed
      */
-    static HashMap<String, String> parseRequestBody(String req_body) throws JsonProcessingException {
+    private HashMap<String, String> parseRequestBody(String req_body) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String, String> userInfoHash = objectMapper.readValue(req_body, HashMap.class);
 
