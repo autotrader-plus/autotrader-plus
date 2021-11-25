@@ -12,6 +12,7 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+/** This is a class that calls Senso Score API, and return information from Senso Score API.**/
 public class ConnectSensoScoreAPI implements SensoAPIInterface{
 
     private HashMap<Object, Object> api_content; // the return info from senso api call

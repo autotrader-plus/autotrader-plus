@@ -12,11 +12,11 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 
-/** This is a class that calls Senso API, and return information from Senso API.**/
+/** This is a class that calls Senso Rate API, and return information from Senso Rate API.**/
 public class ConnectSensoRateAPI implements SensoAPIInterface{
 
     private static HashMap<Object, Object> api_content; // the return info from senso api call
-    // the following static variables are the fields needed for senso api call
+    // the following variables are the fields needed for senso api call
     private int loanAmount;
     private int creditScore;
     private int pytBudget;
