@@ -20,7 +20,7 @@ public class AuthenticateUser {
     public boolean checkUser(String username, String password) throws SQLException {
         HashMap<String, Object> allLogins = getAllLogins(username, password);
 
-        return allLogins.isEmpty();
+        return !allLogins.isEmpty();
     }
 
     /**
