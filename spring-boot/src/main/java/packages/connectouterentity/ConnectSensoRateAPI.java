@@ -12,8 +12,8 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 
-/** This is a class that calls Senso API, and return information from Senso API.**/
-public class ConnectSensoAPI implements SensoAPIInterface{
+/** This is a class that calls Senso Rate API, and return information from Senso Rate PI.**/
+public class ConnectSensoRateAPI implements SensoAPIInterface{
 
     private HashMap<String, Object> apiContent; // the return info from senso api call
     // the following static variables are the fields needed for senso api call
@@ -29,14 +29,14 @@ public class ConnectSensoAPI implements SensoAPIInterface{
 
     /**
      * This is a method that collects input data for SensoAPI, then pings the senso API using the input data
-     * @param senso_input - a hashmap that contains all input information used to ping senso API
+     * @param sensoInput - a hashmap that contains all input information used to ping senso API
      * @throws IOException - IOexception
      * @throws InterruptedException - exception when senso api call is interrupted or failed
      */
-    public ConnectSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
-        populateSensoInputs(senso_input);
-        String input_body = createJson();
-        apiContent = callSensoAPI(input_body);
+    public ConnectSensoRateAPI(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
+        populateSensoInputs(sensoInput);
+        String inputBody = createJson();
+        apiContent = callSensoAPI(inputBody);
     }
 
     /**
@@ -126,14 +126,14 @@ public class ConnectSensoAPI implements SensoAPIInterface{
 
     /**
      * A overriden method from SensoAPIInterface.
-     * @param senso_input - the input mapping for senso api call
+     * @param sensoInput - the input mapping for senso api call
      * @return a hashmap representation of return info from senso api
      * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
      * @throws InterruptedException - exception thrown when api call is interrupted or failed
      */
     @Override
-    public HashMap<String, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
-        ConnectSensoAPI senso_connector = new ConnectSensoAPI(senso_input);
-        return senso_connector.getReturnInfo();
+    public HashMap<String, Object> pingSensoAPI(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
+        ConnectSensoRateAPI sensoConnector = new ConnectSensoRateAPI(sensoInput);
+        return sensoConnector.getReturnInfo();
     }
 }

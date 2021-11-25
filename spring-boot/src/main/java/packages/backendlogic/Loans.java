@@ -1,6 +1,6 @@
 package packages.backendlogic;
 
-import packages.connectouterentity.ConnectSensoAPI;
+import packages.connectouterentity.ConnectSensoRateAPI;
 import packages.connectouterentity.SensoAPIInterface;
 import packages.exceptions.SensoConnectionFailureException;
 
@@ -59,7 +59,7 @@ public class Loans implements LoanInfoInterface{
             Car car = cars.getCar(j);
             HashMap<String, String> mapping = makeUserInfo(car);
 
-            SensoAPIInterface connector = new ConnectSensoAPI(mapping);
+            SensoAPIInterface connector = new ConnectSensoRateAPI(mapping);
             loans.put(car.getID(), connector.pingSensoAPI(mapping).get("installments"));
         }
     }
