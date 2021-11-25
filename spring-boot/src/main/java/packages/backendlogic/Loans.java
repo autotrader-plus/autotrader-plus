@@ -13,9 +13,9 @@ import java.util.HashMap;
  * corresponding to the possible car loans for each Car based on the SensoApi
  */
 public class Loans implements LoanInfoInterface{
-    private static HashMap<String, Object> loans;
-    private static CarList<Car> cars;
-    private static User buyer;
+    private HashMap<String, Object> loans;
+    private CarList<Car> cars;
+    private User buyer;
 
     /**
      * Creates an empty HashMap Loans that will be storing the SensoApi return values
@@ -25,9 +25,9 @@ public class Loans implements LoanInfoInterface{
      * Collects and organizes Car and User data for the SensoApi call
      * Stores the SensoApi return values in HashMap Loans
      * @param user The User Object from User.java
-     * @param carlist The CarList Object CarList.java
+     * @param carList The CarList Object CarList.java
      */
-    public Loans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws SensoConnectionFailureException {
+    public Loans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException {
 
         loans = new HashMap<>();
 
@@ -42,7 +42,7 @@ public class Loans implements LoanInfoInterface{
 
         // creates CarList object (cars) based on length of given carlist Arraylist
         cars = new CarList<>();
-        makecars(carlist, upsold_budget);
+        makeCars(carList, upsold_budget);
 
         // preps info and calls SensoAPI
         try {
@@ -64,7 +64,7 @@ public class Loans implements LoanInfoInterface{
             HashMap<String, String> mapping = makeUserInfo(car);
 
             SensoAPIInterface connector = new ConnectSensoRateAPI(mapping);
-            loans.put(car.returnID(), connector.pingSensoAPI(mapping).get("installments")); // edited
+            loans.put(car.getID(), connector.pingSensoAPI(mapping).get("installments")); // edited
         }
     }
 
@@ -76,22 +76,22 @@ public class Loans implements LoanInfoInterface{
     private HashMap<String, String> makeUserInfo(Car car) {
         HashMap<String, String> mapping = new HashMap<>();
         mapping.put("loan_amount", Integer.toString(car.getPrice() -
-                Integer.parseInt(buyer.getDownpayment())));
-        mapping.put("credit_score", buyer.getCreditscore());
-        mapping.put("payment_budget", buyer.getMonthlybudget());
+                Integer.parseInt(buyer.getDownPayment())));
+        mapping.put("credit_score", buyer.getCreditScore());
+        mapping.put("payment_budget", buyer.getMonthlyBudget());
         mapping.put("vehicle_make", car.getBrand());
         mapping.put("vehicle_model", "Daniel");
         mapping.put("vehicle_year", car.getYear());
         mapping.put("vehicle_kms", car.getKMS());
         mapping.put("list_price", Integer.toString(car.getPrice()));
-        mapping.put("downpayment", buyer.getDownpayment());
+        mapping.put("downpayment", buyer.getDownPayment());
         return mapping;
     }
 
     /**
      * creates CarList object (cars) based on length of given carlist Arraylist
      */
-    private void makecars(ArrayList<HashMap<String, Object>> carlist, int budget) {
+    private void makeCars(ArrayList<HashMap<String, Object>> carlist, int budget) {
         for (HashMap<String, Object> stringStringHashMap : carlist) {
             String cost = (String) stringStringHashMap.get("Cost");
             String year = (String) stringStringHashMap.get("Model Year");
@@ -122,12 +122,12 @@ public class Loans implements LoanInfoInterface{
      * Overriden method for LoanInfoInterface that allows other classes to directly access this class through this
      * interface method.
      * @param user - a mapping of user info
-     * @param carlist - a list of cars we want the loan info for
+     * @param carList - a list of cars we want the loan info for
      * @return a hashmap of cars with the loan info for the car
      */
     @Override
-    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws SensoConnectionFailureException {
-        Loans loans = new Loans(user, carlist);
+    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException {
+        Loans loans = new Loans(user, carList);
         return loans.getLoans();
     }
 }

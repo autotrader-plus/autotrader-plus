@@ -2,18 +2,19 @@ package packages.backendlogic;
 
 import packages.exceptions.SensoConnectionFailureException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Interface used to allow other classes to directly access the Loans class.
+ */
 public interface LoanInfoInterface {
     /**
-     * Calculate the loans based on user information from user hashmap for the car in carlist
-     * @param user - a mapping of user info
-     * @param carlist - a list of cars we want the loan info for
-     * @return the mapping of each car to the loans for the car
-     * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
-     * @throws InterruptedException - exception thrown when api call is interrupted or failed
+     * Calculate the loans based on user information from the user hashmap for the car in carList
+     * @param user - A mapping of user information
+     * @param carList - A list of Cars we want loan information from
+     * @return A mapping of each car to its respective possible loans
+     * @throws SensoConnectionFailureException If failed to connect to the Senso API
      */
-    HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carlist) throws SensoConnectionFailureException;
+    HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException;
 }

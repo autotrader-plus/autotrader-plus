@@ -1,5 +1,6 @@
 package packages.informationmanipulation;
 
+import org.junit.jupiter.api.BeforeEach;
 import packages.backendlogic.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,13 +9,21 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 class AddUserTest {
+    ReturnUserInformation returnUserInformation;
+    AddUser addUser;
+
+    @BeforeEach
+    void setUp(){
+        returnUserInformation = new ReturnUserInformation();
+        addUser = new AddUser();
+    }
 
     @Test
     @DisplayName("addUser: Basic Case with Simple User")
     void addUserSimple() throws SQLException {
         User user = new User(740, 1000, 5000, "M4Y111", "Mike");
 
-        AddUser.addUser(user);
+        addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("ID", "2");
@@ -28,9 +37,7 @@ class AddUserTest {
         testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
 
-        System.out.print(ReturnUserInformation.returnUser(2));
-
-        assert testMap.equals(ReturnUserInformation.returnUser(2));
+        assert testMap.equals(returnUserInformation.returnUser(2));
     }
 
     @Test
@@ -39,7 +46,7 @@ class AddUserTest {
         User user = new User(730, 1000, 5000, "M4Y111", "Mike",
                 8500, true, true, 500);
 
-        AddUser.addUser(user);
+        addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("ID", "1");
@@ -53,7 +60,7 @@ class AddUserTest {
         testMap.put("Homeowner", "Homeowner");
         testMap.put("Monthly Debt Obligation", "500");
 
-        assert testMap.equals(ReturnUserInformation.returnUser(1));
+        assert testMap.equals(returnUserInformation.returnUser(1));
     }
 
 }

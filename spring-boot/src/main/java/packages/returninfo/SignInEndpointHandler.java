@@ -21,17 +21,17 @@ public class SignInEndpointHandler {
      * This method handles HTTP request coming into the "/signin" endpoint. It processes information from the request
      * body and returns information back to the client.
      *
-     * @param req_body - the body of the http request from the client
+     * @param reqBody - the body of the http request from the client
      * @return An HTTP Response back to the client.
      */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/signin")
-    public String httpResponseSignIn(@RequestBody() String req_body) {
+    public String httpResponseSignIn(@RequestBody() String reqBody) {
         System.out.println("==== POST Request Received ====");
         try {
             // format of
             // {"username": username, "password": password}
-            HashMap<String, String> body = parseRequestBody(req_body);
+            HashMap<String, String> body = parseRequestBody(reqBody);
 
             // Create AuthenticateUser object
             AuthenticateUser auth = new AuthenticateUser();
@@ -57,13 +57,15 @@ public class SignInEndpointHandler {
 
     /**
      * Parse the request body
-     * @param req_body - a string representation of the request json
+     * @param reqBody - a string representation of the request json
      * @return a hashmap representation of the request json
      * @throws JsonProcessingException - error thrown when json cannot be processed
      */
-    private HashMap<String, String> parseRequestBody(String req_body) throws JsonProcessingException {
+    private HashMap<String, String> parseRequestBody(String reqBody) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(req_body, HashMap.class);
+        HashMap<String, String> userInfoHash = objectMapper.readValue(reqBody, HashMap.class);
+
+        return userInfoHash;
     }
 
 }

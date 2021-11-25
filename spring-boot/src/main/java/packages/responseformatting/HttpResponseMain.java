@@ -8,14 +8,14 @@ import java.util.HashMap;
 
 public class HttpResponseMain {
 
-    private HashMap<String, Object> response_content;
+    private HashMap<String, Object> responseContent;
 
     /**
      * Constructor for the class
      * @param content - the response body for the http request
      */
     public HttpResponseMain(HashMap<String, Object> content) {
-        response_content = content;
+        responseContent = content;
     }
 
     // Getter
@@ -26,6 +26,6 @@ public class HttpResponseMain {
      */
     public String getContent() {
         Gson gsonObj = new Gson();
-        return gsonObj.toJson(response_content);
+        return gsonObj.toJson(responseContent);
     }
 }

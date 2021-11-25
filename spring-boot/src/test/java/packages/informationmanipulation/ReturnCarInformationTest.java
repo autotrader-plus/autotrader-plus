@@ -1,5 +1,6 @@
 package packages.informationmanipulation;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,11 +9,17 @@ import java.util.HashMap;
 import java.util.Objects;
 
 class ReturnCarInformationTest {
+    ReturnCarInformation returnCarInformation;
+
+    @BeforeEach
+    void setUp() {
+        returnCarInformation = new ReturnCarInformation();
+    }
 
     @Test
     @DisplayName("CarDetailString: Basic Case")
     void returnCarDetailsString() throws SQLException {
-        assert Objects.equals(ReturnCarInformation.returnCarDetailsString(1), "ID: 1\nCar: Hyundai Sonata Ultimate\n" +
+        assert Objects.equals(returnCarInformation.returnCarDetailsString(1), "ID: 1\nCar: Hyundai Sonata Ultimate\n" +
                 "Cost: $35649\nMileage: 10323\nModel Year: 2021\nDealership: Guelph Hyundai\nCar Type: Convertible");
     }
 
@@ -31,7 +38,7 @@ class ReturnCarInformationTest {
         testMap.put("Car Type", "Convertible");
         testMap.put("Photo", "https://www.hyundaionhuntclub.com/vimgs/usd00hyc031d022004/IOF_H600/ColourPhotoSample_0.jpg");
         
-        assert Objects.equals(testMap, ReturnCarInformation.returnCarDetails(1));
+        assert Objects.equals(testMap, returnCarInformation.returnCarDetails(1));
     }
 
 }

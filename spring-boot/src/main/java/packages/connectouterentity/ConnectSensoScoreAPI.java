@@ -15,7 +15,7 @@ import java.util.Map;
 /** This is a class that calls Senso Score API, and return information from Senso Score API.**/
 public class ConnectSensoScoreAPI implements SensoAPIInterface{
 
-    private HashMap<Object, Object> apiContent; // the return info from senso api call
+    private HashMap<String, Object> apiContent; // the return info from senso api call
     // the following variables are the fields needed for senso api call
     private int remainingBalance;
     private int creditScore;
@@ -24,7 +24,7 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
     private String vehicleModel;
     private int vehicleYear;
     private int carValue;
-    private String loanStartDate = "2021-11-11";
+    private String loanStartDate;
 
     /**
      * This is a method that collects input data for SensoAPI, then pings the senso API using the input data
@@ -91,7 +91,7 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
      * @throws IOException - IOexception
      * @throws InterruptedException - exception when the senso api call is interrupted or failed
      */
-    private HashMap<Object, Object> CallSensoAPI(String inputJson) throws IOException, InterruptedException{
+    private HashMap<String, Object> CallSensoAPI(String inputJson) throws IOException, InterruptedException{
 
         String postEndpoint = "https://auto-loan-api.senso.ai/score";
 
@@ -117,20 +117,20 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
      * A getter method to get the return info from senso api call based on the input information
      * @return a hashmap representation of the return info from senso api call
      */
-    public HashMap<Object, Object> getReturnInfo() {
+    public HashMap<String, Object> getReturnInfo() {
         return apiContent;
     }
 
     /**
      * A overriden method from SensoAPIInterface.
-     * @param senso_input - the input mapping for senso api call
+     * @param sensoInput - the input mapping for senso api call
      * @return a hashmap representation of return info from senso api
      * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
      * @throws InterruptedException - exception thrown when api call is interrupted or failed
      */
     @Override
-    public HashMap<Object, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
-        ConnectSensoScoreAPI senso_connector = new ConnectSensoScoreAPI(senso_input);
-        return senso_connector.getReturnInfo();
+    public HashMap<String, Object> pingSensoAPI(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
+        ConnectSensoScoreAPI sensoConnector = new ConnectSensoScoreAPI(sensoInput);
+        return sensoConnector.getReturnInfo();
     }
 }

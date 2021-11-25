@@ -2,6 +2,9 @@ package packages.backendlogic;
 
 import java.util.HashMap;
 
+/**
+ * A UserFactory that creates User Objects
+ */
 public class UserFactory {
     /**
      * Create a User object based on user information given in the user hashmap

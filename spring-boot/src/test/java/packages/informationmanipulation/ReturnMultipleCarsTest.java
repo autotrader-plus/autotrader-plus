@@ -1,5 +1,6 @@
 package packages.informationmanipulation;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,12 @@ import java.util.Objects;
 import static java.lang.Math.min;
 
 class ReturnMultipleCarsTest {
+    ReturnMultipleCars returnMultipleCars;
 
+    @BeforeEach
+    void setUp() {
+        returnMultipleCars = new ReturnMultipleCars();
+    }
 
     @Test
     @DisplayName("AllCars: Basic Case")
@@ -261,7 +267,7 @@ class ReturnMultipleCarsTest {
             put("Photo", "https://www.motortrend.com/uploads/sites/10/2018/01/2019-Infiniti-QX50-front-three-quarter-in-motion-05.jpg");
         }});
 
-        assert Objects.equals(testList, ReturnMultipleCars.returnAllCars());
+        assert Objects.equals(testList, returnMultipleCars.returnAllCars());
     }
 
     @Test
@@ -352,7 +358,7 @@ class ReturnMultipleCarsTest {
             put("Photo", "https://s.aolcdn.com/commerce/autodata/images/USD00TOS112A021001.jpg");
         }});
 
-        assert Objects.equals(testList, ReturnMultipleCars.returnFilteredCars(filter));
+        assert Objects.equals(testList, returnMultipleCars.returnFilteredCars(filter));
     }
 
 }

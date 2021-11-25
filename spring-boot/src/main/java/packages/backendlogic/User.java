@@ -1,98 +1,136 @@
 package packages.backendlogic;
 
 /**
- * This class creates an User Object based on the user info inputted by the user from the frontend
+ * Represents a User Object based on the user info inputted by the user from the frontend
  */
 public class User {
-    private final int creditscore;
-    private final int monthlybudget;
-    private final int downpayment;
-    private final String zipcode;
+    private final int creditScore;
+    private final int monthlyBudget;
+    private final int downPayment;
+    private final String zipCode;
     private final String name;
-    private final int monthlyincome;
+    private final int monthlyIncome;
     private final boolean employed;
     private final boolean homeowner;
-    private final int monthlydebt;
+    private final int monthlyDebt;
 
     /**
-     * creates basic User Object based on provided info
-     * @param creditscore User credit score
-     * @param monthlybudget User monthly budget
-     * @param downpayment User downpayment
-     * @param zipcode User zipcode
-     * @param name User name
+     * Creates a basic User Object based on provided information
+     * @param creditScore The User's credit score
+     * @param monthlyBudget The User's monthly budget
+     * @param downPayment The User's down payment
+     * @param zipCode The User's zip code
+     * @param name The User's name
      */
-    public User(int creditscore, int monthlybudget, int downpayment, String zipcode, String name){
-        this.creditscore = creditscore;
-        this.monthlybudget = monthlybudget;
-        this.downpayment = downpayment;
-        this.zipcode = zipcode;
+    public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name){
+        this.creditScore = creditScore;
+        this.monthlyBudget = monthlyBudget;
+        this.downPayment = downPayment;
+        this.zipCode = zipCode;
         this.name = name;
-        this.monthlyincome = 0; //set to 0 as default
+        this.monthlyIncome = 0; //set to 0 as default
         this.employed = false;  //set to false as default
         this.homeowner = false; //set to false as default
-        this.monthlydebt = 0;   //set to 0 as default
+        this.monthlyDebt = 0;   //set to 0 as default
     }
 
     /**
      * Creates advanced User Object based on provided info
-     * @param creditscore User credit score
-     * @param monthlybudget User monthly budget
-     * @param downpayment User downpayment
-     * @param zipcode User zipcode
-     * @param name User name
-     * @param monthlyincome User monthly income
-     * @param employed User employment status
-     * @param homeowner User homeowner status
-     * @param monthlydebt User monthlydebt
+     * @param creditScore The User's credit score
+     * @param monthlyBudget The User's monthly budget
+     * @param downPayment The User's down payment
+     * @param zipCode The User's zip code
+     * @param name The User's name
+     * @param monthlyIncome The User's monthly income
+     * @param employed The User's employment status
+     * @param homeowner The User's homeowner status
+     * @param monthlyDebt The User's monthly debt
      */
-    public User(int creditscore, int monthlybudget, int downpayment, String zipcode, String name, int monthlyincome,
-                boolean employed, boolean homeowner, int monthlydebt){
-        this.creditscore = creditscore;
-        this.monthlybudget = monthlybudget;
-        this.downpayment = downpayment;
-        this.zipcode = zipcode;
+    public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name, int monthlyIncome,
+                boolean employed, boolean homeowner, int monthlyDebt){
+        this.creditScore = creditScore;
+        this.monthlyBudget = monthlyBudget;
+        this.downPayment = downPayment;
+        this.zipCode = zipCode;
         this.name = name;
-        this.monthlyincome = monthlyincome;
+        this.monthlyIncome = monthlyIncome;
         this.employed = employed;
         this.homeowner = homeowner;
-        this.monthlydebt = monthlydebt;
+        this.monthlyDebt = monthlyDebt;
     }
 
     /**
-     * The following are getter methods
-     * @return returns User Object info when called
+     * Gets the User's price range
+     * @return A string representing the User's price range
      */
     public String getPriceRange(){
-        return Integer.toString((36 * this.monthlybudget) + this.downpayment);
+        return Integer.toString((36 * this.monthlyBudget) + this.downPayment);
     }
 
     // will be used in the future
+
+    /**
+     * Will be used in the future
+     * Overloaded method that gets the User's price range for a given term
+     * @param term The term of the User's potential loan
+     * @return A string representing the User's price range
+     */
     public String getPriceRange(int term){
-        return Integer.toString((term * this.monthlybudget) + this.downpayment);
+        return Integer.toString((term * this.monthlyBudget) + this.downPayment);
     }
 
-    public String getMonthlybudget(){
-        return Integer.toString(this.monthlybudget);
+    /**
+     * Gets the User's monthly budget
+     * @return A string representing the User's monthly budget
+     */
+    public String getMonthlyBudget(){
+        return Integer.toString(this.monthlyBudget);
     }
 
-    public String getCreditscore(){
-        return Integer.toString(this.creditscore);
+    /**
+     * Gets the User's credit score
+     * @return A string representing the User's credit score
+     */
+    public String getCreditScore(){
+        return Integer.toString(this.creditScore);
     }
 
+    /**
+     * Gets the User's zip code (location)
+     * @return A string representing the User's zip code (location)
+     */
     public String getLocation(){
-        return this.zipcode;
+        return this.zipCode;
     }
 
-    public String getName() {  return this.name;
+    /**
+     * Gets the User's name
+     * @return A string representing the User's name
+     */
+    public String getName() {
+        return this.name;
     }
 
-    public String getDownpayment() { return Integer.toString(this.downpayment);
+    /**
+     * Gets the User's down payment
+     * @return A string representing the User's down payment
+     */
+    public String getDownPayment() {
+        return Integer.toString(this.downPayment);
     }
 
-    public String getMonthlyincome() { return Integer.toString(this.monthlyincome);
+    /**
+     * Gets the User's monthly income
+     * @return A string representing the User's monthly income
+     */
+    public String getMonthlyIncome() {
+        return Integer.toString(this.monthlyIncome);
     }
 
+    /**
+     * Gets the User's employment status
+     * @return A string representing the User's employment status
+     */
     public String isEmployed() {
         if (this.employed) {
             return "Employed";
@@ -100,6 +138,10 @@ public class User {
         return "not Employed";
     }
 
+    /**
+     * Gets the User's homeowner status
+     * @return A string representing the User's homeowner status
+     */
     public String isHomeowner() {
         if (this.homeowner){
             return "Homeowner";
@@ -107,6 +149,11 @@ public class User {
         return "not Homeowner";
     }
 
-    public String getMonthlydebt() { return Integer.toString(this.monthlydebt);
+    /**
+     * Gets the User's monthly debt
+     * @return A string representing the User's monthly debt
+     */
+    public String getMonthlyDebt() {
+        return Integer.toString(this.monthlyDebt);
     }
 }

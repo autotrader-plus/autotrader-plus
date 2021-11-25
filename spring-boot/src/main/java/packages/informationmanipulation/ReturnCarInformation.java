@@ -3,20 +3,25 @@ package packages.informationmanipulation;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.function.IntBinaryOperator;
 
 import packages.connectouterentity.AutoTraderDBInterface;
 import packages.connectouterentity.ConnectAutoTraderDB;
 
+/**
+ * Returns Car information from the database
+ */
 public class ReturnCarInformation {
 
     /**
-     * Will return the details of a specified car in a legible/comprehensive format
+     * Returns the details of a specified car in a legible/comprehensive format
+     * @param carID ID number of the car
+     * @return A string representing the details of the specified car
+     * @throws SQLException If there was a database access error
      */
-    public static String returnCarDetailsString(Integer car_id) throws SQLException {
+    public String returnCarDetailsString(Integer carID) throws SQLException {
 
         // Converting the dictionary with the values to a string
-        HashMap<String, Object> dict = returnCarDetails(car_id);
+        HashMap<String, Object> dict = returnCarDetails(carID);
 
 
         return "ID: " + dict.get("ID") + "\n" +
@@ -31,11 +36,17 @@ public class ReturnCarInformation {
     /**
      * Will return the detail of a specified car in a dictionary format
      */
-    public static HashMap<String, Object> returnCarDetails(Integer car_id) throws SQLException {
+    /**
+     * Returns the detail of a specified car in a dictionary format
+     * @param carID ID number of the car
+     * @return A HashMap representing the details of the specified car
+     * @throws SQLException If there was a database access error
+     */
+    public HashMap<String, Object> returnCarDetails(Integer carID) throws SQLException {
 
         // Writing a SQL query
         String query = "SELECT * FROM cars.AvailableCars " +
-                "WHERE id_car = " + car_id.toString() + ";";
+                "WHERE id_car = " + carID.toString() + ";";
 
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();
@@ -54,8 +65,11 @@ public class ReturnCarInformation {
 
     /**
      * A helper method to populate a map with a car's information. It is used in another class, hence being public.
+     * @param myResultSet of the specified query
+     * @return A HashMap representing the car's information
+     * @throws SQLException If there was a database access error
      */
-    public static HashMap<String, Object> populateCarMap(ResultSet myResultSet) throws SQLException {
+    public HashMap<String, Object> populateCarMap(ResultSet myResultSet) throws SQLException {
         HashMap<String, Object> returnMap = new HashMap<>();
         returnMap.put("ID", myResultSet.getString("id_car"));
         returnMap.put("Car", myResultSet.getString("name"));

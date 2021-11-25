@@ -11,5 +11,5 @@ public interface SensoAPIInterface {
      * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
      * @throws InterruptedException - exception thrown when api call is interrupted or failed
      */
-    HashMap<Object, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException;
+    HashMap<String, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException;
 }

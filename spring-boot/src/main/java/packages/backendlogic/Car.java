@@ -1,7 +1,7 @@
 package packages.backendlogic;
 
 /**
- * This class creates a Car Object for the provided cars in carlist from database
+ * Represents a Car Object
  *
  */
 public class Car {
@@ -9,35 +9,37 @@ public class Car {
     private final String year;
     private final String brand;
     private final String KMS;
-    private final String cartype; //will be used in future
+    private final String carType; //will be used in future
     private final String ID;
     private final String cost;
-    private final String Dealership; //will be used in future
+    private final String dealership; //will be used in future
 
     /**
      * Creates Car Object
      * @param year Car year
      * @param brand Car brand
      * @param KMS Car KMS
-     * @param cartype Car cartype
+     * @param carType Car type
      * @param ID Car ID
      * @param cost Car cost/price
-     * @param Dealership Dealership associated with the Car
+     * @param dealership Dealership associated with the Car
      */
-    public Car(String year, String brand, String KMS, String cartype, String ID,
-               String cost, String Dealership) {
+    public Car(String year, String brand, String KMS, String carType, String ID,
+               String cost, String dealership) {
         this.year = year;
         this.brand = brand;
         this.KMS = KMS;
-        this.cartype = cartype;
+        this.carType = carType;
         this.ID = ID;
         this.cost = cost;
-        this.Dealership = Dealership;
+        this.dealership = dealership;
     }
+
     /**
-     * will be used in future
-     * @param budget User Object budget
-     * @return returns whether this Car can be afforded by User
+     * Will be used in future
+     * Checks if the User can afford the Car
+     * @param budget The User's budget
+     * @return A boolean of whether this Car can be afforded by the User
      */
     public boolean CanAfford(int budget){
         int price = Integer.parseInt(this.cost);
@@ -45,31 +47,49 @@ public class Car {
     }
 
     /**
-     * The following are the getter methods for Car Objects.
-     * @return returns Car Object info when called
+     * Gets the Car's price
+     * @return An integer representing the Car's price
      */
     public int getPrice(){
         return Integer.parseInt(this.cost);
     }
 
+    /**
+     * Gets the Car's brand
+     * @return A string representing the Car's brand
+     */
     public String getBrand(){
         return this.brand;
     }
 
+    /**
+     * Gets the Car's year
+     * @return A string representing the Car's year
+     */
     public String getYear(){
         return this.year;
     }
 
+    /**
+     * Gets the Car's KMS driven
+     * @return A string representing the Car's KMS driven
+     */
     public String getKMS(){
         return this.KMS;
     }
 
-    //will be used in future
-    public String returnID(){
+    /**
+     * Gets the Car's ID number
+     * @return A string representing the Car's ID number
+     */
+    public String getID(){
         return this.ID;
     }
 
-    //will be used in future/used for testing
+    /**
+     * Provides a string representation of the Car object
+     * @return A string representing the Car's information
+     */
     public String show(){
         return this.year + " " + this.brand + " " +  this.KMS + " " +
                 this.ID + " " + this.cost;
