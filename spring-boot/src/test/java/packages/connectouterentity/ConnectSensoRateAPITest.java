@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.HashMap;
 
-class ConnectSensoAPITest {
+class ConnectSensoRateAPITest {
 
-    private ConnectSensoAPI connector;
+    private ConnectSensoRateAPI connector;
 
     @BeforeEach
     public void setUp() throws IOException, InterruptedException {
@@ -23,7 +23,7 @@ class ConnectSensoAPITest {
         mapping.put("list_price", "10000");
         mapping.put("downpayment", "10000");
 
-        connector = new ConnectSensoAPI(mapping);
+        connector = new ConnectSensoRateAPI(mapping);
     }
 
     @Test
@@ -45,7 +45,7 @@ class ConnectSensoAPITest {
         mapping.put("list_price", "10000");
         mapping.put("downpayment", "10000");
 
-        SensoAPIInterface connector = new ConnectSensoAPI(mapping);
+        SensoAPIInterface connector = new ConnectSensoRateAPI(mapping);
         assert connector.pingSensoAPI(mapping) != null;
         System.out.print(connector.pingSensoAPI(mapping));
     }
