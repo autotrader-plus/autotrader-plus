@@ -12,23 +12,23 @@ public class AuthenticateUser {
     /**
      * checks if the user's credentials are valid
      * @return true if user exists, false otherwise
-     * @throws SQLException
+     * @throws SQLException If there was a database access error
      */
     public boolean checkUser(String username, String password) throws SQLException {
         HashMap<String, Object> allLogins = getAllLogins(username, password);
 
-        return allLogins.isEmpty();
+        return !allLogins.isEmpty();
     }
 
     /**
      * A helper method to populate a map with the user's credentials, if valid
      * @return a hashmap of user's credentials from database, if they exist
-     * @throws SQLException
+     * @throws SQLException If there was a database access error
      */
     private HashMap<String, Object> getAllLogins(String username, String password) throws SQLException {
         // Writing a SQL query
-        String query = "SELECT * FROM cars.user_login WHERE user_password = " + password +
-                " AND username = " + username + ";";
+        String query = "SELECT * FROM cars.user_login WHERE user_password = '" + password +
+                "' AND username = '" + username + "';";
 
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();
@@ -49,9 +49,9 @@ public class AuthenticateUser {
      * A helper method to populate a map with a user's login information
      * @param myResultSet from specified query in getAllLogins()
      * @return map of user's login information
-     * @throws SQLException
+     * @throws SQLException If there was a database access error
      */
-    public static HashMap<String, Object> populateUserMap(ResultSet myResultSet) throws SQLException {
+    public HashMap<String, Object> populateUserMap(ResultSet myResultSet) throws SQLException {
         HashMap<String, Object> returnMap = new HashMap<>();
         returnMap.put("ID", myResultSet.getString("user_id"));
         returnMap.put("Password", myResultSet.getString("user_password"));
