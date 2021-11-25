@@ -7,12 +7,17 @@ import packages.backendlogic.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Represents adding a User Object to the database.
+ */
 public class AddUser {
 
     /**
-     * Return the currently stored max user ID plus one
+     * Gets the currently stored max user ID plus one
+     * @return A String representing the currently stored max user ID plus one
+     * @throws SQLException If there was a database access error
      */
-    private static String getMaxIDAddOne() throws SQLException {
+    private String getMaxIDAddOne() throws SQLException {
         // Writing a SQL query
         String query = "SELECT MAX(user_id) FROM cars.Users;";
 
@@ -32,10 +37,10 @@ public class AddUser {
      * Add a user to the database. Does not return anything.
      * @param user the user who we are recording data for. Note that this parameter is type User.
      */
-    public static void addUser(User user) throws SQLException {
+    public void addUser(User user) throws SQLException {
 
         // Determine what userId to assign this individual
-        String userID = AddUser.getMaxIDAddOne();
+        String userID = getMaxIDAddOne();
 
         // Write the SQL query
         String query = "INSERT INTO `cars`.`Users`" +
@@ -44,14 +49,14 @@ public class AddUser {
                 "VALUES " +
                 "('" + userID +
                 "', '" + user.getName() +
-                "', '" + user.getCreditscore() +
+                "', '" + user.getCreditScore() +
                 "', '" + user.getLocation() +
-                "', '" + user.getDownpayment() +
-                "', '" + user.getMonthlybudget() +
-                "', '" + user.getMonthlyincome() +
+                "', '" + user.getDownPayment() +
+                "', '" + user.getMonthlyBudget() +
+                "', '" + user.getMonthlyIncome() +
                 "', '" + user.isEmployed() +
                 "', '" + user.isHomeowner() +
-                "', '" + user.getMonthlydebt() + "');";
+                "', '" + user.getMonthlyDebt() + "');";
 
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();

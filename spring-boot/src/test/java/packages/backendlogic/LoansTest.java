@@ -17,7 +17,8 @@ class LoansTest {
 
     @BeforeEach
     void setUp() throws SQLException, SensoConnectionFailureException {
-        carlist = ReturnMultipleCars.returnAllCars();
+        ReturnMultipleCars r = new ReturnMultipleCars();
+        carlist = r.returnAllCars();
         userinfo = new HashMap<>();
         userinfo.put("credit-score", "750");
         userinfo.put("monthlybudget", "600");
@@ -42,7 +43,7 @@ class LoansTest {
     @Test
     void getBuyer() {
         User buyer = loan.getBuyer();
-        assert buyer.getCreditscore().equals("750") && buyer.getName().equals("Bob Du");
+        assert buyer.getCreditScore().equals("750") && buyer.getName().equals("Bob Du");
     }
 
     @Test

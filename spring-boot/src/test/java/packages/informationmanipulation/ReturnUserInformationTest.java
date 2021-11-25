@@ -1,5 +1,7 @@
 package packages.informationmanipulation;
 
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +10,12 @@ import java.util.HashMap;
 import java.util.Objects;
 
 class ReturnUserInformationTest {
+    ReturnUserInformation r;
+
+    @BeforeEach
+    void setUp() {
+        r = new ReturnUserInformation();
+    }
 
     @Test
     @DisplayName("User: Basic Case with Simple User")
@@ -26,7 +34,7 @@ class ReturnUserInformationTest {
         testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
 
-        assert Objects.equals(testMap, ReturnUserInformation.returnUser(user_id));
+        assert Objects.equals(testMap, r.returnUser(user_id));
     }
 
     @Test
@@ -46,7 +54,7 @@ class ReturnUserInformationTest {
         testMap.put("Homeowner", "Homeowner");
         testMap.put("Monthly Debt Obligation", "500");
 
-        assert Objects.equals(testMap, ReturnUserInformation.returnUser(user_id));
+        assert Objects.equals(testMap, r.returnUser(user_id));
     }
 
 }

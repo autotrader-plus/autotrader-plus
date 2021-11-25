@@ -25,22 +25,22 @@ class UserTest {
 
     @Test
     void getMonthlybudgetBasic() {
-        assert this.basic.getMonthlybudget().equals("300");
+        assert this.basic.getMonthlyBudget().equals("300");
     }
 
     @Test
     void getMonthlybudgetAdvanced() {
-        assert this.advanced.getMonthlybudget().equals("400");
+        assert this.advanced.getMonthlyBudget().equals("400");
     }
 
     @Test
     void getCreditscoreBasic() {
-        assert this.basic.getCreditscore().equals("750");
+        assert this.basic.getCreditScore().equals("750");
     }
 
     @Test
     void getCreditscoreAdvanced() {
-        assert this.advanced.getCreditscore().equals("700");
+        assert this.advanced.getCreditScore().equals("700");
     }
 
     @Test
@@ -65,22 +65,22 @@ class UserTest {
 
     @Test
     void getDownpaymentBasic() {
-        assert this.basic.getDownpayment().equals("200");
+        assert this.basic.getDownPayment().equals("200");
     }
 
     @Test
     void getDownpaymentAdvanced() {
-        assert this.advanced.getDownpayment().equals("100");
+        assert this.advanced.getDownPayment().equals("100");
     }
 
     @Test
     void getMonthlyincomeBasic() {
-        assert this.basic.getMonthlyincome().equals("0");
+        assert this.basic.getMonthlyIncome().equals("0");
     }
 
     @Test
     void getMonthlyincomeAdvanced() {
-        assert this.advanced.getMonthlyincome().equals("4000");
+        assert this.advanced.getMonthlyIncome().equals("4000");
     }
 
     @Test
@@ -105,11 +105,11 @@ class UserTest {
 
     @Test
     void getMonthlydebtBasic() {
-        assert this.basic.getMonthlydebt().equals("0");
+        assert this.basic.getMonthlyDebt().equals("0");
     }
 
     @Test
     void getMonthlydebtAdvanced() {
-        assert this.advanced.getMonthlydebt().equals("1000");
+        assert this.advanced.getMonthlyDebt().equals("1000");
     }
 }

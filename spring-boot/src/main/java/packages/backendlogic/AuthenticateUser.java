@@ -7,12 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+/**
+ * Represents an AuthenticateUser object used for user sign in operations.
+ */
 public class AuthenticateUser {
 
     /**
-     * checks if the user's credentials are valid
-     * @return true if user exists, false otherwise
-     * @throws SQLException
+     * Checks if the user's credentials are valid
+     * @return A boolean representing if the User's credentials were valid
+     * @throws SQLException If there was a database access error
      */
     public boolean checkUser(String username, String password) throws SQLException {
         HashMap<String, Object> allLogins = getAllLogins(username, password);
@@ -21,9 +24,9 @@ public class AuthenticateUser {
     }
 
     /**
-     * A helper method to populate a map with the user's credentials, if valid
-     * @return a hashmap of user's credentials from database, if they exist
-     * @throws SQLException
+     * A helper method to populate a map with the user's credentials from the database, if existent
+     * @return A hashmap representing the user's credentials from the database, if they exist
+     * @throws SQLException If there was a database access error
      */
     private HashMap<String, Object> getAllLogins(String username, String password) throws SQLException {
         // Writing a SQL query
@@ -46,12 +49,12 @@ public class AuthenticateUser {
     }
 
     /**
-     * A helper method to populate a map with a user's login information
-     * @param myResultSet from specified query in getAllLogins()
-     * @return map of user's login information
-     * @throws SQLException
+     * A helper method to populate a map with a User's login information
+     * @param myResultSet The ResultSet from the specified query in getAllLogins()
+     * @return A map representing the User's login information
+     * @throws SQLException If there was a database access error
      */
-    public static HashMap<String, Object> populateUserMap(ResultSet myResultSet) throws SQLException {
+    public HashMap<String, Object> populateUserMap(ResultSet myResultSet) throws SQLException {
         HashMap<String, Object> returnMap = new HashMap<>();
         returnMap.put("ID", myResultSet.getString("user_id"));
         returnMap.put("Password", myResultSet.getString("user_password"));

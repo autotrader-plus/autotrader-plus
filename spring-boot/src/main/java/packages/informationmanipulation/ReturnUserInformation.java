@@ -8,13 +8,22 @@ import packages.connectouterentity.ConnectAutoTraderDB;
 import java.sql.ResultSet;
 import java.util.HashMap;
 
+/**
+ * Returns User information from the database
+ */
 public class ReturnUserInformation {
     /**
      * Will return the information of a user
      * @param user_id the ID of the user you are looking up
      */
 
-    public static HashMap<String, String> returnUser(Integer user_id) throws SQLException {
+    /**
+     * Returns the information of a User
+     * @param user_id the ID of the user we're looking up
+     * @return A HashMap representing the User's information from the database
+     * @throws SQLException If there was a database access error
+     */
+    public HashMap<String, String> returnUser(Integer user_id) throws SQLException {
         // Writing a SQL query
         String query = "SELECT * FROM cars.Users " +
                 "WHERE user_id = " + user_id.toString() + ";";
@@ -33,9 +42,12 @@ public class ReturnUserInformation {
     }
 
     /**
-     * A helper method to populate a map with a user's information
+     * A helper method used to populate a map with a user's information
+     * @param myResultSet of the specified query
+     * @return A HashMap representing a user's information
+     * @throws SQLException If there was a database access error
      */
-    private static HashMap<String, String> populateUserMap(ResultSet myResultSet) throws SQLException {
+    private HashMap<String, String> populateUserMap(ResultSet myResultSet) throws SQLException {
         HashMap<String, String> returnMap = new HashMap<>();
         returnMap.put("ID", myResultSet.getString("user_id"));
         returnMap.put("Name", myResultSet.getString("name"));

@@ -9,10 +9,9 @@ import packages.exceptions.DatabaseConnectionFailureException;
 import java.lang.reflect.Type;
 import java.util.*;
 
-class SignInEndpointHandler {
+class SignInEndpointHandlerTest {
 
 
-    // TODO: Error popping up that needs to be fixed
     @Test
     void httpResponseSenso() {
         HashMap<String, String> mapping = new HashMap<String, String>();
@@ -29,15 +28,6 @@ class SignInEndpointHandler {
 
         assert(Objects.equals( response, ""));
 
-    }
-
-    @Test
-    void parseRequestBody() throws JsonProcessingException {
-        HashMap<String, String> info = new HashMap<>();
-        info.put("username", "DNE");
-        info.put("password", "DNE");
-        assert(Objects.equals(ServerMainEndpointHandler.parseRequestBody("{\"username\": \"DNE\", " +
-                "\"password\": \"DNE\"}"), info));
     }
 
 }

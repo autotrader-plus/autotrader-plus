@@ -86,7 +86,8 @@ public class ServerMainEndpointHandler {
      */
     static ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws DatabaseConnectionFailureException {
         try {
-            return ReturnMultipleCars.returnFilteredCars(car_type);
+            ReturnMultipleCars r = new ReturnMultipleCars();
+            return r.returnFilteredCars(car_type);
         } catch(SQLException e){
             e.printStackTrace();
             throw new DatabaseConnectionFailureException();
@@ -99,7 +100,8 @@ public class ServerMainEndpointHandler {
      */
     private ArrayList<HashMap<String, Object>> getAllCars() throws DatabaseConnectionFailureException {
         try {
-            return ReturnMultipleCars.returnAllCars();
+            ReturnMultipleCars r = new ReturnMultipleCars();
+            return r.returnAllCars();
         } catch(SQLException e){
             e.printStackTrace();
             throw new DatabaseConnectionFailureException();

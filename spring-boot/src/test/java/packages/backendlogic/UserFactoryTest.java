@@ -40,14 +40,14 @@ class UserFactoryTest {
     void createUser() {
         UserFactory factory = new UserFactory();
         User user_object = factory.createUser(user);
-        assert(Objects.equals(user_object.getCreditscore(), "770"));
+        assert(Objects.equals(user_object.getCreditScore(), "770"));
     }
 
     @Test
     void createUser2() {
         UserFactory factory = new UserFactory();
         User user_object = factory.createUser(user2);
-        assert(Objects.equals(user_object.getMonthlydebt(), "500"));
+        assert(Objects.equals(user_object.getMonthlyDebt(), "500"));
         assert(Objects.equals(user_object.isEmployed(), "Employed"));
     }
 }

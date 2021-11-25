@@ -40,7 +40,7 @@ class CarTest {
 
     @Test
     void returnID() {
-        assert c1.returnID().equals("24");
+        assert c1.getID().equals("24");
     }
 
 // Will implement test when method is used in the future
