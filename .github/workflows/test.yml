@@ -26,3 +26,7 @@ jobs:
     - name: Run JUnit Tests
       working-directory: ./spring-boot
       run: gradle test
+      
+    - name: Produce Report
+      working-directory: ./spring-boot
+      run: xdg-open file:///home/runner/work/autotrader-plus/autotrader-plus/spring-boot/build/reports/tests/test/index.html
