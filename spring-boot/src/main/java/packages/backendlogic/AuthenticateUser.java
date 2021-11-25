@@ -30,8 +30,8 @@ public class AuthenticateUser {
      */
     private HashMap<String, Object> getAllLogins(String username, String password) throws SQLException {
         // Writing a SQL query
-        String query = "SELECT * FROM cars.user_login WHERE user_password = " + password +
-                " AND username = " + username + ";";
+        String query = "SELECT * FROM cars.user_login WHERE user_password = '" + password +
+                "' AND username = '" + username + "';";
 
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();
@@ -55,6 +55,7 @@ public class AuthenticateUser {
      * @throws SQLException If there was a database access error
      */
     public HashMap<String, Object> populateUserMap(ResultSet myResultSet) throws SQLException {
+
         HashMap<String, Object> returnMap = new HashMap<>();
         returnMap.put("ID", myResultSet.getString("user_id"));
         returnMap.put("Password", myResultSet.getString("user_password"));
