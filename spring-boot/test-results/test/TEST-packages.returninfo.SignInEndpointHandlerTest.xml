@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="packages.returninfo.SignInEndpointHandlerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-11-25T20:51:05" hostname="user4-207.wdw-res.utoronto.ca" time="0.614">
+  <properties/>
+  <testcase name="httpResponseSensoFailedCredentials()" classname="packages.returninfo.SignInEndpointHandlerTest" time="0.283"/>
+  <testcase name="httpResponseSensoSuccessCredentials()" classname="packages.returninfo.SignInEndpointHandlerTest" time="0.329"/>
+  <system-out><![CDATA[==== POST Request Received ====
+==== POST Response Sent ====
+==== POST Request Received ====
+==== POST Response Sent ====
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

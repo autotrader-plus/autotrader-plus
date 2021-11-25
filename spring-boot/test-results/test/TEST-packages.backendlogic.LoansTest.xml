@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="packages.backendlogic.LoansTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-11-25T20:51:02" hostname="user4-207.wdw-res.utoronto.ca" time="2.258">
+  <properties/>
+  <testcase name="calculateLoans()" classname="packages.backendlogic.LoansTest" time="1.025"/>
+  <testcase name="getCars()" classname="packages.backendlogic.LoansTest" time="0.41"/>
+  <testcase name="getBuyer()" classname="packages.backendlogic.LoansTest" time="0.426"/>
+  <testcase name="getLoans()" classname="packages.backendlogic.LoansTest" time="0.396"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

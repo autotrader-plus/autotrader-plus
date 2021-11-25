@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="packages.exceptions.DatabaseConnectionFailureExceptionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-25T20:51:05" hostname="user4-207.wdw-res.utoronto.ca" time="0.008">
+  <properties/>
+  <testcase name="whenExceptionThrown_thenAssertionSucceeds()" classname="packages.exceptions.DatabaseConnectionFailureExceptionTest" time="0.008"/>
+  <system-out><![CDATA[Connection to TraderAuto Database fails.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
