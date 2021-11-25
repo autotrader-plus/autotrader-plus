@@ -13,19 +13,19 @@ import com.google.gson.reflect.TypeToken;
 
 
 /** This is a class that calls Senso API, and return information from Senso API.**/
-public class ConnectSensoAPI implements SensoAPIInterface{
+public class ConnectSensoRateAPI implements SensoAPIInterface{
 
     private static HashMap<Object, Object> api_content; // the return info from senso api call
     // the following static variables are the fields needed for senso api call
-    private static int loanAmount;
-    private static int creditScore;
-    private static int pytBudget;
-    private static String vehicleMake;
-    private static String vehicleModel;
-    private static int vehicleYear;
-    private static int vehicleKms;
-    private static int listPrice;
-    private static int downpayment;
+    private int loanAmount;
+    private int creditScore;
+    private int pytBudget;
+    private String vehicleMake;
+    private String vehicleModel;
+    private int vehicleYear;
+    private int vehicleKms;
+    private int listPrice;
+    private int downpayment;
 
     /**
      * This is a method that collects input data for SensoAPI, then pings the senso API using the input data
@@ -33,7 +33,7 @@ public class ConnectSensoAPI implements SensoAPIInterface{
      * @throws IOException - IOexception
      * @throws InterruptedException - exception when senso api call is interrupted or failed
      */
-    public ConnectSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
+    public ConnectSensoRateAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
         populateSensoInputs(senso_input);
         String input_body = createJson();
         api_content = CallSensoAPI(input_body);
@@ -133,7 +133,7 @@ public class ConnectSensoAPI implements SensoAPIInterface{
      */
     @Override
     public HashMap<Object, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
-        ConnectSensoAPI senso_connector = new ConnectSensoAPI(senso_input);
+        ConnectSensoRateAPI senso_connector = new ConnectSensoRateAPI(senso_input);
         return senso_connector.getReturnInfo();
     }
 }
