@@ -15,8 +15,6 @@ public class CarList<Car> {
         this.carList = new ArrayList<>();
     }
 
-    // will be used in the future
-
     /**
      * Will be used in the future
      * Create a CarList Object given an ArrayList of Car Objects

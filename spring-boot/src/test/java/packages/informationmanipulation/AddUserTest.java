@@ -9,11 +9,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 class AddUserTest {
-    ReturnUserInformation r;
+    ReturnUserInformation returnUserInformation;
+    AddUser addUser;
 
     @BeforeEach
     void setUp(){
-        r = new ReturnUserInformation();
+        returnUserInformation = new ReturnUserInformation();
+        addUser = new AddUser();
     }
 
     @Test
@@ -21,8 +23,7 @@ class AddUserTest {
     void addUserSimple() throws SQLException {
         User user = new User(740, 1000, 5000, "M4Y111", "Mike");
 
-        AddUser a = new AddUser();
-        a.addUser(user);
+        addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("ID", "2");
@@ -36,7 +37,7 @@ class AddUserTest {
         testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
 
-        assert testMap.equals(r.returnUser(2));
+        assert testMap.equals(returnUserInformation.returnUser(2));
     }
 
     @Test
@@ -45,8 +46,7 @@ class AddUserTest {
         User user = new User(730, 1000, 5000, "M4Y111", "Mike",
                 8500, true, true, 500);
 
-        AddUser a = new AddUser();
-        a.addUser(user);
+        addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("ID", "1");
@@ -60,7 +60,7 @@ class AddUserTest {
         testMap.put("Homeowner", "Homeowner");
         testMap.put("Monthly Debt Obligation", "500");
 
-        assert testMap.equals(r.returnUser(1));
+        assert testMap.equals(returnUserInformation.returnUser(1));
     }
 
 }

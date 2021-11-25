@@ -83,11 +83,12 @@ public class ServerMainEndpointHandler {
      * Get filtered car list based on car_type specified in the http request body
      * @param car_type - the car_type to return from the database
      * @return an array list of cars that fit the car_type
+     * @throws DatabaseConnectionFailureException If failed to connect to the database
      */
     ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws DatabaseConnectionFailureException {
         try {
-            ReturnMultipleCars r = new ReturnMultipleCars();
-            return r.returnFilteredCars(car_type);
+            ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
+            return returnMultipleCars.returnFilteredCars(car_type);
         } catch(SQLException e){
             e.printStackTrace();
             throw new DatabaseConnectionFailureException();
@@ -97,6 +98,7 @@ public class ServerMainEndpointHandler {
     /**
      * A helper methods to return all cars in the database
      * @return an array list containg the information for all cars
+     * @throws DatabaseConnectionFailureException If failed to connect to the database
      */
     private ArrayList<HashMap<String, Object>> getAllCars() throws DatabaseConnectionFailureException {
         try {

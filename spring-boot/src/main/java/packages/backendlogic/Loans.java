@@ -12,20 +12,10 @@ import java.util.HashMap;
  * Represents loans available to some given cars
  */
 public class Loans implements LoanInfoInterface{
-    private final HashMap<String, Object> loans;
-    private final CarList<Car> cars;
-    private final User buyer;
+    private HashMap<String, Object> loans;
+    private CarList<Car> cars;
+    private User buyer;
 
-    /**
-     * Creates an empty HashMap Loans that will be storing the SensoApi return values
-     * Creates an advanced or basic User Object based on the amount of info given
-     * Calculates the budget of the User
-     * Creates a CarList Object consisting of only cars affordable by the User based on User budget
-     * Collects and organizes Car and User data for the SensoApi call
-     * Stores the SensoApi return values in HashMap Loans
-     * @param user The User Object from User.java
-     * @param carlist The CarList Object CarList.java
-     */
     /**
      * Creates a Loan for the specified user and the given list of cars
      * @param user The Loans are for this user
@@ -48,7 +38,7 @@ public class Loans implements LoanInfoInterface{
 
         // creates CarList object (cars) based on length of given carList Arraylist
         cars = new CarList<>();
-        makecars(carList, upsold_budget);
+        makeCars(carList, upsold_budget);
 
         // preps info and calls SensoAPI
         try {
@@ -99,7 +89,7 @@ public class Loans implements LoanInfoInterface{
      * @param carList The list of Car Objects to be made into a CarList Object
      * @param budget The budget of the User
      */
-    private void makecars(ArrayList<HashMap<String, Object>> carList, int budget) {
+    private void makeCars(ArrayList<HashMap<String, Object>> carList, int budget) {
         for (HashMap<String, Object> car : carList) {
             String cost = (String) car.get("Cost");
             String year = (String) car.get("Model Year");

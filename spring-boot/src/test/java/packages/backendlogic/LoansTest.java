@@ -17,8 +17,8 @@ class LoansTest {
 
     @BeforeEach
     void setUp() throws SQLException, SensoConnectionFailureException {
-        ReturnMultipleCars r = new ReturnMultipleCars();
-        carlist = r.returnAllCars();
+        ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
+        carlist = returnMultipleCars.returnAllCars();
         userinfo = new HashMap<>();
         userinfo.put("credit-score", "750");
         userinfo.put("monthlybudget", "600");

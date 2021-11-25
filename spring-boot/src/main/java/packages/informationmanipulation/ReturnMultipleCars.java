@@ -29,13 +29,13 @@ public class ReturnMultipleCars {
         ArrayList<HashMap<String, Object>> returnList = new ArrayList<>();
 
         // Create a ReturnCarInformation Object to be used in the while loop
-        ReturnCarInformation r = new ReturnCarInformation();
+        ReturnCarInformation returnCarInfo = new ReturnCarInformation();
 
         // This continuously moves the cursor to the next row to reproduce data
         while (myResultSet.next()){
 
             // Populate that car's information
-            HashMap<String, Object> carMap = r.populateCarMap(myResultSet);
+            HashMap<String, Object> carMap = returnCarInfo.populateCarMap(myResultSet);
 
             // Add it to the list
             returnList.add(carMap);

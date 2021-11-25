@@ -10,6 +10,7 @@ class UserFactoryTest {
 
     HashMap<String, String> user;
     HashMap<String, String> user2;
+    UserFactory factory;
 
     @BeforeEach
     void setUp(){
@@ -34,18 +35,18 @@ class UserFactoryTest {
         user_info2.put("monthlydebt", "500");
 
         user2 = user_info2;
+
+        factory = new UserFactory();
     }
 
     @Test
     void createUser() {
-        UserFactory factory = new UserFactory();
         User user_object = factory.createUser(user);
         assert(Objects.equals(user_object.getCreditScore(), "770"));
     }
 
     @Test
     void createUser2() {
-        UserFactory factory = new UserFactory();
         User user_object = factory.createUser(user2);
         assert(Objects.equals(user_object.getMonthlyDebt(), "500"));
         assert(Objects.equals(user_object.isEmployed(), "Employed"));

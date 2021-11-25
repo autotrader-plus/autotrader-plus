@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 class UserTest {
     User basic;
     User advanced;
+
     @BeforeEach
     void setUp() {
         this.basic = new User(750, 300, 200, "M4Y111", "Bob Du");
