@@ -28,15 +28,15 @@ public class ServerMainEndpointHandler {
      * This method handles HTTP request coming into the "/traderauto-plus" endpoint. It processes information from the request
      * body and returns information back to the client.
      *
-     * @param req_body - the body of the http request from the client
+     * @param reqBody - the body of the http request from the client
      * @return A HTTP Response back to the client.
      */
     @CrossOrigin(origins = "http://ec2-18-118-19-97.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/traderauto-plus")
-    public String httpResponseSenso(@RequestBody() String req_body) {
+    public String httpResponseSenso(@RequestBody() String reqBody) {
         System.out.println("==== POST Request Received ====");
         try {
-            HashMap<String, String> body = parseRequestBody(req_body);
+            HashMap<String, String> body = parseRequestBody(reqBody);
 
             //get car list based on user's preference, otherwise get all cars from database
             ArrayList<HashMap<String, Object>> filtered_cars;
@@ -67,28 +67,28 @@ public class ServerMainEndpointHandler {
 
     /**
      * Parse the request body
-     * @param req_body - a string representation of the request json
+     * @param reqBody - a string representation of the request json
      * @return a hashmap representation of the request json
      * @throws JsonProcessingException - error thrown when json cannot be processed
      */
-    private HashMap<String, String> parseRequestBody(String req_body) throws JsonProcessingException {
+    private HashMap<String, String> parseRequestBody(String reqBody) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        HashMap<String, String> userInfoHash = objectMapper.readValue(req_body, HashMap.class);
+        HashMap<String, String> userInfoHash = objectMapper.readValue(reqBody, HashMap.class);
 
         return userInfoHash;
     }
 
 
     /**
-     * Get filtered car list based on car_type specified in the http request body
-     * @param car_type - the car_type to return from the database
-     * @return an array list of cars that fit the car_type
+     * Get filtered car list based on carType specified in the http request body
+     * @param carType - the carType to return from the database
+     * @return an array list of cars that fit the carType
      * @throws DatabaseConnectionFailureException If failed to connect to the database
      */
-    ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws DatabaseConnectionFailureException {
+    ArrayList<HashMap<String, Object>> getFilteredCars(String carType) throws DatabaseConnectionFailureException {
         try {
             ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
-            return returnMultipleCars.returnFilteredCars(car_type);
+            return returnMultipleCars.returnFilteredCars(carType);
         } catch(SQLException e){
             e.printStackTrace();
             throw new DatabaseConnectionFailureException();
