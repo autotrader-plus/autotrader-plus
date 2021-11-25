@@ -30,7 +30,7 @@ public class PTICalculator {
 
     /**
      * The following are getter methods
-     * @return returns int/Car Object info when called
+     * @return returns int/Car/double Object when called
      */
     public int getUserID() {return userID;}
 
