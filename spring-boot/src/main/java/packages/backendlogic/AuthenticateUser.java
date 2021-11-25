@@ -51,7 +51,7 @@ public class AuthenticateUser {
      * @return map of user's login information
      * @throws SQLException If there was a database access error
      */
-    public HashMap<String, Object> populateUserMap(ResultSet myResultSet) throws SQLException {
+    private HashMap<String, Object> populateUserMap(ResultSet myResultSet) throws SQLException {
         HashMap<String, Object> returnMap = new HashMap<>();
         returnMap.put("ID", myResultSet.getString("user_id"));
         returnMap.put("Password", myResultSet.getString("user_password"));
