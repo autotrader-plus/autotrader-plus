@@ -3,6 +3,8 @@ package packages.backendlogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.text.DecimalFormat;
+
 class UserTest {
     User basic;
     User advanced;
@@ -25,22 +27,22 @@ class UserTest {
     }
 
     @Test
-    void getMonthlybudgetBasic() {
+    void getMonthlyBudgetBasic() {
         assert this.basic.getMonthlyBudget().equals("300");
     }
 
     @Test
-    void getMonthlybudgetAdvanced() {
+    void getMonthlyBudgetAdvanced() {
         assert this.advanced.getMonthlyBudget().equals("400");
     }
 
     @Test
-    void getCreditscoreBasic() {
+    void getCreditScoreBasic() {
         assert this.basic.getCreditScore().equals("750");
     }
 
     @Test
-    void getCreditscoreAdvanced() {
+    void getCreditScoreAdvanced() {
         assert this.advanced.getCreditScore().equals("700");
     }
 
@@ -65,22 +67,22 @@ class UserTest {
     }
 
     @Test
-    void getDownpaymentBasic() {
+    void getDownPaymentBasic() {
         assert this.basic.getDownPayment().equals("200");
     }
 
     @Test
-    void getDownpaymentAdvanced() {
+    void getDownPaymentAdvanced() {
         assert this.advanced.getDownPayment().equals("100");
     }
 
     @Test
-    void getMonthlyincomeBasic() {
+    void getMonthlyIncomeBasic() {
         assert this.basic.getMonthlyIncome().equals("0");
     }
 
     @Test
-    void getMonthlyincomeAdvanced() {
+    void getMonthlyIncomeAdvanced() {
         assert this.advanced.getMonthlyIncome().equals("4000");
     }
 
@@ -105,12 +107,22 @@ class UserTest {
     }
 
     @Test
-    void getMonthlydebtBasic() {
+    void getMonthlyDebtBasic() {
         assert this.basic.getMonthlyDebt().equals("0");
     }
 
     @Test
-    void getMonthlydebtAdvanced() {
+    void getMonthlyDebtAdvanced() {
         assert this.advanced.getMonthlyDebt().equals("1000");
+    }
+
+    @Test
+    void getPTIBasic() {
+        assert this.basic.getPTI().equals("0.00");
+    }
+
+    @Test
+    void getPTIAdvanced() {
+        assert this.advanced.getPTI().equals("0.10");
     }
 }
