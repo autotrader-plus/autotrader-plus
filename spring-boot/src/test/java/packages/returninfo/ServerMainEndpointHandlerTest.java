@@ -39,24 +39,8 @@ class ServerMainEndpointHandlerTest {
     }
 
     @Test
-    void parseRequestBody() throws JsonProcessingException {
-        HashMap<String, String> info = new HashMap<>();
-        info.put("credit_score", "3000");
-        info.put("car_preference", "SUV");
-        info.put("name", "Paul");
-        System.out.print(ServerMainEndpointHandler.parseRequestBody("{\"name\": \"Paul\", \"car_preference\": \"SUV\", \"credit_score\": \"3000\"}"));
-        assert(Objects.equals(ServerMainEndpointHandler.parseRequestBody("{\"name\": \"Paul\", \"car_preference\": \"SUV\", \"credit_score\": \"3000\"}"), info));
-    }
-
-    @Test
-    void getFilteredCars() throws DatabaseConnectionFailureException {
-        assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Model Year").equals("2017"));
-        assert(ServerMainEndpointHandler.getFilteredCars("SUV").get(0).get("Car").equals("Honda Pillot 4WD"));
-    }
-
-    @Test
     // SImilar test to the first test, except now it calls all cars in the database since no car preference is indicated.
-    void httpResponseSenso2() {
+    void httpResponseSensoNoPreference() {
         HashMap<String, String> mapping = new HashMap<String, String>();
         mapping.put("car-preference", "");
         mapping.put("zip-code", "M11 1S6");

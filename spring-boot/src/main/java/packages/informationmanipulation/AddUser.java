@@ -55,7 +55,7 @@ public class AddUser {
 
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();
-        connection.exceuteQuery(query);
+        connection.executeQuery(query);
 
     }
 

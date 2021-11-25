@@ -71,7 +71,7 @@ public class ServerMainEndpointHandler {
      * @return a hashmap representation of the request json
      * @throws JsonProcessingException - error thrown when json cannot be processed
      */
-    static HashMap<String, String> parseRequestBody(String req_body) throws JsonProcessingException {
+    private HashMap<String, String> parseRequestBody(String req_body) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String, String> userInfoHash = objectMapper.readValue(req_body, HashMap.class);
 
@@ -84,7 +84,7 @@ public class ServerMainEndpointHandler {
      * @param car_type - the car_type to return from the database
      * @return an array list of cars that fit the car_type
      */
-    static ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws DatabaseConnectionFailureException {
+    ArrayList<HashMap<String, Object>> getFilteredCars(String car_type) throws DatabaseConnectionFailureException {
         try {
             return ReturnMultipleCars.returnFilteredCars(car_type);
         } catch(SQLException e){

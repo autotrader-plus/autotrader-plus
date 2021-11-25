@@ -31,13 +31,4 @@ class SignInEndpointHandler {
 
     }
 
-    @Test
-    void parseRequestBody() throws JsonProcessingException {
-        HashMap<String, String> info = new HashMap<>();
-        info.put("username", "DNE");
-        info.put("password", "DNE");
-        assert(Objects.equals(ServerMainEndpointHandler.parseRequestBody("{\"username\": \"DNE\", " +
-                "\"password\": \"DNE\"}"), info));
-    }
-
 }

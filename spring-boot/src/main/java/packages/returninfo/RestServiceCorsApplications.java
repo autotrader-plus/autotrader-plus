@@ -15,7 +15,7 @@ public class RestServiceCorsApplications {
     }
 
     // Allow the ec2 instance to access this spring-boot application. This is mandatory as every ping to the
-    // traderauto endpoint is processed on the ec2 instance.
+    // server endpoints is processed on the ec2 instance.
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
