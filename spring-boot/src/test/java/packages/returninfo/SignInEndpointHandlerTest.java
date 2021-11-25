@@ -9,10 +9,8 @@ import packages.exceptions.DatabaseConnectionFailureException;
 import java.lang.reflect.Type;
 import java.util.*;
 
-class SignInEndpointHandler {
-
-
-    // TODO: Error popping up that needs to be fixed
+class SignInEndpointHandlerTest {
+    
     @Test
     void httpResponseSenso() {
         HashMap<String, String> mapping = new HashMap<String, String>();
@@ -25,7 +23,7 @@ class SignInEndpointHandler {
         SignInEndpointHandler test = new SignInEndpointHandler();
 
         System.out.println(request);
-        String response = test.httpResponseSenso( request );
+        String response = test.httpResponseSignIn( request );
 
         assert(Objects.equals( response, ""));
 

@@ -26,7 +26,7 @@ public class SignInEndpointHandler {
      */
     @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/signin")
-    public String httpResponseSenso(@RequestBody() String req_body) {
+    public String httpResponseSignIn(@RequestBody() String req_body) {
         System.out.println("==== POST Request Received ====");
         try {
             // format of
