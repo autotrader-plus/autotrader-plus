@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="packages.backendlogic.AuthenticateUserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-11-25T20:51:05" hostname="user4-207.wdw-res.utoronto.ca" time="0.221">
-  <properties/>
-  <testcase name="checkUserFailed()" classname="packages.backendlogic.AuthenticateUserTest" time="0.112"/>
-  <testcase name="checkUserSuccess()" classname="packages.backendlogic.AuthenticateUserTest" time="0.109"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

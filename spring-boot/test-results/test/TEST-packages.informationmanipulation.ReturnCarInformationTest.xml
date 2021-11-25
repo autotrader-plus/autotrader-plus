@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="packages.informationmanipulation.ReturnCarInformationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-11-25T20:50:59" hostname="user4-207.wdw-res.utoronto.ca" time="0.742">
-  <properties/>
-  <testcase name="CarDetails: Basic Case" classname="packages.informationmanipulation.ReturnCarInformationTest" time="0.107"/>
-  <testcase name="CarDetailString: Basic Case" classname="packages.informationmanipulation.ReturnCarInformationTest" time="0.634"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

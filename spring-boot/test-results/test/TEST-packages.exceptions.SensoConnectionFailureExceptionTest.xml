@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="packages.exceptions.SensoConnectionFailureExceptionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-25T20:51:05" hostname="user4-207.wdw-res.utoronto.ca" time="0.001">
-  <properties/>
-  <testcase name="whenExceptionThrown_thenAssertionSucceeds()" classname="packages.exceptions.SensoConnectionFailureExceptionTest" time="0.001"/>
-  <system-out><![CDATA[Connection to Senso API fails.
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
