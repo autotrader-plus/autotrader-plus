@@ -24,5 +24,7 @@ jobs:
         cache: gradle
     - name: Move to spring-boot folder
       run: cd spring-boot
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
     - name: Build with Gradle
       run: ./gradlew build
