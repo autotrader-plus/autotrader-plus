@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import java.io.IOException;
 import java.sql.SQLException;
 
-class PTICalculatorTest {
+public class PTICalculatorTest {
 
     int user_id;
     Car c;
