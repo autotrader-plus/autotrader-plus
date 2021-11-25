@@ -15,7 +15,7 @@ import java.util.Map;
 /** This is a class that calls Senso Score API, and return information from Senso Score API.**/
 public class ConnectSensoScoreAPI implements SensoAPIInterface{
 
-    private HashMap<Object, Object> api_content; // the return info from senso api call
+    private HashMap<Object, Object> apiContent; // the return info from senso api call
     // the following variables are the fields needed for senso api call
     private int remainingBalance;
     private int creditScore;
@@ -35,7 +35,7 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
     public ConnectSensoScoreAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
         populateSensoInputs(senso_input);
         String input_body = createJson();
-        api_content = CallSensoAPI(input_body);
+        apiContent = CallSensoAPI(input_body);
     }
 
     /**
@@ -118,10 +118,16 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
      * @return a hashmap representation of the return info from senso api call
      */
     public HashMap<Object, Object> getReturnInfo() {
-        return api_content;
+        return apiContent;
     }
 
-
+    /**
+     * A overriden method from SensoAPIInterface.
+     * @param senso_input - the input mapping for senso api call
+     * @return a hashmap representation of return info from senso api
+     * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
+     * @throws InterruptedException - exception thrown when api call is interrupted or failed
+     */
     @Override
     public HashMap<Object, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
         ConnectSensoScoreAPI senso_connector = new ConnectSensoScoreAPI(senso_input);

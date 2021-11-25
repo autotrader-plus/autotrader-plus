@@ -30,7 +30,6 @@ class ConnectSensoScoreAPITest {
     @Test
     public void getReturnInfo() {
         assert connector.getReturnInfo() != null;
-        System.out.print(connector.getReturnInfo());
     }
 
     @Test
@@ -47,7 +46,6 @@ class ConnectSensoScoreAPITest {
 
         SensoAPIInterface connector = new ConnectSensoScoreAPI(mapping);
         assert connector.pingSensoAPI(mapping) != null;
-        System.out.print(connector.pingSensoAPI(mapping));
     }
 
 }
