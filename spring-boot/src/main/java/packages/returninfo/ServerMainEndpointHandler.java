@@ -31,7 +31,7 @@ public class ServerMainEndpointHandler {
      * @param req_body - the body of the http request from the client
      * @return A HTTP Response back to the client.
      */
-    @CrossOrigin(origins = "http://ec2-18-118-163-255.us-east-2.compute.amazonaws.com:8080")
+    @CrossOrigin(origins = "http://ec2-18-118-19-97.us-east-2.compute.amazonaws.com:8080")
     @PostMapping("/traderauto-plus")
     public String httpResponseSenso(@RequestBody() String req_body) {
         System.out.println("==== POST Request Received ====");
