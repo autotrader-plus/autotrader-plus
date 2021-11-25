@@ -22,7 +22,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
-    - name: Move to spring-boot folder
-      run: cd spring-boot
+
     - name: Build with Gradle
+      working-directory: ./spring-boot
       run: gradle build
