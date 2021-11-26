@@ -11,21 +11,21 @@ import java.util.HashMap;
 
 class LoansTest {
 
-    ArrayList<HashMap<String, Object>> carlist;
-    HashMap<String, String> userinfo;
+    ArrayList<HashMap<String, Object>> carList;
+    HashMap<String, String> userInfo;
     Loans loan;
 
     @BeforeEach
     void setUp() throws SQLException, SensoConnectionFailureException {
         ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
-        carlist = returnMultipleCars.returnAllCars();
-        userinfo = new HashMap<>();
-        userinfo.put("credit-score", "750");
-        userinfo.put("monthlybudget", "600");
-        userinfo.put("downpayment", "200");
-        userinfo.put("zip-code", "M4y111");
-        userinfo.put("name", "Bob Du");
-        loan = new Loans(userinfo, carlist);
+        carList = returnMultipleCars.returnAllCars();
+        userInfo = new HashMap<>();
+        userInfo.put("credit-score", "750");
+        userInfo.put("monthlybudget", "600");
+        userInfo.put("downpayment", "200");
+        userInfo.put("zip-code", "M4y111");
+        userInfo.put("name", "Bob Du");
+        loan = new Loans(userInfo, carList);
     }
     @Test
     void getLoans() {
@@ -48,7 +48,7 @@ class LoansTest {
 
     @Test
     void calculateLoans() throws SensoConnectionFailureException {
-        LoanInfoInterface getLoans = new Loans(userinfo, carlist);
-        assert(getLoans.calculateLoans(userinfo, carlist) != null);
+        LoanInfoInterface getLoans = new Loans(userInfo, carList);
+        assert(getLoans.calculateLoans(userInfo, carList) != null);
     }
 }

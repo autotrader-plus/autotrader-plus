@@ -8,19 +8,19 @@ import java.util.Objects;
 
 class HttpResponseMainTest {
 
-    private static HashMap<String, Object> test_map;
+    private static HashMap<String, Object> testMap;
 
     @BeforeAll
     static void setUp(){
         HashMap<String, Object> mapping = new HashMap<>();
         mapping.put("1", "Test");
         mapping.put("2", "Test2");
-        test_map = mapping;
+        testMap = mapping;
     }
 
     @Test
     void getContent() {
-        HttpResponseMain test = new HttpResponseMain(test_map);
+        HttpResponseMain test = new HttpResponseMain(testMap);
         String expected = "{\"1\":\"Test\",\"2\":\"Test2\"}";
         System.out.print(test.getContent());
         assert(Objects.equals(test.getContent(), expected));

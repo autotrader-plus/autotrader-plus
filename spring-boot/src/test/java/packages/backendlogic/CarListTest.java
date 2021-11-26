@@ -6,20 +6,20 @@ import org.junit.jupiter.api.Test;
 class CarListTest {
 
     CarList<Car> testCarList;
-    Car c1;
+    Car car;
 
     @BeforeEach
     void setUp() {
         testCarList = new CarList<>();
 
-        c1 = new Car("2016", "Infiniti QX50", "70953", "Wagon",
+        car = new Car("2016", "Infiniti QX50", "70953", "Wagon",
                 "24", "25900", "Dixie Infiniti");
     }
 
     @Test
     void AddToList() {
-        testCarList.AddtoList(c1);
-        assert testCarList.getCar(0).equals(c1);
+        testCarList.AddtoList(car);
+        assert testCarList.getCar(0).equals(car);
     }
 
     @Test
@@ -29,13 +29,13 @@ class CarListTest {
 
     @Test
     void sizeNonEmpty() {
-        testCarList.AddtoList(c1);
+        testCarList.AddtoList(car);
         assert testCarList.size() == 1;
     }
 
     @Test
     void getCar() {
-        testCarList.AddtoList(c1);
-        assert testCarList.getCar(0).equals(c1);
+        testCarList.AddtoList(car);
+        assert testCarList.getCar(0).equals(car);
     }
 }

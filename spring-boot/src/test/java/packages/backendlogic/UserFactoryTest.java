@@ -9,7 +9,7 @@ import java.util.Objects;
 class UserFactoryTest {
 
     HashMap<String, String> user;
-    HashMap<String, String> user2;
+    HashMap<String, String> userAdvanced;
     UserFactory factory;
 
     @BeforeEach
@@ -34,7 +34,7 @@ class UserFactoryTest {
         user_info2.put("homeowner", "homeowner");
         user_info2.put("monthlydebt", "500");
 
-        user2 = user_info2;
+        userAdvanced = user_info2;
 
         factory = new UserFactory();
     }
@@ -47,7 +47,7 @@ class UserFactoryTest {
 
     @Test
     void createUser2() {
-        User user_object = factory.createUser(user2);
+        User user_object = factory.createUser(userAdvanced);
         assert(Objects.equals(user_object.getMonthlyDebt(), "500"));
         assert(Objects.equals(user_object.isEmployed(), "Employed"));
     }
