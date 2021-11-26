@@ -126,14 +126,14 @@ public class ConnectSensoRateAPI implements SensoAPIInterface{
 
     /**
      * A overriden method from SensoAPIInterface.
-     * @param senso_input - the input mapping for senso api call
+     * @param sensoInput - the input mapping for senso api call
      * @return a hashmap representation of return info from senso api
      * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
      * @throws InterruptedException - exception thrown when api call is interrupted or failed
      */
     @Override
-    public HashMap<String, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
-        ConnectSensoRateAPI senso_connector = new ConnectSensoRateAPI(senso_input);
-        return senso_connector.getReturnInfo();
+    public HashMap<String, Object> pingSensoAPI(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
+        ConnectSensoRateAPI sensoConnector = new ConnectSensoRateAPI(sensoInput);
+        return sensoConnector.getReturnInfo();
     }
 }
