@@ -3,6 +3,8 @@ package packages.backendlogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.text.DecimalFormat;
+
 class UserTest {
     User basic;
     User advanced;
@@ -122,5 +124,14 @@ class UserTest {
     @Test
     void getDTIAdvanced(){
         assert this.advanced.getDTI().equals("0.25");
+    
+    @Test
+    void getPTIBasic() {
+        assert this.basic.getPTI().equals("0.00");
+    }
+
+    @Test
+    void getPTIAdvanced() {
+        assert this.advanced.getPTI().equals("0.10");
     }
 }
