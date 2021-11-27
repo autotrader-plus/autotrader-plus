@@ -69,8 +69,6 @@ public class User {
         return Integer.toString((36 * this.monthlyBudget) + this.downPayment);
     }
 
-    // will be used in the future
-
     /**
      * Will be used in the future
      * Overloaded method that gets the User's price range for a given term
@@ -181,5 +179,32 @@ public class User {
         }
         DecimalFormat twoDecimals = new DecimalFormat("#0.00");
         return twoDecimals.format((double) monthlyBudget / monthlyIncome);
+    }
+
+    /**
+     * Gets the User's final score
+     * @return A string representing the User's final score
+     */
+    public String getFinalScore() {
+        int employed;
+        int homeowner;
+
+        if (this.employed){
+            employed = 1;
+        }
+        else{
+            employed = 0;
+        }
+
+        if (this.homeowner){
+            homeowner = 1;
+        }
+        else{
+            homeowner = 0;
+        }
+
+        LoanTable loanTable = new LoanTable(creditScore, employed, homeowner, Double.parseDouble(this.getPTI()), Double.parseDouble(this.getDTI()));
+        DecimalFormat twoDecimals = new DecimalFormat("#0.00");
+        return twoDecimals.format(loanTable.getFinalScore());
     }
 }
