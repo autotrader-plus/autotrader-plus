@@ -4,20 +4,81 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
 class ReturnUserInformationTest {
     ReturnUserInformation returnUserInformation;
+    ReturnUserInformation mockedConnection;
 
     @BeforeEach
     void setUp() {
         returnUserInformation = new ReturnUserInformation();
+        mockedConnection = mock(ReturnUserInformation.class);
     }
 
     @Test
-    @DisplayName("User: Basic Case with Simple User")
+    @DisplayName("User: Basic Case with Simple User (Unit Test with Mocked Database)")
+    void returnUserSimpleMocked() throws SQLException{
+        mockedConnection.returnUser(14);
+        when(mockedConnection.returnUser(14)).thenReturn(createSimpleResponse());
+
+        HashMap<String, String> actual = returnUserInformation.returnUser(14);
+        assert Objects.equals(actual, mockedConnection.returnUser(14));
+
+    }
+
+    private HashMap<String, String> createSimpleResponse() {
+        HashMap<String, String> testMap = new HashMap<>();
+        testMap.put("ID", "14");
+        testMap.put("Name", "Mike");
+        testMap.put("Credit Score", "740");
+        testMap.put("Location", "M4Y111");
+        testMap.put("Max Downpayment", "5000");
+        testMap.put("Max Monthly Payment", "1000");
+        testMap.put("Monthly Income", "0");
+        testMap.put("Employment Status", "not Employed");
+        testMap.put("Homeowner", "not Homeowner");
+        testMap.put("Monthly Debt Obligation", "0");
+        return testMap;
+    }
+
+    @Test
+    @DisplayName("User: Basic Case with Detailed User (Unit Test with Mocked Database)")
+    void returnUserDetailedMocked() throws SQLException{
+        mockedConnection.returnUser(13);
+        when(mockedConnection.returnUser(13)).thenReturn(createDetailedResponse());
+
+        HashMap<String, String> actual = returnUserInformation.returnUser(13);
+        assert Objects.equals(actual, mockedConnection.returnUser(13));
+
+    }
+
+    private HashMap<String, String> createDetailedResponse() {
+        HashMap<String, String> testMap = new HashMap<>();
+        testMap.put("ID", "13");
+        testMap.put("Name", "Mike");
+        testMap.put("Credit Score", "730");
+        testMap.put("Location", "M4Y111");
+        testMap.put("Max Downpayment", "5000");
+        testMap.put("Max Monthly Payment", "1000");
+        testMap.put("Monthly Income", "8500");
+        testMap.put("Employment Status", "Employed");
+        testMap.put("Homeowner", "Homeowner");
+        testMap.put("Monthly Debt Obligation", "500");
+        return testMap;
+    }
+
+
+    @Test
+    @DisplayName("User: Basic Case with Simple User (Integration Test)")
     void returnUserSimple() throws SQLException {
         Integer user_id = 14;
 
@@ -37,7 +98,7 @@ class ReturnUserInformationTest {
     }
 
     @Test
-    @DisplayName("User: Basic Case with Detailed User")
+    @DisplayName("User: Basic Case with Detailed User (Integration Test)")
     void returnUserDetailed() throws SQLException {
         Integer user_id = 13;
 

@@ -31,18 +31,56 @@ class ReturnMultipleCarsTest {
     @DisplayName("AllCars: Basic Case (Unit Test with Mocked Database)")
     void returnAllCarsUnitTest() throws SQLException{
         mockedConnection.returnAllCars();
-        when(mockedConnection.returnAllCars()).thenReturn(returnMultipleCars.returnAllCars());
-        verify(mockedConnection).returnAllCars();
-        assert(mockedConnection.returnAllCars().size() == 24);
+        when(mockedConnection.returnAllCars()).thenReturn(createArrayResponse());
+
+        HashMap<String, Object> actual = returnMultipleCars.returnAllCars().get(0);
+        assert Objects.equals(mockedConnection.returnAllCars().get(0), actual);
+
+    }
+
+    private ArrayList<HashMap<String, Object>> createArrayResponse() {
+        ArrayList<HashMap<String, Object>> testList = new ArrayList<>();
+
+        testList.add(0, new HashMap<>() {{
+            put("Model Year", "2021");
+            put("Car", "Chevrolet Corvette Stingray");
+            put("Mileage", "15466");
+            put("Car Type", "Convertible");
+            put("ID", "0");
+            put("Cost", "143944");
+            put("Dealership", "Georgian Chevrolet");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2019-10-03-at-9-52-03-pm-1570154537.png");
+        }});
+
+        return testList;
     }
 
     @Test
     @DisplayName("FilteredCars: Basic Case (Unit Test with Mocked Database)")
     void returnFilteredCarsUnitTest() throws SQLException{
         mockedConnection.returnFilteredCars("SUV");
-        when(mockedConnection.returnFilteredCars("SUV")).thenReturn(returnMultipleCars.returnFilteredCars("SUV"));
-        verify(mockedConnection).returnFilteredCars("SUV");
-        assert(mockedConnection.returnFilteredCars("SUV").size() == 8);
+        when(mockedConnection.returnFilteredCars("SUV")).thenReturn(createFilteredArrayResponse());
+
+        HashMap<String, Object> actual = returnMultipleCars.returnFilteredCars("SUV").get(0);
+
+        assert Objects.equals(mockedConnection.returnFilteredCars("SUV").get(0), actual);
+    }
+
+    private ArrayList<HashMap<String, Object>> createFilteredArrayResponse() {
+        ArrayList<HashMap<String, Object>> testList = new ArrayList<>();
+
+        testList.add(0, new HashMap<>() {{
+            put("Model Year", "2017");
+            put("Car", "Honda Pillot 4WD");
+            put("Mileage", "145174");
+            put("Car Type", "SUV");
+            put("ID", "4");
+            put("Cost", "28560");
+            put("Dealership", "Barrie Honda");
+            put("Photo", "https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/800x450/format/jpg/quality/85/http://www.blogcdn.com/www.autoblog.com/media/2011/04/01-2011-honda-pilot-opt.jpg");
+        }});
+
+        return testList;
     }
 
 

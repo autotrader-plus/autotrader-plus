@@ -25,23 +25,35 @@ class ReturnCarInformationTest {
     }
 
     @Test
-    @DisplayName("CarDetailString: Basic Case (Unit Test with Mocked Database)")
+    @DisplayName("CarDetailString: Basic Case (Unit Testing with Mocked Database)")
     void returnCarDetailsStringUnitTest() throws SQLException {
         mockedConnection.returnCarDetailsString(1);
-        when(mockedConnection.returnCarDetailsString(1)).thenReturn(returnCarInformation.returnCarDetailsString(1));
-        verify(mockedConnection).returnCarDetailsString(1);
-        assert Objects.equals(mockedConnection.returnCarDetailsString(1), "ID: 1\nCar: Hyundai Sonata Ultimate\n" +
-                "Cost: $35649\nMileage: 10323\nModel Year: 2021\nDealership: Guelph Hyundai\nCar Type: Convertible");
+        when(mockedConnection.returnCarDetailsString(1)).thenReturn(createStringResponse());
+
+        String actual = returnCarInformation.returnCarDetailsString(1);
+
+        assert Objects.equals(mockedConnection.returnCarDetailsString(1), actual);
+    }
+
+    private String createStringResponse() {
+        return "ID: 1\nCar: Hyundai Sonata Ultimate\n" +
+                "Cost: $35649\nMileage: 10323\nModel Year: 2021\nDealership: Guelph Hyundai\nCar Type: Convertible";
     }
 
     @Test
     @DisplayName("CarDetails: Basic Case (Unit Test with Mocked Database)")
     void returnCarDetailsUnitTest() throws SQLException {
         mockedConnection.returnCarDetails(1);
-        when(mockedConnection.returnCarDetails(1)).thenReturn(returnCarInformation.returnCarDetails(1));
+        when(mockedConnection.returnCarDetails(1)).thenReturn(createHashMapResponse());
         verify(mockedConnection).returnCarDetails(1);
 
-        HashMap<String, String> testMap = new HashMap<>();
+        HashMap<String, Object> actual = returnCarInformation.returnCarDetails(1);
+
+        assert Objects.equals(mockedConnection.returnCarDetails(1), actual);
+    }
+
+    private HashMap<String, Object> createHashMapResponse() {
+        HashMap<String, Object> testMap = new HashMap<>();
 
         testMap.put("ID", "1");
         testMap.put("Car", "Hyundai Sonata Ultimate");
@@ -52,7 +64,7 @@ class ReturnCarInformationTest {
         testMap.put("Car Type", "Convertible");
         testMap.put("Photo", "https://www.hyundaionhuntclub.com/vimgs/usd00hyc031d022004/IOF_H600/ColourPhotoSample_0.jpg");
 
-        assert Objects.equals(mockedConnection.returnCarDetails(1), testMap);
+        return testMap;
     }
 
     @Test

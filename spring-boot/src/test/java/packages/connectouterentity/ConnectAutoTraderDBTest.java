@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+
+// Test class using Mockito to test that we can connect to the database correctly
 class ConnectAutoTraderDBTest{
 
     @Test
