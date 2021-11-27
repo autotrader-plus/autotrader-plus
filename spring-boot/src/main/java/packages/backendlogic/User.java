@@ -1,5 +1,7 @@
 package packages.backendlogic;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents a User Object based on the user info inputted by the user from the frontend
  */
@@ -155,5 +157,17 @@ public class User {
      */
     public String getMonthlyDebt() {
         return Integer.toString(this.monthlyDebt);
+    }
+
+    /**
+     * Gets the User's payment to income ratio (PTI)
+     * @return A double representing this User's PTI
+     */
+    public String getPTI() {
+        if (monthlyIncome == 0){
+            return "0.00";
+        }
+        DecimalFormat twoDecimals = new DecimalFormat("#0.00");
+        return twoDecimals.format((double) monthlyBudget / monthlyIncome);
     }
 }
