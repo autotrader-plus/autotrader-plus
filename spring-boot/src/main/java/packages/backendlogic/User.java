@@ -1,5 +1,7 @@
 package packages.backendlogic;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents a User Object based on the user info inputted by the user from the frontend
  */
@@ -66,8 +68,6 @@ public class User {
     public String getPriceRange(){
         return Integer.toString((36 * this.monthlyBudget) + this.downPayment);
     }
-
-    // will be used in the future
 
     /**
      * Will be used in the future
@@ -155,5 +155,32 @@ public class User {
      */
     public String getMonthlyDebt() {
         return Integer.toString(this.monthlyDebt);
+    }
+
+    /**
+     * Gets the User's final score
+     * @return A string representing the User's final score
+     */
+    public String getFinalScore() {
+        int employed;
+        int homeowner;
+
+        if (this.employed){
+            employed = 1;
+        }
+        else{
+            employed = 0;
+        }
+
+        if (this.homeowner){
+            homeowner = 1;
+        }
+        else{
+            homeowner = 0;
+        }
+
+        LoanTable loanTable = new LoanTable(creditScore, employed, homeowner, this.getPTI(), this.getDTI());
+        DecimalFormat twoDecimals = new DecimalFormat("#0.00");
+        return twoDecimals.format(loanTable.getFinalScore());
     }
 }
