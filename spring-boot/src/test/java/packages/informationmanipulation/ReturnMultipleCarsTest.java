@@ -4,6 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,14 +19,35 @@ import static java.lang.Math.min;
 
 class ReturnMultipleCarsTest {
     ReturnMultipleCars returnMultipleCars;
+    ReturnMultipleCars mockedConnection;
 
     @BeforeEach
     void setUp() {
         returnMultipleCars = new ReturnMultipleCars();
+        mockedConnection = mock(ReturnMultipleCars.class);
     }
 
     @Test
-    @DisplayName("AllCars: Basic Case")
+    @DisplayName("AllCars: Basic Case (Unit Test with Mocked Database)")
+    void returnAllCarsUnitTest() throws SQLException{
+        mockedConnection.returnAllCars();
+        when(mockedConnection.returnAllCars()).thenReturn(returnMultipleCars.returnAllCars());
+        verify(mockedConnection).returnAllCars();
+        assert(mockedConnection.returnAllCars().size() == 24);
+    }
+
+    @Test
+    @DisplayName("FilteredCars: Basic Case (Unit Test with Mocked Database)")
+    void returnFilteredCarsUnitTest() throws SQLException{
+        mockedConnection.returnFilteredCars("SUV");
+        when(mockedConnection.returnFilteredCars("SUV")).thenReturn(returnMultipleCars.returnFilteredCars("SUV"));
+        verify(mockedConnection).returnFilteredCars("SUV");
+        assert(mockedConnection.returnFilteredCars("SUV").size() == 8);
+    }
+
+
+    @Test
+    @DisplayName("AllCars: Basic Case (Integration Test)")
     void returnAllCars() throws SQLException {
         ArrayList<HashMap<String, String>> testList = new ArrayList<>();
 
@@ -271,7 +297,7 @@ class ReturnMultipleCarsTest {
     }
 
     @Test
-    @DisplayName("FilteredCars: Basic Case")
+    @DisplayName("FilteredCars: Basic Case (Integration Test)")
     void returnFilteredCars() throws SQLException {
         String filter = "SUV";
 

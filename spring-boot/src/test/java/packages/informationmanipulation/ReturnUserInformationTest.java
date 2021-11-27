@@ -19,10 +19,10 @@ class ReturnUserInformationTest {
     @Test
     @DisplayName("User: Basic Case with Simple User")
     void returnUserSimple() throws SQLException {
-        Integer user_id = 2;
+        Integer user_id = 14;
 
         HashMap<String, String> testMap = new HashMap<>();
-        testMap.put("ID", "2");
+        testMap.put("ID", "14");
         testMap.put("Name", "Mike");
         testMap.put("Credit Score", "740");
         testMap.put("Location", "M4Y111");
@@ -39,10 +39,10 @@ class ReturnUserInformationTest {
     @Test
     @DisplayName("User: Basic Case with Detailed User")
     void returnUserDetailed() throws SQLException {
-        Integer user_id = 1;
+        Integer user_id = 13;
 
         HashMap<String, String> testMap = new HashMap<>();
-        testMap.put("ID", "1");
+        testMap.put("ID", "13");
         testMap.put("Name", "Mike");
         testMap.put("Credit Score", "730");
         testMap.put("Location", "M4Y111");

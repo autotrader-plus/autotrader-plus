@@ -1,7 +1,8 @@
-package packages.backendlogic;
+package packages.informationmanipulation;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import packages.informationmanipulation.AuthenticateUser;
 
 import java.sql.SQLException;
 

@@ -1,6 +1,6 @@
 package packages.returninfo;
 
-import packages.backendlogic.AuthenticateUser;
+import packages.informationmanipulation.AuthenticateUser;
 
 import java.sql.SQLException;
 import java.util.HashMap;

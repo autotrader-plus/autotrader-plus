@@ -12,11 +12,10 @@ public class ConnectAutoTraderDB implements AutoTraderDBInterface {
     private final Statement objStatement;
 
     /**
-     * Initialize a Connection. We will automatically establish the DB connection at each instaitation of
+     * Initialize a Connection. We will automatically establish the DB connection at each instantiation of
      * an object.
      */
     public ConnectAutoTraderDB(){
-
         this.objStatement = ConnectAutoTraderDB.establishConnection();
     }
 
@@ -73,6 +72,14 @@ public class ConnectAutoTraderDB implements AutoTraderDBInterface {
     public void executeQuery(String query) throws SQLException {
 
         this.objStatement.executeUpdate(query);
+    }
+
+    /**
+     * Return the statement of a database connection
+     * @return the statement of the database connection
+     */
+    public Statement getObjStatement(){
+        return objStatement;
     }
 }
 
