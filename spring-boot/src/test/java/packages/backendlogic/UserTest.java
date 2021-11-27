@@ -11,9 +11,10 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        this.basic = new User(750, 300, 200, "M4Y111", "Bob Du");
-        this.advanced = new User(700, 400, 100, "111M4Y", "Dod Bu",
-                4000, true, true, 1000);
+        this.basic = new User(750, 300, 200, "M4Y111",
+                "Bob Du", "123");
+        this.advanced = new User(700, 400, 100, "111M4Y",
+                "Dod Bu", "1234",4000, true, true, 1000);
     }
 
     @Test
@@ -64,6 +65,15 @@ class UserTest {
     @Test
     void getNameAdvanced() {
         assert this.advanced.getName().equals("Dod Bu");
+    }
+
+    @Test
+    void getPasswordBasic(){
+        assert this.basic.getPassword().equals("123");
+    }
+
+    void getPasswordAdvanced(){
+        assert this.advanced.getPassword().equals("1234");
     }
 
     @Test
@@ -122,9 +132,10 @@ class UserTest {
     }
 
     @Test
-    void getDTIAdvanced(){
+    void getDTIAdvanced() {
         assert this.advanced.getDTI().equals("0.25");
-    
+    }
+
     @Test
     void getPTIBasic() {
         assert this.basic.getPTI().equals("0.00");
@@ -134,4 +145,5 @@ class UserTest {
     void getPTIAdvanced() {
         assert this.advanced.getPTI().equals("0.10");
     }
+
 }

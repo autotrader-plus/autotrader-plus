@@ -21,7 +21,8 @@ class AddUserTest {
     @Test
     @DisplayName("addUser: Basic Case with Simple User")
     void addUserSimple() throws SQLException {
-        User user = new User(740, 1000, 5000, "M4Y111", "Mike");
+        User user = new User(740, 1000, 5000,
+                "M4Y111", "Mike", "123");
 
         addUser.addUser(user);
 
@@ -36,6 +37,7 @@ class AddUserTest {
         testMap.put("Employment Status", "not Employed");
         testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
+        testMap.put("password", "123");
 
         assert testMap.equals(returnUserInformation.returnUser(2));
     }
@@ -44,7 +46,7 @@ class AddUserTest {
     @DisplayName("addUser: Basic Case with Detailed User")
     void addUserDetailed() throws SQLException {
         User user = new User(730, 1000, 5000, "M4Y111", "Mike",
-                8500, true, true, 500);
+                "1234", 8500, true, true, 500);
 
         addUser.addUser(user);
 
@@ -59,6 +61,7 @@ class AddUserTest {
         testMap.put("Employment Status", "Employed");
         testMap.put("Homeowner", "Homeowner");
         testMap.put("Monthly Debt Obligation", "500");
+        testMap.put("password", "1234");
 
         assert testMap.equals(returnUserInformation.returnUser(1));
     }

@@ -45,7 +45,7 @@ public class AddUser {
         // Write the SQL query
         String query = "INSERT INTO `cars`.`Users`" +
                 "( `user_id`, `name`, `credit_score`, `location`, `max_downpayment`, `max_monthly_payment`, " +
-                "`monthly_income`, `employment_status`, `homeowner`, `monthly_debt_obligations`)" +
+                "`monthly_income`, `employment_status`, `homeowner`, `monthly_debt_obligations`, 'password)" +
                 "VALUES " +
                 "('" + userID +
                 "', '" + user.getName() +
@@ -56,7 +56,8 @@ public class AddUser {
                 "', '" + user.getMonthlyIncome() +
                 "', '" + user.isEmployed() +
                 "', '" + user.isHomeowner() +
-                "', '" + user.getMonthlyDebt() + "');";
+                "', '" + user.getMonthlyDebt() +
+                "', '" + user.getPassword() + "');";
 
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();
