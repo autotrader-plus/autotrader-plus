@@ -117,6 +117,15 @@ class UserTest {
     }
 
     @Test
+    void getDTIBasic(){
+        assert this.basic.getDTI().equals("0.00");
+    }
+
+    @Test
+    void getDTIAdvanced(){
+        assert this.advanced.getDTI().equals("0.25");
+    
+    @Test
     void getPTIBasic() {
         assert this.basic.getPTI().equals("0.00");
     }

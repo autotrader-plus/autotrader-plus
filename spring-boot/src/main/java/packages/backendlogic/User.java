@@ -160,6 +160,18 @@ public class User {
     }
 
     /**
+     * Gets the User's debt to income ratio (DTI)
+     * @return A String representing this User's DTI
+     */
+    public String getDTI() {
+        if (monthlyIncome == 0){
+            return "0.00";
+        }
+        DecimalFormat twoDecimals = new DecimalFormat("#0.00");
+        return twoDecimals.format((double) monthlyDebt / monthlyIncome);
+    }
+
+    /**
      * Gets the User's payment to income ratio (PTI)
      * @return A String representing this User's PTI
      */
