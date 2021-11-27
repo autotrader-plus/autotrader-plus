@@ -161,7 +161,7 @@ public class User {
 
     /**
      * Gets the User's payment to income ratio (PTI)
-     * @return A double representing this User's PTI
+     * @return A String representing this User's PTI
      */
     public String getPTI() {
         if (monthlyIncome == 0){
