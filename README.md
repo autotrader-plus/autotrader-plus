@@ -12,7 +12,7 @@ The project follows standard Java code style, SOLID and Clean Architecture princ
 - Amazon RDS is used to host the backend SQL database
 - Amazon Amplify is used to host the web application (You can find the frontend repo here: https://github.com/autotrader-plus/traderautoplus-app)
 ## Features
-- Provide users a list of loans for specific cars, and the likelihood of getting approval for each loan based on monthly income, credit score, employment status, homeowner status, monthly budget, car price and a variety of other factors.
+- Provide users a list of loans for specific cars, and the likelihood of getting approval for each loan based on monthly income, credit score, employment status, homeowner status, monthly budget, car price, likelihood of prepayment and a variety of other factors.
 - Allow user to select car preferences so that the loans are only calculated for the cars that they are interested in buying.
 - Provide opportunities through embedded links to directly connect with AutoCapital Canada to move forward with the purchase journey. 
 ## Build & Installation
