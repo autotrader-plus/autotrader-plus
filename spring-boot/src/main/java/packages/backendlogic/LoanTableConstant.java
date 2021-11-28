@@ -37,9 +37,25 @@ public class LoanTableConstant {
     public final double SCORE85 = 0.85;
     public final double SCORE1 = 1.0;
 
+    public final double FINAL_BASIC1 = 7.0;
+    public final double FINAL_BASIC2 = 6.0;
+    public final double FINAL_BASIC3 = 4.25;
+    public final double FINAL_BASIC4 = 1.25;
+
+    public final double FINAL_ADVANCED1_MIN = 15.0;
+    public final double FINAL_ADVANCED1_MAX = 17.0;
+    public final double FINAL_ADVANCED2_MIN = 12.0;
+    public final double FINAL_ADVANCED2_MAX = 14.0;
+    public final double FINAL_ADVANCED3_MIN = 9.0;
+    public final double FINAL_ADVANCED3_MAX = 10.0;
+    public final double FINAL_ADVANCED4_MIN = 6.0;
+    public final double FINAL_ADVANCED4_MAX = 8.0;
+
     public final String VERY_HIGH = "Very High";
     public final String HIGH = "High";
     public final String MEDIUM = "Medium";
     public final String LOW = "Low";
     public final String VERY_LOW = "Very Low";
+
+
 }

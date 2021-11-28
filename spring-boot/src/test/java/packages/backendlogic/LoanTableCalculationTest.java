@@ -91,12 +91,12 @@ public class LoanTableCalculationTest {
     }
 
     @Test
-    void getFinalScoreBasic() {
-        assert basicUser.getFinalScore() == 8.899999999999999;
+    void getApprovalLikelihoodBasic(){
+        assert basicUser.getApprovalLikelihood(true).equals("Very Unlikely");
     }
 
     @Test
-    void getFinalScoreAdvanced() {
-        System.out.println(advancedUser.getFinalScore());
+    void getApprovalLikelihoodAdvanced(){
+        assert advancedUser.getApprovalLikelihood(false).equals("Very Unlikely");
     }
 }

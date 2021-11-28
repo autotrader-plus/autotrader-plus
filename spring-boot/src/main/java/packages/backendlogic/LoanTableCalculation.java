@@ -1,11 +1,10 @@
 package packages.backendlogic;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import packages.backendlogic.LoanTableConstant;
 import packages.connectouterentity.ConnectSensoScoreAPI;
+
+
 
 /**
  * Represents a calculation using the loan table given information speciifc to the user.
@@ -77,11 +76,57 @@ public class LoanTableCalculation {
         return sensoScore;
     }
 
+    public String getApprovalLikelihood(boolean basic) {
+        double finalScore = getFinalScore();
+        if (basic){
+            return getApprovalLikelihoodBasic(finalScore);
+        }
+        else{
+            return getApprovalLikelihoodAdvanced(finalScore);
+        }
+    }
+
+    private String getApprovalLikelihoodBasic(double finalScore) {
+        if (finalScore == constant.FINAL_BASIC1){
+            return "Guaranteed";
+        }
+        else if (finalScore == constant.FINAL_BASIC2){
+            return "Very Likely";
+        }
+        else if (finalScore == constant.FINAL_BASIC3) {
+            return "Likely";
+        }
+        else if (finalScore == constant.FINAL_BASIC4) {
+            return "Possible";
+        }
+        else{
+            return "Very Unlikely";
+        }
+    }
+
+    private String getApprovalLikelihoodAdvanced(double finalScore) {
+        if (constant.FINAL_ADVANCED1_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED1_MAX){
+            return "Guaranteed";
+        }
+        else if (constant.FINAL_ADVANCED2_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED2_MAX){
+            return "Very Likely";
+        }
+        else if (constant.FINAL_ADVANCED3_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED3_MAX) {
+            return "Likely";
+        }
+        else if (constant.FINAL_ADVANCED4_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED4_MAX) {
+            return "Possible";
+        }
+        else{
+            return "Very Unlikely";
+        }
+    }
+
     /**
-     * Gets the final score of this user
+     * Helper that calculates the final score of this user
      * @return A double representing the final score of this user.
      */
-    public double getFinalScore() {
+    private double getFinalScore() {
         double scoreFromCreditScore, scoreFromPTI, scoreFromDTI;
         scoreFromCreditScore = getScoreFromCreditScore();
         scoreFromPTI = getScoreFromPTI();

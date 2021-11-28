@@ -184,35 +184,4 @@ public class User {
         return twoDecimals.format((double) monthlyBudget / monthlyIncome);
     }
 
-    /**
-     * Gets the User's final score
-     * @return A string representing the User's final score
-     * @throws IOException exception thrown when failure in reading/writing/searching files
-     * @throws InterruptedException exception thrown when process interrupted
-     */
-    public String getFinalScore(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
-        int employed;
-        int homeowner;
-
-        if (this.employed){
-            employed = 1;
-        }
-        else{
-            employed = 0;
-        }
-
-        if (this.homeowner){
-            homeowner = 1;
-        }
-        else{
-            homeowner = 0;
-        }
-
-        LoanTableCalculation loanTable = new LoanTableCalculation(creditScore, employed, homeowner,
-                Double.parseDouble(this.getPTI()), Double.parseDouble(this.getDTI()), sensoInput);
-
-        DecimalFormat twoDecimals = new DecimalFormat("#0.00");
-        return twoDecimals.format(loanTable.getFinalScore());
-    }
-
 }

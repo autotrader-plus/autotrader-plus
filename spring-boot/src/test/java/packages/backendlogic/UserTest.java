@@ -146,14 +146,4 @@ class UserTest {
     void getPTIAdvanced() {
         assert this.advanced.getPTI().equals("0.10");
     }
-
-    @Test
-    void getFinalScoreBasic() throws IOException, InterruptedException {
-        assert basic.getFinalScore(sensoInput).equals("12.00");
-    }
-
-    @Test
-    void getFinalScoreAdvanced() throws IOException, InterruptedException {
-        assert advanced.getFinalScore(sensoInput).equals("13.40");
-    }
 }
