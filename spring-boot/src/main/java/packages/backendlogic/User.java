@@ -224,7 +224,7 @@ public class User {
             homeowner = 0;
         }
 
-        LoanTable loanTable = new LoanTable(creditScore, employed, homeowner, Double.parseDouble(this.getPTI()),
+        LoanTableCalculation loanTable = new LoanTableCalculation(creditScore, employed, homeowner, Double.parseDouble(this.getPTI()),
                 Double.parseDouble(this.getDTI()), sensoScore);
 
         DecimalFormat twoDecimals = new DecimalFormat("#0.00");

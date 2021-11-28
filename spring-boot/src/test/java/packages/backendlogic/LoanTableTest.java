@@ -1,18 +1,17 @@
 package packages.backendlogic;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LoanTableTest {
 
-    LoanTable basicUser;
-    LoanTable advancedUser;
+    LoanTableCalculation basicUser;
+    LoanTableCalculation advancedUser;
 
     @BeforeEach
     void setUp() {
-        basicUser = new LoanTable(730, 0, 0, 0.13, 0.39, "Very High");
-        advancedUser = new LoanTable(730, 1, 1, 0.13, 0.39, "Very High");
+        basicUser = new LoanTableCalculation(730, 0, 0, 0.13, 0.39, "Very High");
+        advancedUser = new LoanTableCalculation(730, 1, 1, 0.13, 0.39, "Very High");
     }
 
     @Test
