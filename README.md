@@ -42,3 +42,5 @@ Feel free to clone the project to make any changes, and submit issues and pull r
 Copyright &copy; 2021 by TraderAuto+ (Jia Hao Choo, Ameen Parthab, Sophie Sun, Elizabeth Li, Daniel Xu)
 ## License
 MIT License
+## Project Overview & Design Document
+Refer to this link https://docs.google.com/document/d/1OcmVCF8BMy_4sPtb10DrRi6bBuK8ByrrsmzZ95AeQU0/edit?usp=sharing for a detailed project overview and design.
