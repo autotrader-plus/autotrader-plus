@@ -15,18 +15,18 @@ public class LoanTableCalculationTest {
     @BeforeEach
     void setUp() throws IOException, InterruptedException {
         sensoInput = new HashMap<>();
-        sensoInput.put("remainingBalance", "10000");
-        sensoInput.put("creditScore", "780");
-        sensoInput.put("loanAge", "36");
-        sensoInput.put("vehicleMake", "Honda");
-        sensoInput.put("vehicleModel", "Civic");
-        sensoInput.put("vehicleYear", "2021");
-        sensoInput.put("carValue", "10000");
-        sensoInput.put("loanStartDate", "2021-12-01");
+        sensoInput.put("balance", "10000");
+        sensoInput.put("credit_score", "780");
+        sensoInput.put("loan_age", "36");
+        sensoInput.put("vehicle_make", "Honda");
+        sensoInput.put("vehicle_model", "Civic");
+        sensoInput.put("vehicle_year", "2021");
+        sensoInput.put("car_value", "10000");
+        sensoInput.put("loan_start_date", "2021-12-01");
 
         basicUser = new LoanTableCalculation(730, 0, 0, 0.13, 0.39,
                 sensoInput);
-        advancedUser = new LoanTableCalculation(730, 1, 1, 0.13, 0.39,
+        advancedUser = new LoanTableCalculation(730, 1, 1, 0.14, 0.38,
                 sensoInput);
     }
 
@@ -45,41 +45,40 @@ public class LoanTableCalculationTest {
         assert basicUser.getEmployed() == 0;
     }
 
-//    @Test
-//    void getEmployedAdvanced() {
-//
-//    }
+    @Test
+    void getEmployedAdvanced() {
+        assert advancedUser.getEmployed() == 1;
+    }
 
     @Test
     void getHomeownerBasic() {
         assert basicUser.getHomeowner() == 0;
     }
 
-//    @Test
-//    void getHomeownerAdvanced() {
-//
-//    }
+    @Test
+    void getHomeownerAdvanced() {
+        assert advancedUser.getHomeowner() == 1;
+    }
 
     @Test
     void getPTIBasic() {
         assert basicUser.getPTI() == 0.13;
     }
 
-//    @Test
-//    void getPTIAdvanced() {
-//
-//    }
+    @Test
+    void getPTIAdvanced() {
+        assert advancedUser.getPTI() == 0.14;
+    }
 
     @Test
     void getDTIBasic() {
         assert basicUser.getDTI() == 0.39;
-
     }
 
-//    @Test
-//    void getDTIAdvanced() {
-//
-//    }
+    @Test
+    void getDTIAdvanced() {
+        assert advancedUser.getDTI() == 0.38;
+    }
 
     @Test
     void getSensoScoreBasic() {
@@ -88,7 +87,7 @@ public class LoanTableCalculationTest {
 
     @Test
     void getSensoScoreAdvanced() {
-        assert advancedUser.getSensoScore() == 2;
+        assert advancedUser.getSensoScore() == 0;
     }
 
     @Test
@@ -96,8 +95,8 @@ public class LoanTableCalculationTest {
         assert basicUser.getFinalScore() == 8.899999999999999;
     }
 
-//    @Test
-//    void getFinalScoreAdvanced() {
-//
-//    }
+    @Test
+    void getFinalScoreAdvanced() {
+        System.out.println(advancedUser.getFinalScore());
+    }
 }

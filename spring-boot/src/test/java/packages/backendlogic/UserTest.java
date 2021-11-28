@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 
 class UserTest {
@@ -18,14 +17,14 @@ class UserTest {
         this.advanced = new User(700, 400, 100, "111M4Y", "Dod Bu",
                 4000, true, true, 1000);
         sensoInput = new HashMap<>();
-        sensoInput.put("remainingBalance", "10000");
-        sensoInput.put("creditScore", "780");
-        sensoInput.put("loanAge", "36");
-        sensoInput.put("vehicleMake", "Honda");
-        sensoInput.put("vehicleModel", "Civic");
-        sensoInput.put("vehicleYear", "2021");
-        sensoInput.put("carValue", "10000");
-        sensoInput.put("loanStartDate", "2021-12-01");
+        sensoInput.put("balance", "10000");
+        sensoInput.put("credit_score", "780");
+        sensoInput.put("loan_age", "36");
+        sensoInput.put("vehicle_make", "Honda");
+        sensoInput.put("vehicle_model", "Civic");
+        sensoInput.put("vehicle_year", "2021");
+        sensoInput.put("car_value", "10000");
+        sensoInput.put("loan_start_date", "2021-12-01");
     }
 
     @Test
@@ -150,11 +149,11 @@ class UserTest {
 
     @Test
     void getFinalScoreBasic() throws IOException, InterruptedException {
-        assert basic.getFinalScore(sensoInput).equals("11.00");
+        assert basic.getFinalScore(sensoInput).equals("12.00");
     }
 
     @Test
     void getFinalScoreAdvanced() throws IOException, InterruptedException {
-        assert advanced.getFinalScore(sensoInput).equals("12.40");
+        assert advanced.getFinalScore(sensoInput).equals("13.40");
     }
 }
