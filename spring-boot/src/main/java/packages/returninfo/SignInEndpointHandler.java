@@ -36,19 +36,19 @@ public class SignInEndpointHandler {
 
             // Create AuthenticateUser object
             AuthenticateUser auth = new AuthenticateUser();
-            HashMap<String, Object> hashMap = new HashMap<>();
+            HashMap<String, Object> resultMapping = new HashMap<>();
             if (auth.checkUser( body.get("username"), body.get("password") )){
                 // Valid set of credentials
                 System.out.println("==== POST Response Sent ====");
-                hashMap.put("Authentication", "Successful");
-                HttpResponseMain httpResponse = new HttpResponseMain(hashMap);
+                resultMapping.put("Authentication", "Successful");
+                HttpResponseMain httpResponse = new HttpResponseMain(resultMapping);
                 return httpResponse.getContent();
             }
             else{
                 // Invalid credentials
                 System.out.println("==== POST Response Sent ====");
-                hashMap.put("Authentication", "Unsuccessful");
-                HttpResponseMain httpResponse = new HttpResponseMain(hashMap);
+                resultMapping.put("Authentication", "Unsuccessful");
+                HttpResponseMain httpResponse = new HttpResponseMain(resultMapping);
                 return httpResponse.getContent();
             }
 
