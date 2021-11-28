@@ -22,13 +22,13 @@ class AddUserTest {
     @DisplayName("addUser: Basic Case with Simple User")
     void addUserSimple() throws SQLException {
         User user = new User(740, 1000, 5000,
-                "M4Y111", "Mike", "123");
+                "M4Y111", "Paul", "123");
 
         addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("ID", "2");
-        testMap.put("Name", "Mike");
+        testMap.put("Name", "Paul");
         testMap.put("Credit Score", "740");
         testMap.put("Location", "M4Y111");
         testMap.put("Max Downpayment", "5000");

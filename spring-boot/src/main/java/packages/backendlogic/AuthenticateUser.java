@@ -30,7 +30,7 @@ public class AuthenticateUser {
      */
     private HashMap<String, Object> getAllLogins(String username, String password) throws SQLException {
         // Writing a SQL query
-        String query = "SELECT * FROM cars.user WHERE password = '" + password +
+        String query = "SELECT * FROM cars.Users WHERE password = '" + password +
                 "' AND name = '" + username + "';";
 
         // Establish a connection and create a set of results from that query

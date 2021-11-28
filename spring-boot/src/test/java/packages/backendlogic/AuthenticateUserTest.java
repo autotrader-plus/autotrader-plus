@@ -15,7 +15,7 @@ public class AuthenticateUserTest {
 
     @Test
     void checkUserSuccess() throws SQLException {
-        assert authenticator.checkUser("Lord Pikachu", "GottaCatchThemAll");
+        assert authenticator.checkUser("Paul", "123");
     }
 
     @Test

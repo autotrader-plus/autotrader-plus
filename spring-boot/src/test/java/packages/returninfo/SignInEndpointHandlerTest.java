@@ -20,8 +20,8 @@ class SignInEndpointHandlerTest {
 
     @Test
     void httpResponseSensoSuccessCredentials() {
-        mapping.put("username", "Lord Pikachu");
-        mapping.put("password", "GottaCatchThemAll");
+        mapping.put("username", "Paul");
+        mapping.put("password", "123");
 
         String request = gsonObj.toJson(mapping);
 
