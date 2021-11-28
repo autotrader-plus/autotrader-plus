@@ -12,7 +12,7 @@ public class UserFactory {
      * @return a User object
      */
     public User createUser(HashMap<String, String> user){
-        if (user.size() == 5){
+        if (user.size() == 6){
             return new User(Integer.parseInt(user.get("credit-score")),
                     Integer.parseInt( user.get("monthlybudget")),
                     Integer.parseInt( user.get("downpayment")), user.get("zip-code"),
