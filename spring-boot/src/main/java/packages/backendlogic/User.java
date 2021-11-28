@@ -1,7 +1,5 @@
 package packages.backendlogic;
 
-import packages.connectouterentity.ConnectSensoScoreAPI;
-
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -187,26 +185,12 @@ public class User {
     }
 
     /**
-     * Gets the User's Senso score given specific loan and car details
-     * @return A String representing the User's Senso score
-     */
-    public String getSensoScore(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
-
-        ConnectSensoScoreAPI sensoScore = new ConnectSensoScoreAPI(sensoInput);
-        HashMap<String, Object> sensoReturn = sensoScore.getReturnInfo();
-        if (sensoReturn.size() > 1){
-            return "Error 400 or Error 500";
-        }
-        else{
-            return (String) sensoReturn.get("sensoScore");
-        }
-    }
-
-    /**
      * Gets the User's final score
      * @return A string representing the User's final score
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
      */
-    public String getFinalScore(String sensoScore) {
+    public String getFinalScore(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
         int employed;
         int homeowner;
 
@@ -224,8 +208,8 @@ public class User {
             homeowner = 0;
         }
 
-        LoanTableCalculation loanTable = new LoanTableCalculation(creditScore, employed, homeowner, Double.parseDouble(this.getPTI()),
-                Double.parseDouble(this.getDTI()), sensoScore);
+        LoanTableCalculation loanTable = new LoanTableCalculation(creditScore, employed, homeowner,
+                Double.parseDouble(this.getPTI()), Double.parseDouble(this.getDTI()), sensoInput);
 
         DecimalFormat twoDecimals = new DecimalFormat("#0.00");
         return twoDecimals.format(loanTable.getFinalScore());

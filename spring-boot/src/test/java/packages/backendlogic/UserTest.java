@@ -1,6 +1,5 @@
 package packages.backendlogic;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +10,22 @@ import java.util.HashMap;
 class UserTest {
     User basic;
     User advanced;
-    HashMap<String, String> sensoInputVeryHigh, sensoInputHigh, sensoInputMedium, sensoInputLow, sensoInputVeryLow;
+    HashMap<String, String> sensoInput;
 
     @BeforeEach
     void setUp() {
         this.basic = new User(750, 300, 200, "M4Y111", "Bob Du");
         this.advanced = new User(700, 400, 100, "111M4Y", "Dod Bu",
                 4000, true, true, 1000);
+        sensoInput = new HashMap<>();
+        sensoInput.put("remainingBalance", "10000");
+        sensoInput.put("creditScore", "780");
+        sensoInput.put("loanAge", "36");
+        sensoInput.put("vehicleMake", "Honda");
+        sensoInput.put("vehicleModel", "Civic");
+        sensoInput.put("vehicleYear", "2021");
+        sensoInput.put("carValue", "10000");
+        sensoInput.put("loanStartDate", "2021-12-01");
     }
 
     @Test
@@ -140,213 +148,13 @@ class UserTest {
         assert this.advanced.getPTI().equals("0.10");
     }
 
-    @Before
-    void setUpGetSensoScoreBasicVeryHigh(){
-        sensoInputVeryHigh = new HashMap<>();
-        sensoInputVeryHigh.put("remainingBalance", "10000");
-        sensoInputVeryHigh.put("creditScore", "780");
-        sensoInputVeryHigh.put("loanAge", "36");
-        sensoInputVeryHigh.put("vehicleMake", "Honda");
-        sensoInputVeryHigh.put("vehicleModel", "Civic");
-        sensoInputVeryHigh.put("vehicleYear", "2021");
-        sensoInputVeryHigh.put("carValue", "10000");
-        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
+    @Test
+    void getFinalScoreBasic() throws IOException, InterruptedException {
+        assert basic.getFinalScore(sensoInput).equals("11.00");
     }
 
     @Test
-    // NOT WORKING RIGHT NOW
-    void getSensoScoreBasicVeryHigh() throws IOException, InterruptedException {
-        String expected = "Very High";
-        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-    }
-
-//    @Before
-//    void setUpGetSensoScoreAdvancedVeryHigh(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreAdvancedVeryHigh() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreBasicHigh(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//    // NOT WORKING RIGHT NOW
-//    void getSensoScoreBasicHigh() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreAdvancedHigh(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreAdvancedHigh() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreBasicMedium(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreBasicMedium() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreAdvancedMedium(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreAdvancedMedium() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreBasicLow(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreBasicLow() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreAdvancedLow(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreAdvancedLow() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreBasicVeryLow(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreBasicVeryLow() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-//
-//    @Before
-//    void setUpGetSensoScoreAdvancedVeryLow(){
-//        sensoInputVeryHigh = new HashMap<>();
-//        sensoInputVeryHigh.put("remainingBalance", "10000");
-//        sensoInputVeryHigh.put("creditScore", "780");
-//        sensoInputVeryHigh.put("loanAge", "36");
-//        sensoInputVeryHigh.put("vehicleMake", "Honda");
-//        sensoInputVeryHigh.put("vehicleModel", "Civic");
-//        sensoInputVeryHigh.put("vehicleYear", "2021");
-//        sensoInputVeryHigh.put("carValue", "10000");
-//        sensoInputVeryHigh.put("loanStartDate", "2021-12-01");
-//    }
-//
-//    @Test
-//        // NOT WORKING RIGHT NOW
-//    void getSensoScoreAdvancedVeryLow() throws IOException, InterruptedException {
-//        String expected = "Very High";
-//        assert basic.getSensoScore(sensoInputVeryHigh).equals(expected);
-//    }
-
-    @Test
-    void getFinalScoreBasic() {
-        assert basic.getFinalScore("Very High").equals("11.00");
-    }
-
-    @Test
-    void getFinalScoreAdvanced() {
-        assert advanced.getFinalScore("Very High").equals("12.40");
+    void getFinalScoreAdvanced() throws IOException, InterruptedException {
+        assert advanced.getFinalScore(sensoInput).equals("12.40");
     }
 }
