@@ -18,6 +18,7 @@ public class User {
     private final boolean employed;
     private final boolean homeowner;
     private final int monthlyDebt;
+    private final String password;
 
     /**
      * Creates a basic User Object based on provided information
@@ -26,13 +27,15 @@ public class User {
      * @param downPayment The User's down payment
      * @param zipCode The User's zip code
      * @param name The User's name
+     * @param User's login password
      */
-    public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name){
+    public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name, String password){
         this.creditScore = creditScore;
         this.monthlyBudget = monthlyBudget;
         this.downPayment = downPayment;
         this.zipCode = zipCode;
         this.name = name;
+        this.password = password;
         this.monthlyIncome = 0; //set to 0 as default
         this.employed = false;  //set to false as default
         this.homeowner = false; //set to false as default
@@ -51,13 +54,14 @@ public class User {
      * @param homeowner The User's homeowner status
      * @param monthlyDebt The User's monthly debt
      */
-    public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name, int monthlyIncome,
-                boolean employed, boolean homeowner, int monthlyDebt){
+    public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name,
+                String password, int monthlyIncome, boolean employed, boolean homeowner, int monthlyDebt){
         this.creditScore = creditScore;
         this.monthlyBudget = monthlyBudget;
         this.downPayment = downPayment;
         this.zipCode = zipCode;
         this.name = name;
+        this.password = password;
         this.monthlyIncome = monthlyIncome;
         this.employed = employed;
         this.homeowner = homeowner;
@@ -115,6 +119,14 @@ public class User {
     }
 
     /**
+     * Gets the User's password
+     * @return A string representing the User's password
+     */
+    public String getPassword() {
+        return this.password;
+    }
+
+    /**
      * Gets the User's down payment
      * @return A string representing the User's down payment
      */
@@ -164,7 +176,7 @@ public class User {
      * Gets the User's debt to income ratio (DTI)
      * @return A String representing this User's DTI
      */
-    public String getDTI() {
+    public String getDTI(){
         if (monthlyIncome == 0){
             return "0.00";
         }
@@ -176,7 +188,7 @@ public class User {
      * Gets the User's payment to income ratio (PTI)
      * @return A String representing this User's PTI
      */
-    public String getPTI() {
+    public String getPTI(){
         if (monthlyIncome == 0){
             return "0.00";
         }

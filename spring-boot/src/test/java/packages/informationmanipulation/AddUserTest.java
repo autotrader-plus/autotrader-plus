@@ -21,13 +21,19 @@ class AddUserTest {
     @Test
     @DisplayName("addUser: Basic Case with Simple User")
     void addUserSimple() throws SQLException {
-        User user = new User(740, 1000, 5000, "M4Y111", "Mike");
+        HashMap<String, String> user = new HashMap<>();
+        user.put("credit-score", "740");
+        user.put("monthlybudget", "1000");
+        user.put("downpayment", "5000");
+        user.put("zip-code", "M4Y111");
+        user.put("name", "Paul");
+        user.put("password", "123");
 
         addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("ID", "2");
-        testMap.put("Name", "Mike");
+        testMap.put("Name", "Paul");
         testMap.put("Credit Score", "740");
         testMap.put("Location", "M4Y111");
         testMap.put("Max Downpayment", "5000");
@@ -36,6 +42,7 @@ class AddUserTest {
         testMap.put("Employment Status", "not Employed");
         testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
+        testMap.put("password", "123");
 
         assert testMap.equals(returnUserInformation.returnUser(2));
     }
@@ -43,9 +50,20 @@ class AddUserTest {
     @Test
     @DisplayName("addUser: Basic Case with Detailed User")
     void addUserDetailed() throws SQLException {
-        User user = new User(730, 1000, 5000, "M4Y111", "Mike",
-                8500, true, true, 500);
+        new User(730, 1000, 5000, "M4Y111", "Mike",
+                "1234", 8500, true, true, 500);
 
+        HashMap<String, String> user = new HashMap<>();
+        user.put("credit-score", "730");
+        user.put("monthlybudget", "1000");
+        user.put("downpayment", "5000");
+        user.put("zip-code", "M4Y111");
+        user.put("name", "Mike");
+        user.put("password", "1234");
+        user.put("monthlyincome", "8500");
+        user.put("employed", "employed");
+        user.put("homeowner", "homeowner");
+        user.put("monthlydebt", "500");
         addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
@@ -59,6 +77,7 @@ class AddUserTest {
         testMap.put("Employment Status", "Employed");
         testMap.put("Homeowner", "Homeowner");
         testMap.put("Monthly Debt Obligation", "500");
+        testMap.put("password", "1234");
 
         assert testMap.equals(returnUserInformation.returnUser(1));
     }

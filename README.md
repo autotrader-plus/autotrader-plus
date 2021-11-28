@@ -12,22 +12,22 @@ The project follows standard Java code style, SOLID and Clean Architecture princ
 - Amazon RDS is used to host the backend SQL database
 - Amazon Amplify is used to host the web application (You can find the frontend repo here: https://github.com/autotrader-plus/traderautoplus-app)
 ## Features
-- Provide users a list of loans for specific cars, and the likelihood of getting approval for each loan based on monthly income, credit score, employment status, homeowner status, monthly budget, car price and a variety of other factors.
+- Provide users a list of loans for specific cars, and the likelihood of getting approval for each loan based on monthly income, credit score, employment status, homeowner status, monthly budget, car price, likelihood of prepayment and a variety of other factors.
 - Allow user to select car preferences so that the loans are only calculated for the cars that they are interested in buying.
 - Provide opportunities through embedded links to directly connect with AutoCapital Canada to move forward with the purchase journey. 
 ## Build & Installation
 This gradle project officially runs on an EC2 instance. However, if you wish to run and test the server on localhost, you can run the following commands:
-```aidl
+```
 ./gradlew bootRun
 ```
 If you wish to build a runnable JAR file, use the following commands:
-```aidl
+```
 ./gradlew build
 ```
 You can find the built JAR file in build/libs/ folder.
 ## Tests
 All the unit and integration test codes are in src/test/java/packages. You can run the tests by the following command:
-```aidl
+```
 ./gradlew test
 ```
 Mockito is used to mocked the database connection for unit testing.
@@ -35,10 +35,12 @@ Mockito is used to mocked the database connection for unit testing.
 Go to our web application: , and start exploring!
 ## Contribute
 Feel free to clone the project to make any changes, and submit issues and pull requests for any changes you made.
-##Credits
+## Credits
 - Senso.AI for providing SENSO API for calculating car loans and prepayment score.
 - AutoCapital Canada for providing us guidance and ideas on some important factors to take into account when calculating loan approval rates.
 ## Copyright Information
-Copyright (c) 2021 by TraderAuto+ (Jia Hao Choo, Ameen Parthab, Sophie Sun, Elizabeth Li, Daniel Xu)
+Copyright &copy; 2021 by TraderAuto+ (Jia Hao Choo, Ameen Parthab, Sophie Sun, Elizabeth Li, Daniel Xu)
 ## License
 MIT License
+## Project Overview & Design Document
+Refer to this link https://docs.google.com/document/d/1OcmVCF8BMy_4sPtb10DrRi6bBuK8ByrrsmzZ95AeQU0/edit?usp=sharing for a detailed project overview and design.

@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import packages.responseformatting.HttpResponseMain;
+import packages.responseformatting.HttpRequestParser;
 
 /** This class handles HTTP request to the "/traderauto-plus" endpoint. **/
 @RestController
@@ -26,7 +26,7 @@ public class ServerMainEndpointHandler {
 
     /**
      * This method handles HTTP request coming into the "/traderauto-plus" endpoint. It processes information from the request
-     * body and returns information back to the client.
+     * body and returns information back to the client. This endpoint assumes that all users that go through here are new users.
      *
      * @param reqBody - the body of the http request from the client
      * @return A HTTP Response back to the client.
@@ -36,7 +36,8 @@ public class ServerMainEndpointHandler {
     public String httpResponseSenso(@RequestBody() String reqBody) {
         System.out.println("==== POST Request Received ====");
         try {
-            HashMap<String, String> body = parseRequestBody(reqBody);
+            HttpRequestParser parser = new HttpRequestParser();
+            HashMap<String, String> body = parser.parseRequestBody(reqBody);
 
             //get car list based on user's preference, otherwise get all cars from database
             ArrayList<HashMap<String, Object>> filtered_cars;
@@ -46,16 +47,16 @@ public class ServerMainEndpointHandler {
                 filtered_cars = getAllCars();
             }
 
-
             body.remove("car-preference");
+            addUserToDatabase(body);
 
             // calculate loans for all cars that are filtered and create a response to send back to the client
             LoanInfoInterface loans = new Loans(body, filtered_cars);
             HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
 
-            HttpResponseMain http_response = new HttpResponseMain(loans_list);
+            HttpResponseMain httpResponse = new HttpResponseMain(loans_list);
             System.out.println("==== POST Response Sent ====");
-            return http_response.getContent();
+            return httpResponse.getContent();
         } catch (SensoConnectionFailureException|JsonProcessingException|DatabaseConnectionFailureException e){
             e.printStackTrace();
             System.err.println("Error: " + e.getMessage());
@@ -66,26 +67,12 @@ public class ServerMainEndpointHandler {
     }
 
     /**
-     * Parse the request body
-     * @param reqBody - a string representation of the request json
-     * @return a hashmap representation of the request json
-     * @throws JsonProcessingException - error thrown when json cannot be processed
-     */
-    private HashMap<String, String> parseRequestBody(String reqBody) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        HashMap<String, String> userInfoHash = objectMapper.readValue(reqBody, HashMap.class);
-
-        return userInfoHash;
-    }
-
-
-    /**
      * Get filtered car list based on carType specified in the http request body
      * @param carType - the carType to return from the database
      * @return an array list of cars that fit the carType
      * @throws DatabaseConnectionFailureException If failed to connect to the database
      */
-    ArrayList<HashMap<String, Object>> getFilteredCars(String carType) throws DatabaseConnectionFailureException {
+    private ArrayList<HashMap<String, Object>> getFilteredCars(String carType) throws DatabaseConnectionFailureException {
         try {
             ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
             return returnMultipleCars.returnFilteredCars(carType);
@@ -102,10 +89,24 @@ public class ServerMainEndpointHandler {
      */
     private ArrayList<HashMap<String, Object>> getAllCars() throws DatabaseConnectionFailureException {
         try {
-            ReturnMultipleCars r = new ReturnMultipleCars();
-            return r.returnAllCars();
+            ReturnMultipleCars connection = new ReturnMultipleCars();
+            return connection.returnAllCars();
         } catch(SQLException e){
             e.printStackTrace();
+            throw new DatabaseConnectionFailureException();
+        }
+    }
+
+    /**
+     * Add user to databae
+     * @param user - the user hashmap containing user information
+     * @throws DatabaseConnectionFailureException error thrown if failure happens when connecting to the database
+     */
+    private void addUserToDatabase(HashMap<String, String> user) throws DatabaseConnectionFailureException {
+        try {
+            AddUser connection = new AddUser();
+            connection.addUser(user);
+        } catch(SQLException e){
             throw new DatabaseConnectionFailureException();
         }
     }

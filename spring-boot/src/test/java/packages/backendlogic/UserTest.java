@@ -78,6 +78,15 @@ class UserTest {
     }
 
     @Test
+    void getPasswordBasic(){
+        assert this.basic.getPassword().equals("123");
+    }
+
+    void getPasswordAdvanced(){
+        assert this.advanced.getPassword().equals("1234");
+    }
+
+    @Test
     void getDownPaymentBasic() {
         assert this.basic.getDownPayment().equals("200");
     }
@@ -138,12 +147,13 @@ class UserTest {
     }
 
     @Test
-    void getPTIBasic() {
+    void getPTIBasic(){
         assert this.basic.getPTI().equals("0.00");
     }
 
     @Test
-    void getPTIAdvanced() {
+    void getPTIAdvanced(){
         assert this.advanced.getPTI().equals("0.10");
     }
+
 }

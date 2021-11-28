@@ -23,7 +23,7 @@ class ReturnUserInformationTest {
 
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("ID", "2");
-        testMap.put("Name", "Mike");
+        testMap.put("Name", "Paul");
         testMap.put("Credit Score", "740");
         testMap.put("Location", "M4Y111");
         testMap.put("Max Downpayment", "5000");
@@ -32,6 +32,7 @@ class ReturnUserInformationTest {
         testMap.put("Employment Status", "not Employed");
         testMap.put("Homeowner", "not Homeowner");
         testMap.put("Monthly Debt Obligation", "0");
+        testMap.put("password", "123");
 
         assert Objects.equals(testMap, returnUserInformation.returnUser(user_id));
     }
@@ -52,6 +53,7 @@ class ReturnUserInformationTest {
         testMap.put("Employment Status", "Employed");
         testMap.put("Homeowner", "Homeowner");
         testMap.put("Monthly Debt Obligation", "500");
+        testMap.put("password", "1234");
 
         assert Objects.equals(testMap, returnUserInformation.returnUser(user_id));
     }

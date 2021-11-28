@@ -25,6 +25,7 @@ class LoansTest {
         userInfo.put("downpayment", "200");
         userInfo.put("zip-code", "M4y111");
         userInfo.put("name", "Bob Du");
+        userInfo.put("password", "123");
         loan = new Loans(userInfo, carList);
     }
     @Test

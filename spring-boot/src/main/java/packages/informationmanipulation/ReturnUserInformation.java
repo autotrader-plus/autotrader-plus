@@ -59,6 +59,7 @@ public class ReturnUserInformation {
         returnMap.put("Employment Status", myResultSet.getString("employment_status"));
         returnMap.put("Homeowner", myResultSet.getString("homeowner"));
         returnMap.put("Monthly Debt Obligation", myResultSet.getString("monthly_debt_obligations"));
+        returnMap.put("password", myResultSet.getString("password"));
         return returnMap;
     }
 

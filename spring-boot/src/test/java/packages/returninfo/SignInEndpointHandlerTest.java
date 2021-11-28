@@ -11,6 +11,7 @@ class SignInEndpointHandlerTest {
     Gson gsonObj;
     SignInEndpointHandler test;
 
+
     @BeforeEach
     void setUp(){
         mapping = new HashMap<>();
@@ -20,14 +21,14 @@ class SignInEndpointHandlerTest {
 
     @Test
     void httpResponseSensoSuccessCredentials() {
-        mapping.put("username", "Lord Pikachu");
-        mapping.put("password", "GottaCatchThemAll");
+        mapping.put("username", "Paul");
+        mapping.put("password", "123");
 
         String request = gsonObj.toJson(mapping);
 
         String response = test.httpResponseSignIn( request );
 
-        assert(Objects.equals( response, "true"));
+        assert(Objects.equals( response, "{\"Authentication\":\"Successful\"}"));
     }
     
     @Test
@@ -39,7 +40,7 @@ class SignInEndpointHandlerTest {
 
         String response = test.httpResponseSignIn( request );
 
-        assert(Objects.equals( response, ""));
+        assert(Objects.equals( response, "{\"Authentication\":\"Unsuccessful\"}"));
     }
 
 }
