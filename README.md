@@ -17,17 +17,17 @@ The project follows standard Java code style, SOLID and Clean Architecture princ
 - Provide opportunities through embedded links to directly connect with AutoCapital Canada to move forward with the purchase journey. 
 ## Build & Installation
 This gradle project officially runs on an EC2 instance. However, if you wish to run and test the server on localhost, you can run the following commands:
-```aidl
+```
 ./gradlew bootRun
 ```
 If you wish to build a runnable JAR file, use the following commands:
-```aidl
+```
 ./gradlew build
 ```
 You can find the built JAR file in build/libs/ folder.
 ## Tests
 All the unit and integration test codes are in src/test/java/packages. You can run the tests by the following command:
-```aidl
+```
 ./gradlew test
 ```
 Mockito is used to mocked the database connection for unit testing.
