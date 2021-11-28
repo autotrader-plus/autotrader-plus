@@ -20,6 +20,7 @@ class UserFactoryTest {
         user_info.put("downpayment", "1000");
         user_info.put("zip-code", "M5S 1S5");
         user_info.put("name", "Paul");
+        user_info.put("password", "123");
 
         user = user_info;
 
@@ -33,6 +34,7 @@ class UserFactoryTest {
         user_info2.put("employed", "employed");
         user_info2.put("homeowner", "homeowner");
         user_info2.put("monthlydebt", "500");
+        user_info.put("password", "123");
 
         userAdvanced = user_info2;
 

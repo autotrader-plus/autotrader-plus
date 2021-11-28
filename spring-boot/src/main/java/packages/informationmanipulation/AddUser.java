@@ -37,7 +37,8 @@ public class AddUser {
 
     /**
      * Add a user to the database. Does not return anything.
-     * @param user the user who we are recording data for. Note that this parameter is type User.
+     * @param user the user who we are recording data for.
+     * @param User
      */
     public void addUser(HashMap<String, String> User) throws SQLException {
         UserFactory userfactory = new UserFactory();

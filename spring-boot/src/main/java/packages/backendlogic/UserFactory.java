@@ -21,10 +21,10 @@ public class UserFactory {
             return new User(Integer.parseInt( user.get("credit-score")),
                     Integer.parseInt( user.get("monthlybudget")),
                     Integer.parseInt( user.get("downpayment")), user.get("zip-code"),
-                    user.get("name"), user.get("password"), Integer.parseInt( user.get("monthlyincome")),
+                    user.get("name"), user.get("password"), Integer.parseInt(user.get("monthlyincome")),
                     user.get("employed").equals("employed"),
                     user.get("homeowner").equals("homeowner"),
-                    Integer.parseInt( user.get("monthlydebt")));
+                    Integer.parseInt(user.get("monthlydebt")));
         }
     }
 }
