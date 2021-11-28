@@ -26,7 +26,7 @@ public class ServerMainEndpointHandler {
 
     /**
      * This method handles HTTP request coming into the "/traderauto-plus" endpoint. It processes information from the request
-     * body and returns information back to the client.
+     * body and returns information back to the client. This endpoint assumes that all users that go through here are new users.
      *
      * @param reqBody - the body of the http request from the client
      * @return A HTTP Response back to the client.
@@ -46,8 +46,8 @@ public class ServerMainEndpointHandler {
                 filtered_cars = getAllCars();
             }
 
-
             body.remove("car-preference");
+            addUserToDatabase(body);
 
             // calculate loans for all cars that are filtered and create a response to send back to the client
             LoanInfoInterface loans = new Loans(body, filtered_cars);
@@ -85,7 +85,7 @@ public class ServerMainEndpointHandler {
      * @return an array list of cars that fit the carType
      * @throws DatabaseConnectionFailureException If failed to connect to the database
      */
-    ArrayList<HashMap<String, Object>> getFilteredCars(String carType) throws DatabaseConnectionFailureException {
+    private ArrayList<HashMap<String, Object>> getFilteredCars(String carType) throws DatabaseConnectionFailureException {
         try {
             ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
             return returnMultipleCars.returnFilteredCars(carType);
@@ -102,10 +102,19 @@ public class ServerMainEndpointHandler {
      */
     private ArrayList<HashMap<String, Object>> getAllCars() throws DatabaseConnectionFailureException {
         try {
-            ReturnMultipleCars r = new ReturnMultipleCars();
-            return r.returnAllCars();
+            ReturnMultipleCars connection = new ReturnMultipleCars();
+            return connection.returnAllCars();
         } catch(SQLException e){
             e.printStackTrace();
+            throw new DatabaseConnectionFailureException();
+        }
+    }
+
+    private void addUserToDatabase(HashMap<String, String> user) throws DatabaseConnectionFailureException {
+        try {
+            AddUser connection = new AddUser();
+            connection.addUser(user);
+        } catch(SQLException e){
             throw new DatabaseConnectionFailureException();
         }
     }

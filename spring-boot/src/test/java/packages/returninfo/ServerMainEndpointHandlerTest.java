@@ -21,6 +21,7 @@ class ServerMainEndpointHandlerTest {
         mapping.put("name", "Paul");
         mapping.put("credit-score", "770");
         mapping.put("monthlybudget", "5000");
+        mapping.put("password", "123");
 
         Gson gsonObj = new Gson();
         String request = gsonObj.toJson(mapping);
@@ -48,6 +49,7 @@ class ServerMainEndpointHandlerTest {
         mapping.put("name", "Paul");
         mapping.put("credit-score", "770");
         mapping.put("monthlybudget", "5000");
+        mapping.put("password", "123");
 
         Gson gsonObj = new Gson();
         String request = gsonObj.toJson(mapping);
