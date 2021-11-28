@@ -22,8 +22,8 @@ public class ReturnDatabaseInfo {
     public HashMap<String, Object> getContent(int carId) throws DatabaseConnectionFailureException {
 
         try {
-            ReturnCarInformation db_object = new ReturnCarInformation();
-            return db_object.returnCarDetails(carId);
+            ReturnCarInformation dbObject = new ReturnCarInformation();
+            return dbObject.returnCarDetails(carId);
         } catch(SQLException e){
             e.printStackTrace();
             throw new DatabaseConnectionFailureException();

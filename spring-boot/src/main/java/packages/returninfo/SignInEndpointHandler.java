@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import packages.responseformatting.HttpResponseMain;
 
 /** This class handles HTTP request to the "/signin" endpoint. **/
 @RestController
@@ -35,15 +36,20 @@ public class SignInEndpointHandler {
 
             // Create AuthenticateUser object
             AuthenticateUser auth = new AuthenticateUser();
+            HashMap<String, Object> resultMapping = new HashMap<>();
             if (auth.checkUser( body.get("username"), body.get("password") )){
                 // Valid set of credentials
                 System.out.println("==== POST Response Sent ====");
-                return "true";
+                resultMapping.put("Authentication", "Successful");
+                HttpResponseMain httpResponse = new HttpResponseMain(resultMapping);
+                return httpResponse.getContent();
             }
             else{
                 // Invalid credentials
                 System.out.println("==== POST Response Sent ====");
-                return "";
+                resultMapping.put("Authentication", "Unsuccessful");
+                HttpResponseMain httpResponse = new HttpResponseMain(resultMapping);
+                return httpResponse.getContent();
             }
 
         } catch (JsonProcessingException | SQLException e){

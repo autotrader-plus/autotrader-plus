@@ -53,9 +53,9 @@ public class ServerMainEndpointHandler {
             LoanInfoInterface loans = new Loans(body, filtered_cars);
             HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
 
-            HttpResponseMain http_response = new HttpResponseMain(loans_list);
+            HttpResponseMain httpResponse = new HttpResponseMain(loans_list);
             System.out.println("==== POST Response Sent ====");
-            return http_response.getContent();
+            return httpResponse.getContent();
         } catch (SensoConnectionFailureException|JsonProcessingException|DatabaseConnectionFailureException e){
             e.printStackTrace();
             System.err.println("Error: " + e.getMessage());
