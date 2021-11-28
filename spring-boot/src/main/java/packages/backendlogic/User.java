@@ -1,12 +1,11 @@
 package packages.backendlogic;
 
-import packages.connectouterentity.ConnectSensoRateAPI;
 import packages.connectouterentity.ConnectSensoScoreAPI;
-import packages.connectouterentity.SensoAPIInterface;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
+
 
 /**
  * Represents a User Object based on the user info inputted by the user from the frontend

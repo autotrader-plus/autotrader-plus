@@ -22,7 +22,6 @@ public class LoanTable {
     public final double PTI_RANGE3_MAX = 0.12;
     public final double PTI_RANGE4_MIN = 0.09;
     public final double PTI_RANGE4_MAX = 0.1;
-    public final double PTI_RANGE5 = 0.09;
 
     public final double DTI_RANGE1 = 0.5;
     public final double DTI_RANGE2_MIN = 0.4;
