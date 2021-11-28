@@ -3,7 +3,7 @@ package packages.backendlogic;
 import java.io.IOException;
 import java.util.HashMap;
 import packages.connectouterentity.ConnectSensoScoreAPI;
-
+import packages.connectouterentity.SensoAPIInterface;
 
 
 /**
@@ -238,8 +238,8 @@ public class LoanTableCalculation {
      * @throws InterruptedException exception thrown when process interrupted
      */
     private String calculateSensoScore(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
-        ConnectSensoScoreAPI connect = new ConnectSensoScoreAPI(sensoInput);
-        HashMap<String, Object> sensoReturn = connect.getReturnInfo();
+        SensoAPIInterface connect = new ConnectSensoScoreAPI(sensoInput);
+        HashMap<String, Object> sensoReturn = connect.pingSensoAPI(sensoInput);
         if (sensoReturn.size() > 1){
             return "Error 400 or 500";
         }
