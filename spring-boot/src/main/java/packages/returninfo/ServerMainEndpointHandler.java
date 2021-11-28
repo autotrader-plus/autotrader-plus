@@ -49,6 +49,8 @@ public class ServerMainEndpointHandler {
 
             body.remove("car-preference");
 
+
+
             // calculate loans for all cars that are filtered and create a response to send back to the client
             LoanInfoInterface loans = new Loans(body, filtered_cars);
             HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
@@ -85,7 +87,7 @@ public class ServerMainEndpointHandler {
      * @return an array list of cars that fit the carType
      * @throws DatabaseConnectionFailureException If failed to connect to the database
      */
-    ArrayList<HashMap<String, Object>> getFilteredCars(String carType) throws DatabaseConnectionFailureException {
+    private ArrayList<HashMap<String, Object>> getFilteredCars(String carType) throws DatabaseConnectionFailureException {
         try {
             ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
             return returnMultipleCars.returnFilteredCars(carType);
@@ -102,8 +104,8 @@ public class ServerMainEndpointHandler {
      */
     private ArrayList<HashMap<String, Object>> getAllCars() throws DatabaseConnectionFailureException {
         try {
-            ReturnMultipleCars r = new ReturnMultipleCars();
-            return r.returnAllCars();
+            ReturnMultipleCars connection = new ReturnMultipleCars();
+            return connection.returnAllCars();
         } catch(SQLException e){
             e.printStackTrace();
             throw new DatabaseConnectionFailureException();
