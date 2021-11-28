@@ -137,12 +137,12 @@ class UserTest {
     }
 
     @Test
-    void getPTIBasic() {
+    void getPTIBasic(){
         assert this.basic.getPTI().equals("0.00");
     }
 
     @Test
-    void getPTIAdvanced() {
+    void getPTIAdvanced(){
         assert this.advanced.getPTI().equals("0.10");
     }
 
