@@ -1,5 +1,6 @@
 package packages.returninfo;
 
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import packages.exceptions.DatabaseConnectionFailureException;
 
@@ -32,7 +33,14 @@ class ReturnDatabaseInfoTest {
                 "\"Photo\":\"https://www.hyundaionhuntclub.com/vimgs/usd00hyc031d022004/IOF_H600/ColourPhotoSample_0.jpg\"," +
                 "\"ID\":\"1\",\"Cost\":\"35649\"," +
                 "\"Dealership\":\"Guelph Hyundai\"}";
-        String result = test.httpResponseMain("1");
+
+        HashMap<String, String> request = new HashMap<>();
+        request.put("key", "1");
+
+        Gson gsonObj = new Gson();
+        String requestJson = gsonObj.toJson(request);
+
+        String result = test.httpResponseMain(requestJson);
         assert(Objects.equals(result, expected));
     }
 }

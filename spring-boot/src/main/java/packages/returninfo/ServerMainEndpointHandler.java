@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import packages.responseformatting.HttpResponseMain;
+import packages.responseformatting.HttpRequestParser;
 
 /** This class handles HTTP request to the "/traderauto-plus" endpoint. **/
 @RestController
@@ -36,7 +36,8 @@ public class ServerMainEndpointHandler {
     public String httpResponseSenso(@RequestBody() String reqBody) {
         System.out.println("==== POST Request Received ====");
         try {
-            HashMap<String, String> body = parseRequestBody(reqBody);
+            HttpRequestParser parser = new HttpRequestParser();
+            HashMap<String, String> body = parser.parseRequestBody(reqBody);
 
             //get car list based on user's preference, otherwise get all cars from database
             ArrayList<HashMap<String, Object>> filtered_cars;
@@ -64,20 +65,6 @@ public class ServerMainEndpointHandler {
         // loans information is not returned due to senso api connection failure, returns error message instead
         return "Unable to retrieve loan information. Please try again!";
     }
-
-    /**
-     * Parse the request body
-     * @param reqBody - a string representation of the request json
-     * @return a hashmap representation of the request json
-     * @throws JsonProcessingException - error thrown when json cannot be processed
-     */
-    private HashMap<String, String> parseRequestBody(String reqBody) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        HashMap<String, String> userInfoHash = objectMapper.readValue(reqBody, HashMap.class);
-
-        return userInfoHash;
-    }
-
 
     /**
      * Get filtered car list based on carType specified in the http request body
@@ -110,6 +97,11 @@ public class ServerMainEndpointHandler {
         }
     }
 
+    /**
+     * Add user to databae
+     * @param user - the user hashmap containing user information
+     * @throws DatabaseConnectionFailureException error thrown if failure happens when connecting to the database
+     */
     private void addUserToDatabase(HashMap<String, String> user) throws DatabaseConnectionFailureException {
         try {
             AddUser connection = new AddUser();

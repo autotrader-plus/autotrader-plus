@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import packages.responseformatting.HttpResponseMain;
+import packages.responseformatting.HttpRequestParser;
 
 /** This class handles HTTP request to the "/signin" endpoint. **/
 @RestController
@@ -32,7 +32,8 @@ public class SignInEndpointHandler {
         try {
             // format of
             // {"username": username, "password": password}
-            HashMap<String, String> body = parseRequestBody(reqBody);
+            HttpRequestParser parser = new HttpRequestParser();
+            HashMap<String, String> body = parser.parseRequestBody(reqBody);
 
             // Create AuthenticateUser object
             AuthenticateUser auth = new AuthenticateUser();
@@ -60,18 +61,4 @@ public class SignInEndpointHandler {
         // JSON processing or SQL error occurred, print this error message
         return "Unable to process JSON or SQL error, please try again!";
     }
-
-    /**
-     * Parse the request body
-     * @param reqBody - a string representation of the request json
-     * @return a hashmap representation of the request json
-     * @throws JsonProcessingException - error thrown when json cannot be processed
-     */
-    private HashMap<String, String> parseRequestBody(String reqBody) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        HashMap<String, String> userInfoHash = objectMapper.readValue(reqBody, HashMap.class);
-
-        return userInfoHash;
-    }
-
 }
