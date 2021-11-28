@@ -7,7 +7,7 @@ import packages.connectouterentity.SensoAPIInterface;
 
 
 /**
- * Represents a calculation using the loan table given information speciifc to the user.
+ * Represents a calculation using the loan table given information specific to the user.
  */
 public class LoanTableCalculation {
     private final LoanTableConstant constant = new LoanTableConstant();
