@@ -1,5 +1,8 @@
 package packages.backendlogic;
 
+/**
+ * Class of constants used in LoanTableCalculation.java
+ */
 public class LoanTableConstant {
     public final int CREDIT_SCORE_RANGE1_MIN = 300;
     public final int CREDIT_SCORE_RANGE1_MAX = 500;
@@ -27,15 +30,15 @@ public class LoanTableConstant {
     public final double DTI_RANGE4_MIN = 0.3;
     public final double DTI_RANGE4_MAX = 0.36;
 
-    public final double SCORE2 = 0.2;
-    public final double SCORE3 = 0.3;
-    public final double SCORE45 = 0.45;
-    public final double SCORE5 = 0.5;
-    public final double SCORE65 = 0.65;
-    public final double SCORE7 = 0.7;
-    public final double SCORE8 = 0.8;
-    public final double SCORE85 = 0.85;
-    public final double SCORE1 = 1.0;
+    public final double SCORE1 = 0.2;
+    public final double SCORE2 = 0.3;
+    public final double SCORE3 = 0.45;
+    public final double SCORE4 = 0.5;
+    public final double SCORE5 = 0.65;
+    public final double SCORE6 = 0.7;
+    public final double SCORE7 = 0.8;
+    public final double SCORE8 = 0.85;
+    public final double SCORE9 = 1.0;
 
     public final double FINAL_BASIC1 = 7.0;
     public final double FINAL_BASIC2 = 6.0;
@@ -51,11 +54,22 @@ public class LoanTableConstant {
     public final double FINAL_ADVANCED4_MIN = 6.0;
     public final double FINAL_ADVANCED4_MAX = 8.0;
 
+    public final int SENSO1 = -1;
+    public final int SENSO2 = 0;
+    public final int SENSO3 = 1;
+    public final int SENSO4 = 2;
+
     public final String VERY_HIGH = "Very High";
     public final String HIGH = "High";
     public final String MEDIUM = "Medium";
     public final String LOW = "Low";
     public final String VERY_LOW = "Very Low";
 
+    public final String GUARANTEED = "Guaranteed";
+    public final String VERY_LIKELY = "Very Likely";
+    public final String LIKELY = "Likely";
+    public final String POSSIBLE = "Possible";
+    public final String VERY_UNLIKELY = "Very Unlikely";
+    public final String ALMOST_GUARANTEED = "Almost Guaranteed";
 
 }

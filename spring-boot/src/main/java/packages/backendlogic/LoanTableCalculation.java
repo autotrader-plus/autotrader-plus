@@ -76,6 +76,11 @@ public class LoanTableCalculation {
         return sensoScore;
     }
 
+    /**
+     * Gets approval likelihood of a user
+     * @param basic Boolean of whether or not the user we want to get the approval likelihood of is a basic User or not
+     * @return A String representing the user's approval likelihood
+     */
     public String getApprovalLikelihood(boolean basic) {
         double finalScore = getFinalScore();
         if (basic){
@@ -86,39 +91,49 @@ public class LoanTableCalculation {
         }
     }
 
+    /**
+     * Helper method to calculate the approval likelihood of a basic User
+     * @param finalScore The final score of the basic User
+     * @return A String representing the basic User's approval likelihood
+     */
     private String getApprovalLikelihoodBasic(double finalScore) {
         if (finalScore == constant.FINAL_BASIC1){
-            return "Guaranteed";
+            return constant.GUARANTEED;
         }
         else if (finalScore == constant.FINAL_BASIC2){
-            return "Very Likely";
+            return constant.VERY_LIKELY;
         }
         else if (finalScore == constant.FINAL_BASIC3) {
-            return "Likely";
+            return constant.LIKELY;
         }
         else if (finalScore == constant.FINAL_BASIC4) {
-            return "Possible";
+            return constant.POSSIBLE;
         }
         else{
-            return "Very Unlikely";
+            return constant.VERY_UNLIKELY;
         }
     }
 
+    /**
+     * Helper method to calculate the approval likelihood of an advanced User
+     * @param finalScore The final score of the advanced User
+     * @return A String representing the advanced User's approval likelihood
+     */
     private String getApprovalLikelihoodAdvanced(double finalScore) {
         if (constant.FINAL_ADVANCED1_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED1_MAX){
-            return "Guaranteed";
+            return constant.ALMOST_GUARANTEED;
         }
         else if (constant.FINAL_ADVANCED2_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED2_MAX){
-            return "Very Likely";
+            return constant.VERY_LIKELY;
         }
         else if (constant.FINAL_ADVANCED3_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED3_MAX) {
-            return "Likely";
+            return constant.LIKELY;
         }
         else if (constant.FINAL_ADVANCED4_MIN <= finalScore && finalScore <= constant.FINAL_ADVANCED4_MAX) {
-            return "Possible";
+            return constant.POSSIBLE;
         }
         else{
-            return "Very Unlikely";
+            return constant.VERY_UNLIKELY;
         }
     }
 
@@ -139,23 +154,22 @@ public class LoanTableCalculation {
      * @return A double representing the score used from credit score
      */
     private double getScoreFromCreditScore() {
-        double scoreFromCreditScore;// Checking cases for credit score
+        // Checking cases for credit score
         if (creditScore >= constant.CREDIT_SCORE_RANGE1_MIN && creditScore <= constant.CREDIT_SCORE_RANGE1_MAX){
-            scoreFromCreditScore = constant.SCORE2;
+            return constant.SCORE1;
         }
         else if (creditScore >= constant.CREDIT_SCORE_RANGE2_MIN && creditScore <= constant.CREDIT_SCORE_RANGE2_MAX){
-            scoreFromCreditScore = constant.SCORE45;
+            return constant.SCORE3;
         }
         else if (creditScore >= constant.CREDIT_SCORE_RANGE3_MIN && creditScore <= constant.CREDIT_SCORE_RANGE3_MAX){
-            scoreFromCreditScore = constant.SCORE65;
+            return constant.SCORE5;
         }
         else if (creditScore >= constant.CREDIT_SCORE_RANGE4_MIN && creditScore <= constant.CREDIT_SCORE_RANGE4_MAX){
-            scoreFromCreditScore = constant.SCORE8;
+            return constant.SCORE7;
         }
         else{
-            scoreFromCreditScore = constant.SCORE1;
+            return constant.SCORE9;
         }
-        return scoreFromCreditScore;
     }
 
     /**
@@ -163,23 +177,22 @@ public class LoanTableCalculation {
      * @return A double representing the score used from PTI ratio
      */
     private double getScoreFromPTI() {
-        double scoreFromPTI;// Checking cases for PTI
+        // Checking cases for PTI
         if (PTI >= constant.PTI_RANGE1_MIN && PTI <= constant.PTI_RANGE1_MAX){
-            scoreFromPTI = constant.SCORE2;
+            return constant.SCORE1;
         }
         else if (PTI >= constant.PTI_RANGE2_MIN && PTI <= constant.PTI_RANGE2_MAX){
-            scoreFromPTI = constant.SCORE45;
+            return constant.SCORE3;
         }
         else if (PTI >= constant.PTI_RANGE3_MIN && PTI <= constant.PTI_RANGE3_MAX){
-            scoreFromPTI = constant.SCORE7;
+            return constant.SCORE6;
         }
         else if (PTI >= constant.PTI_RANGE4_MIN && PTI <= constant.PTI_RANGE4_MAX){
-            scoreFromPTI = constant.SCORE85;
+            return constant.SCORE8;
         }
         else{
-            scoreFromPTI = constant.SCORE1;
+            return constant.SCORE9;
         }
-        return scoreFromPTI;
     }
 
     /**
@@ -187,25 +200,22 @@ public class LoanTableCalculation {
      * @return A double representing the score used from DTI
      */
     private double getScoreFromDTI() {
-        double scoreFromDTI;
         // Checking cases for DTI
         if (DTI >= constant.DTI_RANGE1){
-            scoreFromDTI = constant.SCORE3;
+            return constant.SCORE2;
         }
         else if (DTI >= constant.DTI_RANGE2_MIN && DTI <= constant.DTI_RANGE2_MAX){
-            scoreFromDTI = constant.SCORE5;
+            return constant.SCORE4;
         }
         else if (DTI >= constant.DTI_RANGE3_MIN && DTI <= constant.DTI_RANGE3_MAX){
-            scoreFromDTI = constant.SCORE7;
+            return constant.SCORE6;
         }
         else if (DTI >= constant.DTI_RANGE4_MIN && DTI <= constant.DTI_RANGE4_MAX){
-            scoreFromDTI = constant.SCORE85;
+            return constant.SCORE8;
         }
         else{
-            scoreFromDTI = constant.SCORE1;
+            return constant.SCORE9;
         }
-        return scoreFromDTI;
-
     }
 
     /**
@@ -218,15 +228,16 @@ public class LoanTableCalculation {
         String sensoString = calculateSensoScore(sensoInput);
 
         if (constant.VERY_HIGH.equals(sensoString)) {
-            this.sensoScore = -1;
+            this.sensoScore = constant.SENSO1;
         } else if (constant.HIGH.equals(sensoString)) {
-            this.sensoScore = 0;
+            this.sensoScore = constant.SENSO2;
         } else if (constant.MEDIUM.equals(sensoString)) {
-            this.sensoScore = 1;
+            this.sensoScore = constant.SENSO3;
         } else if (constant.LOW.equals(sensoString) || constant.VERY_LOW.equals(sensoString)) {
-            this.sensoScore = 2;
+            this.sensoScore = constant.SENSO4;
         } else {
-            this.sensoScore = 0; // setting this as default if sensoScore didn't hit any of the proper cases
+            // setting sensoScore as 0 if it didn't hit any of the proper cases
+            this.sensoScore = constant.SENSO2;
         }
     }
 
