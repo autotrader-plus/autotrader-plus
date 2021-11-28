@@ -44,11 +44,11 @@ public class ReturnDatabaseInfo {
             HashMap<String, String> body = parser.parseRequestBody(reqBody);
             System.out.println("==== Connecting to Autotrader Database ====");
 
-            String carId = body.get("key");
+            String carID = body.get("key");
 
-            HashMap<String, Object> response = getContent(Integer.parseInt(carId));
+            HashMap<String, Object> response = getContent(Integer.parseInt(carID));
             HttpResponseMain http_response = new HttpResponseMain(response);
-            System.out.printf("==== Returning Car Information for Car %s ====%n", carId);
+            System.out.printf("==== Returning Car Information for Car %s ====%n", carID);
             return http_response.getContent();
         } catch(DatabaseConnectionFailureException|JsonProcessingException e){
             e.printStackTrace();
