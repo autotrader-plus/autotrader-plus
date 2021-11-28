@@ -35,7 +35,7 @@ Mockito is used to mocked the database connection for unit testing.
 Go to our web application: , and start exploring!
 ## Contribute
 Feel free to clone the project to make any changes, and submit issues and pull requests for any changes you made.
-##Credits
+## Credits
 - Senso.AI for providing SENSO API for calculating car loans and prepayment score.
 - AutoCapital Canada for providing us guidance and ideas on some important factors to take into account when calculating loan approval rates.
 ## Copyright Information
