@@ -21,8 +21,13 @@ class AddUserTest {
     @Test
     @DisplayName("addUser: Basic Case with Simple User")
     void addUserSimple() throws SQLException {
-        User user = new User(740, 1000, 5000,
-                "M4Y111", "Paul", "123");
+        HashMap<String, String> user = new HashMap<>();
+        user.put("creditscore", "740");
+        user.put("monthlyBudget", "1000");
+        user.put("downPayment", "5000");
+        user.put("zipCode", "M4Y111");
+        user.put("name", "Paul");
+        user.put("password", "123");
 
         addUser.addUser(user);
 
@@ -45,9 +50,20 @@ class AddUserTest {
     @Test
     @DisplayName("addUser: Basic Case with Detailed User")
     void addUserDetailed() throws SQLException {
-        User user = new User(730, 1000, 5000, "M4Y111", "Mike",
+        new User(730, 1000, 5000, "M4Y111", "Mike",
                 "1234", 8500, true, true, 500);
 
+        HashMap<String, String> user = new HashMap<>();
+        user.put("creditscore", "730");
+        user.put("monthlyBudget", "1000");
+        user.put("downPayment", "5000");
+        user.put("zipCode", "M4Y111");
+        user.put("name", "Mike");
+        user.put("password", "1234");
+        user.put("monthlyIncome", "8500");
+        user.put("employed", "employed");
+        user.put("homeowner", "homeowner");
+        user.put("monthlyDebt", "500");
         addUser.addUser(user);
 
         HashMap<String, String> testMap = new HashMap<>();
