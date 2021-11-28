@@ -39,6 +39,6 @@ Feel free to clone the project to make any changes, and submit issues and pull r
 - Senso.AI for providing SENSO API for calculating car loans and prepayment score.
 - AutoCapital Canada for providing us guidance and ideas on some important factors to take into account when calculating loan approval rates.
 ## Copyright Information
-Copyright (c) 2021 by TraderAuto+ (Jia Hao Choo, Ameen Parthab, Sophie Sun, Elizabeth Li, Daniel Xu)
+Copyright &copy; 2021 by TraderAuto+ (Jia Hao Choo, Ameen Parthab, Sophie Sun, Elizabeth Li, Daniel Xu)
 ## License
 MIT License
