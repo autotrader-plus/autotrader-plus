@@ -24,6 +24,8 @@ import packages.responseformatting.HttpRequestParser;
 @CrossOrigin(origins ="*")
 public class ServerMainEndpointHandler {
 
+    public final static String SERVER = System.getenv("SERVER_ROOT");
+
     /**
      * This method handles HTTP request coming into the "/traderauto-plus" endpoint. It processes information from the request
      * body and returns information back to the client. This endpoint assumes that all users that go through here are new users.
@@ -31,7 +33,7 @@ public class ServerMainEndpointHandler {
      * @param reqBody - the body of the http request from the client
      * @return A HTTP Response back to the client.
      */
-    @CrossOrigin(origins = "http://ec2-18-118-19-97.us-east-2.compute.amazonaws.com:8080")
+    @CrossOrigin
     @PostMapping("/traderauto-plus")
     public String httpResponseSenso(@RequestBody() String reqBody) {
         System.out.println("==== POST Request Received ====");

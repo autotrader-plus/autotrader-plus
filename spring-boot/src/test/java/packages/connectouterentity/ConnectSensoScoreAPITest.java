@@ -29,6 +29,7 @@ class ConnectSensoScoreAPITest {
 
     @Test
     public void getReturnInfo() {
+        System.out.println(connector.getReturnInfo());
         assert connector.getReturnInfo() != null;
     }
 

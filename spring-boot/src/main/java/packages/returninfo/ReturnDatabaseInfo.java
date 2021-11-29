@@ -36,7 +36,7 @@ public class ReturnDatabaseInfo {
      * @param carId the request body needs to contain the carID
      * @return a JSON string representation of the information regarding the car with carID
      */
-    @CrossOrigin(origins = "http://ec2-18-118-19-97.us-east-2.compute.amazonaws.com:8080")
+    @CrossOrigin
     @PostMapping("/database")
     public String httpResponseMain(@RequestBody String reqBody) {
         try {

@@ -99,21 +99,8 @@ public class ConnectSensoRateAPI implements SensoAPIInterface{
         String postEndpoint = System.getenv("SENSO_API_URL");
 
         // Build and send a POST request to senso endpoint
-        var request = HttpRequest.newBuilder()
-                .uri(URI.create(postEndpoint))
-                .header("Content-Type", "application/json")
-                .header("x-api-key", System.getenv("SENSO_API_KEY"))
-                .POST(HttpRequest.BodyPublishers.ofString(inputJson))
-                .build();
-
-        var client = HttpClient.newHttpClient();
-
-        // Get response from senso api
-        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        Gson gson = new Gson();
-        Type mapType = new TypeToken<Map<Object, Object>>(){}.getType();
-        return gson.fromJson(response.body(), mapType);
+        HttpRequest request = buildPostRequest(inputJson, postEndpoint);
+        return getPostResponse(request);
     }
 
     /**

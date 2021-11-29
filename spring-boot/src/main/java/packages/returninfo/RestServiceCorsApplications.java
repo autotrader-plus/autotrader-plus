@@ -21,8 +21,9 @@ public class RestServiceCorsApplications {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/database").allowedOrigins("http://ec2-18-118-19-97.us-east-2.compute.amazonaws.com:8080");
-                registry.addMapping("/traderauto-plus").allowedOrigins("http://ec2-18-118-19-97.us-east-2.compute.amazonaws.com:8080");
+                registry.addMapping("/database").allowedOrigins(System.getenv("SERVER_ROOT"));
+                registry.addMapping("/traderauto-plus").allowedOrigins(System.getenv("SERVER_ROOT"));
+                registry.addMapping("/signin").allowedOrigins(System.getenv("SERVER_ROOT"));
             }
         };
     }
