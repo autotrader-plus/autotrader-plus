@@ -16,15 +16,6 @@ public class CarList<Car> {
     }
 
     /**
-     * Will be used in the future
-     * Create a CarList Object given an ArrayList of Car Objects
-     * @param carList The ArrayList of Car objects
-     */
-    public CarList(ArrayList<Car> carList){
-        this.carList = carList;
-    }
-
-    /**
      * Adds a Car Object into the CarList Object
      * @param car Car Object
      */

@@ -36,17 +36,6 @@ public class Car {
     }
 
     /**
-     * Will be used in future
-     * Checks if the User can afford the Car
-     * @param budget The User's budget
-     * @return A boolean of whether this Car can be afforded by the User
-     */
-    public boolean CanAfford(int budget){
-        int price = Integer.parseInt(this.cost);
-        return price <= budget;
-    }
-
-    /**
      * Gets the Car's price
      * @return An integer representing the Car's price
      */
@@ -84,14 +73,5 @@ public class Car {
      */
     public String getID(){
         return this.ID;
-    }
-
-    /**
-     * Provides a string representation of the Car object
-     * @return A string representing the Car's information
-     */
-    public String show(){
-        return this.year + " " + this.brand + " " +  this.KMS + " " +
-                this.ID + " " + this.cost;
     }
 }

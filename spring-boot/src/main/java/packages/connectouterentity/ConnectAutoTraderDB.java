@@ -16,7 +16,6 @@ public class ConnectAutoTraderDB implements AutoTraderDBInterface {
      * an object.
      */
     public ConnectAutoTraderDB(){
-
         this.objStatement = ConnectAutoTraderDB.establishConnection();
     }
 

@@ -77,16 +77,6 @@ public class User {
     }
 
     /**
-     * Will be used in the future
-     * Overloaded method that gets the User's price range for a given term
-     * @param term The term of the User's potential loan
-     * @return A string representing the User's price range
-     */
-    public String getPriceRange(int term){
-        return Integer.toString((term * this.monthlyBudget) + this.downPayment);
-    }
-
-    /**
      * Gets the User's monthly budget
      * @return A string representing the User's monthly budget
      */
