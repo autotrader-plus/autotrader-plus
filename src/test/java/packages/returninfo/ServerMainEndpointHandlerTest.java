@@ -1,10 +1,8 @@
 package packages.returninfo;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.junit.jupiter.api.Test;
-import packages.exceptions.DatabaseConnectionFailureException;
 
 import java.lang.reflect.Type;
 import java.util.*;

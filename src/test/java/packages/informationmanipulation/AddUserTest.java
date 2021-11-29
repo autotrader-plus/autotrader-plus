@@ -1,7 +1,6 @@
 package packages.informationmanipulation;
 
 import org.junit.jupiter.api.BeforeEach;
-import packages.backendlogic.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

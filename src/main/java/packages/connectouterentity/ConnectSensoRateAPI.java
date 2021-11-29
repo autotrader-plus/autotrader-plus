@@ -1,67 +1,64 @@
 package packages.connectouterentity;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
+import com.google.gson.*;
 
-/** This is a class that calls Senso Score API, and return information from Senso Score API.**/
-public class ConnectSensoScoreAPI implements SensoAPIInterface{
 
-    private HashMap<String, Object> apiContent; // the return info from senso api call
+/** This is a class that calls Senso Rate API, and return information from Senso Rate API.**/
+public class ConnectSensoRateAPI implements SensoAPIInterface{
+
+    private static HashMap<String, Object> apiContent; // the return info from senso api call
     // the following variables are the fields needed for senso api call
-    private int remainingBalance;
+    private int loanAmount;
     private int creditScore;
-    private int loanAge;
+    private int pytBudget;
     private String vehicleMake;
     private String vehicleModel;
     private int vehicleYear;
-    private int carValue;
-    private String loanStartDate;
+    private int vehicleKms;
+    private int listPrice;
+    private int downpayment;
 
     /**
      * This is a method that collects input data for SensoAPI, then pings the senso API using the input data
-     * @param senso_input - a hashmap that contains all input information used to ping senso API
+     * @param sensoInput - a hashmap that contains all input information used to ping senso API
      * @throws IOException - IOexception
      * @throws InterruptedException - exception when senso api call is interrupted or failed
      */
-    public ConnectSensoScoreAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException {
-        populateSensoInputs(senso_input);
+    public ConnectSensoRateAPI(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
+        populateSensoInputs(sensoInput);
         String input_body = createJson();
         apiContent = CallSensoAPI(input_body);
     }
 
     /**
-     * This is a helper method that helps populate the private variables which are also inputs to the senso
+     * This is a helper method that helps populate the private static variables which are also inputs to the senso
      * api call.
-     * @param senso_input - a hashmap containing all input information used to ping senso api
+     * @param sensoInput - a hashmap containing all input information used to ping senso api
      */
-    private void populateSensoInputs(HashMap<String, String> senso_input) {
-        remainingBalance = getfromMapping(senso_input, "balance");
-        creditScore = getfromMapping(senso_input, "credit_score");
-        loanAge = getfromMapping(senso_input,"loan_age");
-        vehicleYear = getfromMapping(senso_input, "vehicle_year");
-        carValue = getfromMapping(senso_input, "car_value");
-        vehicleMake = senso_input.get("vehicle_make");
-        vehicleModel = senso_input.get("vehicle_model");
-        loanStartDate = senso_input.get("loan_start_date");
+    private void populateSensoInputs(HashMap<String, String> sensoInput) {
+        loanAmount = getfromMapping(sensoInput, "loan_amount");
+        creditScore = getfromMapping(sensoInput, "credit_score");
+        pytBudget = getfromMapping(sensoInput,"payment_budget");
+        vehicleYear = getfromMapping(sensoInput, "vehicle_year");
+        vehicleKms = getfromMapping(sensoInput, "vehicle_kms");
+        listPrice = getfromMapping(sensoInput, "list_price");
+        downpayment = getfromMapping(sensoInput, "downpayment");
+        vehicleMake = sensoInput.get("vehicle_make");
+        vehicleModel = sensoInput.get("vehicle_model");
     }
 
     /**
      * A helper method that converts a value from a hashmap from the given key field
-     * @param senso_input - a hashmap containing all input information used to ping senso api
+     * @param sensoInput - a hashmap containing all input information used to ping senso api
      * @param field - the key of the hashmap of which the return value is returned
      * @return the integer format of the value of the given key in the hashmap
      */
-    private Integer getfromMapping(HashMap<String, String> senso_input, String field){
-        return Integer.parseInt(senso_input.get(field));
+    private Integer getfromMapping(HashMap<String, String> sensoInput, String field){
+        return Integer.parseInt(sensoInput.get(field));
     }
 
     /**
@@ -69,15 +66,16 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
      * @return a json string format of all the key-value pairs to sent to senso api
      */
     private String createJson(){
-        Map<String, Object> inputMap = new HashMap<String, Object>();
-        inputMap.put("remainingBalance", remainingBalance);
+        Map<String, Object> inputMap = new HashMap<>();
+        inputMap.put("loanAmount", loanAmount);
         inputMap.put("creditScore", creditScore);
-        inputMap.put("loanAge", loanAge);
+        inputMap.put("pytBudget", pytBudget);
         inputMap.put("vehicleMake", vehicleMake);
         inputMap.put("vehicleModel", vehicleModel);
         inputMap.put("vehicleYear", vehicleYear);
-        inputMap.put("carValue", carValue);
-        inputMap.put("loanStartDate", loanStartDate);
+        inputMap.put("vehicleKms", vehicleKms);
+        inputMap.put("listPrice", listPrice);
+        inputMap.put("downpayment", downpayment);
 
         // convert map to JSON String
         Gson gson = new Gson();
@@ -93,7 +91,7 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
      */
     private HashMap<String, Object> CallSensoAPI(String inputJson) throws IOException, InterruptedException{
 
-        String postEndpoint = System.getenv("SENSO_API_SCORE_URL");
+        String postEndpoint = System.getenv("SENSO_API_URL");
 
         // Build and send a POST request to senso endpoint
         HttpRequest request = buildPostRequest(inputJson, postEndpoint);
@@ -117,7 +115,7 @@ public class ConnectSensoScoreAPI implements SensoAPIInterface{
      */
     @Override
     public HashMap<String, Object> pingSensoAPI(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
-        ConnectSensoScoreAPI sensoConnector = new ConnectSensoScoreAPI(sensoInput);
+        ConnectSensoRateAPI sensoConnector = new ConnectSensoRateAPI(sensoInput);
         return sensoConnector.getReturnInfo();
     }
 }

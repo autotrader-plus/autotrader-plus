@@ -1,7 +1,6 @@
 package packages.exceptions;
 
 import org.junit.jupiter.api.Test;
-import packages.returninfo.ReturnDatabaseInfo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
