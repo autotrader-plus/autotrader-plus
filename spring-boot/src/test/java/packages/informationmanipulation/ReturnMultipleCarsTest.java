@@ -4,6 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,21 +18,81 @@ import static java.lang.Math.min;
 
 class ReturnMultipleCarsTest {
     ReturnMultipleCars returnMultipleCars;
+    ReturnMultipleCars mockedConnection;
 
     @BeforeEach
     void setUp() {
         returnMultipleCars = new ReturnMultipleCars();
+        mockedConnection = mock(ReturnMultipleCars.class);
     }
 
     @Test
-    @DisplayName("AllCars: Basic Case")
+    @DisplayName("AllCars: Basic Case (Unit Test with Mocked Database)")
+    void returnAllCarsUnitTest() throws SQLException{
+        mockedConnection.returnAllCars();
+        when(mockedConnection.returnAllCars()).thenReturn(createArrayResponse());
+
+        HashMap<String, Object> actual = returnMultipleCars.returnAllCars().get(0);
+        System.out.println(mockedConnection.returnAllCars().get(0));
+        System.out.println(actual);
+        assert Objects.equals(mockedConnection.returnAllCars().get(0), actual);
+
+    }
+
+    private ArrayList<HashMap<String, Object>> createArrayResponse() {
+        ArrayList<HashMap<String, Object>> testList = new ArrayList<>();
+
+        testList.add(0, new HashMap<>() {{
+            put("Model Year", "2021");
+            put("Car", "Chevrolet Corvette Stingray");
+            put("Mileage", "15466");
+            put("Car Type", "Convertible");
+            put("ID", "0");
+            put("Cost", "43944");
+            put("Dealership", "Georgian Chevrolet");
+            put("Photo", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2019-10-03-at-9-52-03-pm-1570154537.png");
+        }});
+
+        return testList;
+    }
+
+    @Test
+    @DisplayName("FilteredCars: Basic Case (Unit Test with Mocked Database)")
+    void returnFilteredCarsUnitTest() throws SQLException{
+        mockedConnection.returnFilteredCars("SUV");
+        when(mockedConnection.returnFilteredCars("SUV")).thenReturn(createFilteredArrayResponse());
+
+        HashMap<String, Object> actual = returnMultipleCars.returnFilteredCars("SUV").get(0);
+
+        assert Objects.equals(mockedConnection.returnFilteredCars("SUV").get(0), actual);
+    }
+
+    private ArrayList<HashMap<String, Object>> createFilteredArrayResponse() {
+        ArrayList<HashMap<String, Object>> testList = new ArrayList<>();
+
+        testList.add(0, new HashMap<>() {{
+            put("Model Year", "2017");
+            put("Car", "Honda Pillot 4WD");
+            put("Mileage", "145174");
+            put("Car Type", "SUV");
+            put("ID", "4");
+            put("Cost", "28560");
+            put("Dealership", "Barrie Honda");
+            put("Photo", "https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/800x450/format/jpg/quality/85/http://www.blogcdn.com/www.autoblog.com/media/2011/04/01-2011-honda-pilot-opt.jpg");
+        }});
+
+        return testList;
+    }
+
+    @Test
+    @DisplayName("AllCars: Basic Case (Integration Testing)")
     void returnAllCars() throws SQLException {
         ArrayList<HashMap<String, Object>> allCars = returnMultipleCars.returnAllCars();
         assert Objects.equals(24, allCars.size());
     }
 
     @Test
-    @DisplayName("FilteredCars: Basic Case")
+    @DisplayName("FilteredCars: Basic Case (Integration Testing)")
     void returnFilteredCars() throws SQLException {
         String filter = "SUV";
 

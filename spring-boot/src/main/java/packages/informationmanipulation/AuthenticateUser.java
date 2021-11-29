@@ -1,4 +1,4 @@
-package packages.backendlogic;
+package packages.informationmanipulation;
 
 import packages.connectouterentity.AutoTraderDBInterface;
 import packages.connectouterentity.ConnectAutoTraderDB;
