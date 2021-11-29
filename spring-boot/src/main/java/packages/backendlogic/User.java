@@ -1,6 +1,9 @@
 package packages.backendlogic;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+
 
 /**
  * Represents a User Object based on the user info inputted by the user from the frontend
@@ -72,8 +75,6 @@ public class User {
     public String getPriceRange(){
         return Integer.toString((36 * this.monthlyBudget) + this.downPayment);
     }
-
-    // will be used in the future
 
     /**
      * Will be used in the future
@@ -194,4 +195,5 @@ public class User {
         DecimalFormat twoDecimals = new DecimalFormat("#0.00");
         return twoDecimals.format((double) monthlyBudget / monthlyIncome);
     }
+
 }

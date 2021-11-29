@@ -3,18 +3,28 @@ package packages.backendlogic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.DecimalFormat;
+import java.io.IOException;
+import java.util.HashMap;
 
 class UserTest {
     User basic;
     User advanced;
+    HashMap<String, String> sensoInput;
 
     @BeforeEach
     void setUp() {
-        this.basic = new User(750, 300, 200, "M4Y111",
-                "Bob Du", "123");
-        this.advanced = new User(700, 400, 100, "111M4Y",
-                "Dod Bu", "1234",4000, true, true, 1000);
+        this.basic = new User(750, 300, 200, "M4Y111", "Bob Du");
+        this.advanced = new User(700, 400, 100, "111M4Y", "Dod Bu",
+                4000, true, true, 1000);
+        sensoInput = new HashMap<>();
+        sensoInput.put("balance", "10000");
+        sensoInput.put("credit_score", "780");
+        sensoInput.put("loan_age", "36");
+        sensoInput.put("vehicle_make", "Honda");
+        sensoInput.put("vehicle_model", "Civic");
+        sensoInput.put("vehicle_year", "2021");
+        sensoInput.put("car_value", "10000");
+        sensoInput.put("loan_start_date", "2021-12-01");
     }
 
     @Test
