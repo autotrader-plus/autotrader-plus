@@ -102,6 +102,6 @@ public class LoanApprovalCalculationTest {
 
     @Test
     void getApprovalLikelihoodAdvanced(){
-        assert advancedLoanApprovalCalc.getApprovalLikelihood(false).equals("Very Unlikely");
+        assert advancedLoanApprovalCalc.getApprovalLikelihood(false).equals("Almost Guaranteed");
     }
 }
