@@ -40,7 +40,7 @@ public class AddUser {
      * @param user the user who we are recording data for.
      * @param User
      */
-    public void addUser(HashMap<String, String> User) throws SQLException {
+    public String addUser(HashMap<String, String> User) throws SQLException {
         UserFactory userfactory = new UserFactory();
         User user = userfactory.createUser(User);
         // Determine what userId to assign this individual
@@ -66,6 +66,8 @@ public class AddUser {
         // Establish a connection and create a set of results from that query
         AutoTraderDBInterface connection = new ConnectAutoTraderDB();
         connection.executeQuery(query);
+
+        return "Successful";
 
     }
 
