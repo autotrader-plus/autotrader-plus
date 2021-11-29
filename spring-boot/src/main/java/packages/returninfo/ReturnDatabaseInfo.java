@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import packages.exceptions.DatabaseConnectionFailureException;
 import packages.informationmanipulation.*;
-import packages.responseformatting.HttpResponseMain;
+import packages.responseformatting.HttpResponseConstructor;
 import packages.responseformatting.HttpRequestParser;
 
 @RestController
@@ -47,7 +47,7 @@ public class ReturnDatabaseInfo {
             String carID = body.get("key");
 
             HashMap<String, Object> response = getContent(Integer.parseInt(carID));
-            HttpResponseMain http_response = new HttpResponseMain(response);
+            HttpResponseConstructor http_response = new HttpResponseConstructor(response);
             System.out.printf("==== Returning Car Information for Car %s ====%n", carID);
             return http_response.getContent();
         } catch(DatabaseConnectionFailureException|JsonProcessingException e){

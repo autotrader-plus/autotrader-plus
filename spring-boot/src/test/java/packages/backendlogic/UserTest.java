@@ -13,9 +13,9 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        this.basic = new User(750, 300, 200, "M4Y111", "Bob Du");
+        this.basic = new User(750, 300, 200, "M4Y111", "Bob Du", "123");
         this.advanced = new User(700, 400, 100, "111M4Y", "Dod Bu",
-                4000, true, true, 1000);
+                "123", 4000, true, true, 1000);
         sensoInput = new HashMap<>();
         sensoInput.put("balance", "10000");
         sensoInput.put("credit_score", "780");

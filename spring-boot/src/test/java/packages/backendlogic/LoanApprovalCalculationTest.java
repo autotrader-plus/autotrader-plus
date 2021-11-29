@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class LoanTableCalculationTest {
+public class LoanApprovalCalculationTest {
 
-    LoanTableCalculation basicUser;
-    LoanTableCalculation advancedUser;
+    LoanApprovalCalculation basicUser;
+    LoanApprovalCalculation advancedUser;
     HashMap<String, String> sensoInput;
 
     @BeforeEach
@@ -24,10 +24,10 @@ public class LoanTableCalculationTest {
         sensoInput.put("car_value", "10000");
         sensoInput.put("loan_start_date", "2021-12-01");
 
-        basicUser = new LoanTableCalculation(730, 0, 0, 0.13, 0.39,
-                sensoInput);
-        advancedUser = new LoanTableCalculation(730, 1, 1, 0.14, 0.38,
-                sensoInput);
+//        basicUser = new LoanApprovalCalculation(730, 0, 0, 0.13, 0.39,
+//                sensoInput);
+//        advancedUser = new LoanApprovalCalculation(730, 1, 1, 0.14, 0.38,
+//                sensoInput);
     }
 
     @Test

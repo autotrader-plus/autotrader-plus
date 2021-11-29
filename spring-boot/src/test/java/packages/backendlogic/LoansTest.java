@@ -31,7 +31,7 @@ class LoansTest {
     @Test
     void getLoans() {
         HashMap<String, Object> output = loan.getLoans();
-        assert output.size() == 1 && output.containsKey("13");
+        assert output.size() == 2 && output.containsKey("13");
     }
 
     @Test
@@ -50,6 +50,7 @@ class LoansTest {
     @Test
     void calculateLoans() throws SensoConnectionFailureException {
         LoanInfoInterface getLoans = new Loans(userInfo, carList);
+        System.out.println(getLoans.calculateLoans(userInfo, carList));
         assert(getLoans.calculateLoans(userInfo, carList) != null);
     }
 }

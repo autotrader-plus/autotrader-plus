@@ -9,7 +9,7 @@ import packages.connectouterentity.SensoAPIInterface;
 /**
  * Represents a calculation using the loan table given information specific to the user.
  */
-public class LoanTableCalculation {
+public class LoanApprovalCalculation {
     private final LoanTableConstant constant = new LoanTableConstant();
     private int creditScore;
     private double PTI;
@@ -18,13 +18,33 @@ public class LoanTableCalculation {
     private int homeowner;
     private int sensoScore;
 
-    public LoanTableCalculation(int creditScore, int employed, int homeowner, double PTI, double DTI,
-                                HashMap<String, String> sensoScore) throws IOException, InterruptedException {
-        this.creditScore = creditScore;
-        this.employed = employed;
-        this.homeowner = homeowner;
-        this.PTI = PTI;
-        this.DTI = DTI;
+    /**
+     * Constructor for loan approval calculation
+     * @param creditScore - credit score for the user
+     * @param employed - employment status of the user
+     * @param homeowner - homeowner status of the user
+     * @param PTI - payment to income ratio
+     * @param DTI - debt to income ratio
+     * @param sensoScore - senso score of the user based on specific car loan
+     * @throws IOException - IO exception thrown when error connecting to senso api
+     * @throws InterruptedException - Interrupted exception thrown when error connecting to senso api
+     */
+    public LoanApprovalCalculation(User user, HashMap<String, String> sensoScore) throws IOException, InterruptedException {
+        this.creditScore = Integer.parseInt(user.getCreditScore());
+
+        if(user.isEmployed() == "Employed"){
+            this.employed = 1;
+        } else{
+            this.employed = 0;
+        }
+
+        if(user.isHomeowner() == "Homeowner"){
+            this.homeowner = 1;
+        } else{
+            this.homeowner = 0;
+        }
+        this.PTI = Double.valueOf(user.getPTI());
+        this.DTI = Double.valueOf(user.getDTI());
         setSensoScore(sensoScore);
     }
 

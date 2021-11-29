@@ -6,7 +6,7 @@ import java.util.HashMap;
 /** This class helps provide the formatting for the response body of the HTTP request to the
  * server. **/
 
-public class HttpResponseMain {
+public class HttpResponseConstructor {
 
     private HashMap<String, Object> responseContent;
 
@@ -14,7 +14,7 @@ public class HttpResponseMain {
      * Constructor for the class
      * @param content - the response body for the http request
      */
-    public HttpResponseMain(HashMap<String, Object> content) {
+    public HttpResponseConstructor(HashMap<String, Object> content) {
         responseContent = content;
     }
 

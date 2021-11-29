@@ -1,7 +1,7 @@
 package packages.backendlogic;
 
 /**
- * Class of constants used in LoanTableCalculation.java
+ * Class of constants used in LoanApprovalCalculation.java
  */
 public class LoanTableConstant {
     public final int CREDIT_SCORE_RANGE1_MIN = 300;

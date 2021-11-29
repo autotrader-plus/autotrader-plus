@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Objects;
 
-class HttpResponseMainTest {
+class HttpResponseConstructorTest {
 
     private static HashMap<String, Object> testMap;
 
@@ -20,7 +20,7 @@ class HttpResponseMainTest {
 
     @Test
     void getContent() {
-        HttpResponseMain test = new HttpResponseMain(testMap);
+        HttpResponseConstructor test = new HttpResponseConstructor(testMap);
         String expected = "{\"1\":\"Test\",\"2\":\"Test2\"}";
         System.out.print(test.getContent());
         assert(Objects.equals(test.getContent(), expected));

@@ -29,7 +29,7 @@ public class Loans implements LoanInfoInterface{
      */
     public Loans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException {
 
-        loans = new HashMap<>();
+        loans = new HashMap<String, Object>();
 
         //creates User object (buyer) based on length of given user Hashmap
         UserFactory userfactory = new UserFactory();
@@ -46,7 +46,7 @@ public class Loans implements LoanInfoInterface{
 
         // preps info and calls SensoAPI
         try {
-            callApi();
+            constructLoansInformation();
         } catch(IOException|InterruptedException e) {
             e.printStackTrace();
             throw new SensoConnectionFailureException();
@@ -54,33 +54,65 @@ public class Loans implements LoanInfoInterface{
     }
 
     /**
-     * calls the SensoApi and adds the Api return values into the Loans Object
+     * Construct a mapping of loans information and their respective approval rate
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
-    private void callApi() throws IOException, InterruptedException{
+    private void constructLoansInformation() throws IOException, InterruptedException{
         for (int j = 0; j < cars.size(); j++){
             Car car = cars.getCar(j);
-            HashMap<String, String> mapping = makeUserInfo(car);
+            HashMap<String, String> sensoRateInput = prepSensoRateAPICall(car);
 
-            SensoAPIInterface connector = new ConnectSensoRateAPI(mapping);
-            loans.put(car.getID(), connector.pingSensoAPI(mapping).get("installments")); // edited
+            SensoAPIInterface connector = new ConnectSensoRateAPI(sensoRateInput);
+            loans.put(car.getID(), connector.pingSensoAPI(sensoRateInput).get("installments"));
+
+            ArrayList<HashMap<String, Object>> installments = (ArrayList) connector.pingSensoAPI(sensoRateInput).get("installments");
+            HashMap<String, String> sensoScoreInput = prepSensoScoreAPICall(car, installments);
+            String approval = calculateApprovalScore(sensoScoreInput);
+            loans.put(car.getID() + " Approval Score", approval);
+        }
+    }
+
+    private String calculateApprovalScore(HashMap<String, String> sensoScoreInput) throws IOException, InterruptedException {
+        LoanApprovalCalculation approvalCalculator = new LoanApprovalCalculation(buyer, sensoScoreInput);
+        if (Integer.parseInt(buyer.getMonthlyIncome()) == 0) {
+            return approvalCalculator.getApprovalLikelihood(true); // case with basic user with no extra information
+        } else{
+            return approvalCalculator.getApprovalLikelihood(false); // case with advacned user with extra information
         }
     }
 
     /**
-     * Creates a HashMap containing User and Car info for the SensoApi call
+     * Create a Hashmap containg user and car info for the senso score api call
+     * @param car - the car object
+     * @return a hashmap containing all the info required to make the senso api call
+     */
+    private HashMap<String, String> prepSensoScoreAPICall(Car car, ArrayList<HashMap<String, Object>> installments){
+        HashMap<String, String> sensoScoreInput = new HashMap<>();
+        sensoScoreInput.put("balance", String.valueOf(car.getPrice()));
+        sensoScoreInput.put("credit_score", buyer.getCreditScore());
+        sensoScoreInput.put("loan_age", String.valueOf(installments.size()));
+        sensoScoreInput.put("vehicle_year", car.getYear());
+        sensoScoreInput.put("car_value", String.valueOf(car.getPrice()));
+        sensoScoreInput.put("vehicle_make", car.getBrand());
+        sensoScoreInput.put("vehicle_model", "Omitted"); // this field does not affect the calculation for senso api
+        sensoScoreInput.put("loan_start_date", "2021-11-29"); // this is randomised as this field does not affect the calculation for senso api
+        return sensoScoreInput;
+    }
+
+    /**
+     * Creates a HashMap containing User and Car info for the Senso rate Api call
      * @param car The Car Object from Car.java
      * @return returns HashMap mapping, which is all the info required for SensoApi call
      */
-    private HashMap<String, String> makeUserInfo(Car car) {
+    private HashMap<String, String> prepSensoRateAPICall(Car car) {
         HashMap<String, String> mapping = new HashMap<>();
         mapping.put("loan_amount", Integer.toString(car.getPrice() -
                 Integer.parseInt(buyer.getDownPayment())));
         mapping.put("credit_score", buyer.getCreditScore());
         mapping.put("payment_budget", buyer.getMonthlyBudget());
         mapping.put("vehicle_make", car.getBrand());
-        mapping.put("vehicle_model", "Daniel");
+        mapping.put("vehicle_model", "Omitted"); // this field does not affect the loan calculation for senso api
         mapping.put("vehicle_year", car.getYear());
         mapping.put("vehicle_kms", car.getKMS());
         mapping.put("list_price", Integer.toString(car.getPrice()));

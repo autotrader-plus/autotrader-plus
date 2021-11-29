@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import packages.responseformatting.HttpResponseMain;
+import packages.responseformatting.HttpResponseConstructor;
 import packages.responseformatting.HttpRequestParser;
 
 /** This class handles HTTP request to the "/traderauto-plus" endpoint. **/
@@ -54,7 +54,7 @@ public class ServerMainEndpointHandler {
             LoanInfoInterface loans = new Loans(body, filtered_cars);
             HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
 
-            HttpResponseMain httpResponse = new HttpResponseMain(loans_list);
+            HttpResponseConstructor httpResponse = new HttpResponseConstructor(loans_list);
             System.out.println("==== POST Response Sent ====");
             return httpResponse.getContent();
         } catch (SensoConnectionFailureException|JsonProcessingException|DatabaseConnectionFailureException e){
