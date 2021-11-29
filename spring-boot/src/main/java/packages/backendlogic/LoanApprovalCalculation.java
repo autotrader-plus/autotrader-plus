@@ -2,6 +2,8 @@ package packages.backendlogic;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
+
 import packages.connectouterentity.ConnectSensoScoreAPI;
 import packages.connectouterentity.SensoAPIInterface;
 
@@ -20,32 +22,28 @@ public class LoanApprovalCalculation {
 
     /**
      * Constructor for loan approval calculation
-     * @param creditScore - credit score for the user
-     * @param employed - employment status of the user
-     * @param homeowner - homeowner status of the user
-     * @param PTI - payment to income ratio
-     * @param DTI - debt to income ratio
-     * @param sensoScore - senso score of the user based on specific car loan
+     * @param user - user we want to calculate loan approval for
+     * @param sensoInput - input required for the senso API to return the senso score
      * @throws IOException - IO exception thrown when error connecting to senso api
      * @throws InterruptedException - Interrupted exception thrown when error connecting to senso api
      */
-    public LoanApprovalCalculation(User user, HashMap<String, String> sensoScore) throws IOException, InterruptedException {
+    public LoanApprovalCalculation(User user, HashMap<String, String> sensoInput) throws IOException, InterruptedException {
         this.creditScore = Integer.parseInt(user.getCreditScore());
 
-        if(user.isEmployed() == "Employed"){
+        if(Objects.equals(user.isEmployed(), "Employed")){
             this.employed = 1;
         } else{
             this.employed = 0;
         }
 
-        if(user.isHomeowner() == "Homeowner"){
+        if(Objects.equals(user.isHomeowner(), "Homeowner")){
             this.homeowner = 1;
         } else{
             this.homeowner = 0;
         }
-        this.PTI = Double.valueOf(user.getPTI());
-        this.DTI = Double.valueOf(user.getDTI());
-        setSensoScore(sensoScore);
+        this.PTI = Double.parseDouble(user.getPTI());
+        this.DTI = Double.parseDouble(user.getDTI());
+        setSensoScore(sensoInput);
     }
 
     /**

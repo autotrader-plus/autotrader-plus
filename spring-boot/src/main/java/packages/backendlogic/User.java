@@ -27,7 +27,7 @@ public class User {
      * @param downPayment The User's down payment
      * @param zipCode The User's zip code
      * @param name The User's name
-     * @param User's login password
+     * @param password User's login password
      */
     public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name, String password){
         this.creditScore = creditScore;

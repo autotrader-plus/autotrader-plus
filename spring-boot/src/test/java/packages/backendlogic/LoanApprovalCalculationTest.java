@@ -8,12 +8,19 @@ import java.util.HashMap;
 
 public class LoanApprovalCalculationTest {
 
-    LoanApprovalCalculation basicUser;
-    LoanApprovalCalculation advancedUser;
+    User basic;
+    User advanced;
     HashMap<String, String> sensoInput;
+    LoanApprovalCalculation basicLoanApprovalCalc;
+    LoanApprovalCalculation advancedLoanApprovalCalc;
 
     @BeforeEach
     void setUp() throws IOException, InterruptedException {
+        basic = new User(780, 300, 500, "M4Y111", "Bob Du",
+                "123");
+        advanced = new User(780, 300, 500, "M4Y111", "Bob Du",
+                "123", 8000, true, true, 2000);
+
         sensoInput = new HashMap<>();
         sensoInput.put("balance", "10000");
         sensoInput.put("credit_score", "780");
@@ -24,79 +31,77 @@ public class LoanApprovalCalculationTest {
         sensoInput.put("car_value", "10000");
         sensoInput.put("loan_start_date", "2021-12-01");
 
-//        basicUser = new LoanApprovalCalculation(730, 0, 0, 0.13, 0.39,
-//                sensoInput);
-//        advancedUser = new LoanApprovalCalculation(730, 1, 1, 0.14, 0.38,
-//                sensoInput);
+        basicLoanApprovalCalc = new LoanApprovalCalculation(basic, sensoInput);
+        advancedLoanApprovalCalc = new LoanApprovalCalculation(advanced, sensoInput);
     }
 
     @Test
     void getCreditScoreBasic() {
-        assert basicUser.getCreditScore() == 730;
+        assert basicLoanApprovalCalc.getCreditScore() == 780;
     }
 
     @Test
     void getCreditScoreAdvanced() {
-        assert advancedUser.getCreditScore() == 730;
+        assert advancedLoanApprovalCalc.getCreditScore() == 780;
     }
 
     @Test
     void getEmployedBasic() {
-        assert basicUser.getEmployed() == 0;
+        assert basicLoanApprovalCalc.getEmployed() == 0;
     }
 
     @Test
     void getEmployedAdvanced() {
-        assert advancedUser.getEmployed() == 1;
+        assert advancedLoanApprovalCalc.getEmployed() == 1;
     }
 
     @Test
     void getHomeownerBasic() {
-        assert basicUser.getHomeowner() == 0;
+        assert basicLoanApprovalCalc.getHomeowner() == 0;
     }
 
     @Test
     void getHomeownerAdvanced() {
-        assert advancedUser.getHomeowner() == 1;
+        assert advancedLoanApprovalCalc.getHomeowner() == 1;
     }
 
     @Test
     void getPTIBasic() {
-        assert basicUser.getPTI() == 0.13;
+        assert basicLoanApprovalCalc.getPTI() == 0.00;
     }
 
     @Test
     void getPTIAdvanced() {
-        assert advancedUser.getPTI() == 0.14;
+        assert advancedLoanApprovalCalc.getPTI() == 0.04;
     }
 
     @Test
     void getDTIBasic() {
-        assert basicUser.getDTI() == 0.39;
+        assert basicLoanApprovalCalc.getDTI() == 0.00;
     }
 
     @Test
     void getDTIAdvanced() {
-        assert advancedUser.getDTI() == 0.38;
+        assert advancedLoanApprovalCalc.getDTI() == 0.25;
     }
 
     @Test
     void getSensoScoreBasic() {
-        assert basicUser.getSensoScore() == 0;
+        assert basicLoanApprovalCalc.getSensoScore() == 0;
     }
 
     @Test
     void getSensoScoreAdvanced() {
-        assert advancedUser.getSensoScore() == 0;
+        assert advancedLoanApprovalCalc.getSensoScore() == 0;
     }
 
     @Test
     void getApprovalLikelihoodBasic(){
-        assert basicUser.getApprovalLikelihood(true).equals("Very Unlikely");
+        assert basicLoanApprovalCalc.getApprovalLikelihood(true).equals("Very Unlikely");
     }
 
     @Test
     void getApprovalLikelihoodAdvanced(){
-        assert advancedUser.getApprovalLikelihood(false).equals("Very Unlikely");
+        assert advancedLoanApprovalCalc.getApprovalLikelihood(false).equals("Very Unlikely");
     }
 }
