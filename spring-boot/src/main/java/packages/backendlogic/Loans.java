@@ -89,7 +89,7 @@ public class Loans implements LoanInfoInterface{
      */
     private HashMap<String, String> prepSensoScoreAPICall(Car car, ArrayList<HashMap<String, Object>> installments){
         HashMap<String, String> sensoScoreInput = new HashMap<>();
-        sensoScoreInput.put("balance", String.valueOf(car.getPrice()));
+        sensoScoreInput.put("balance", String.valueOf(car.getPrice()-Integer.parseInt(buyer.getDownPayment())));
         sensoScoreInput.put("credit_score", buyer.getCreditScore());
         sensoScoreInput.put("loan_age", String.valueOf(installments.size()));
         sensoScoreInput.put("vehicle_year", car.getYear());
