@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Interface used to allow other classes to directly access the Loans class.
+ * Interface used to allow other classes to directly access the LoanResponseCalculator class.
  */
 public interface LoanInfoInterface {
     /**

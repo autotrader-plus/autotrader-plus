@@ -1,11 +1,13 @@
 package packages.server_setup;
 
 import packages.backend_logic.LoanInfoInterface;
+import packages.backend_logic.LoanResponseCalculator;
 import packages.backend_logic.Loans;
 import packages.exceptions.DatabaseConnectionFailureException;
 import packages.exceptions.SensoConnectionFailureException;
 import packages.database_info_manipulation.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,16 +55,21 @@ public class ServerMainEndpointHandler {
             addUserToDatabase(body);
 
             // calculate loans for all cars that are filtered and create a response to send back to the client
-            LoanInfoInterface loans = new Loans(body, filtered_cars);
+            LoanInfoInterface loans = new LoanResponseCalculator(body, filtered_cars);
             HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
 
             HttpResponseConstructor httpResponse = new HttpResponseConstructor(loans_list);
             System.out.println("==== POST Response Sent ====");
             return httpResponse.getContent();
-        } catch (SensoConnectionFailureException|JsonProcessingException|DatabaseConnectionFailureException e){
+        } catch (SensoConnectionFailureException|DatabaseConnectionFailureException e){
             e.printStackTrace();
             System.err.println("Error: " + e.getMessage());
+        } catch (InterruptedException| IOException e){
+            e.printStackTrace();
+            System.err.println("Process Interrupted due to server error, please make sure you are entering all information" +
+                    "in the correct format.");
         }
+
 
         // loans information is not returned due to senso api connection failure, returns error message instead
         return "Unable to retrieve loan information. Please try again!";
@@ -100,7 +107,7 @@ public class ServerMainEndpointHandler {
     }
 
     /**
-     * Add user to databae
+     * Add user to database
      * @param user - the user hashmap containing user information
      * @throws DatabaseConnectionFailureException error thrown if failure happens when connecting to the database
      */

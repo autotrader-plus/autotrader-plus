@@ -25,7 +25,7 @@ public class User {
      * @param downPayment The User's down payment
      * @param zipCode The User's zip code
      * @param name The User's name
-     * @param password User's login password
+     * @param User's login password
      */
     public User(int creditScore, int monthlyBudget, int downPayment, String zipCode, String name, String password){
         this.creditScore = creditScore;
@@ -72,6 +72,16 @@ public class User {
      */
     public String getPriceRange(){
         return Integer.toString((36 * this.monthlyBudget) + this.downPayment);
+    }
+
+
+    /**
+     * Overloaded method that gets the User's price range for a given term
+     * @param term The term of the User's potential loan
+     * @return A string representing the User's price range
+     */
+    public String getPriceRange(int term){
+        return Integer.toString((term * this.monthlyBudget) + this.downPayment);
     }
 
     /**
@@ -183,5 +193,4 @@ public class User {
         DecimalFormat twoDecimals = new DecimalFormat("#0.00");
         return twoDecimals.format((double) monthlyBudget / monthlyIncome);
     }
-
 }

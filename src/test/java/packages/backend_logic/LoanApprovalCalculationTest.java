@@ -21,18 +21,9 @@ public class LoanApprovalCalculationTest {
         advanced = new User(780, 300, 500, "M4Y111", "Bob Du",
                 "123", 8000, true, true, 2000);
 
-        sensoInput = new HashMap<>();
-        sensoInput.put("balance", "10000");
-        sensoInput.put("credit_score", "780");
-        sensoInput.put("loan_age", "36");
-        sensoInput.put("vehicle_make", "Honda");
-        sensoInput.put("vehicle_model", "Civic");
-        sensoInput.put("vehicle_year", "2021");
-        sensoInput.put("car_value", "10000");
-        sensoInput.put("loan_start_date", "2021-12-01");
 
-        basicLoanApprovalCalc = new LoanApprovalCalculation(basic, sensoInput);
-        advancedLoanApprovalCalc = new LoanApprovalCalculation(advanced, sensoInput);
+        basicLoanApprovalCalc = new LoanApprovalCalculation(basic, "VERY HIGH");
+        advancedLoanApprovalCalc = new LoanApprovalCalculation(advanced, "VERY HIGH");
     }
 
     @Test
@@ -87,12 +78,12 @@ public class LoanApprovalCalculationTest {
 
     @Test
     void getSensoScoreBasic() {
-        assert basicLoanApprovalCalc.getSensoScore() == 0;
+        assert basicLoanApprovalCalc.getSensoScore() == -1;
     }
 
     @Test
     void getSensoScoreAdvanced() {
-        assert advancedLoanApprovalCalc.getSensoScore() == 0;
+        assert advancedLoanApprovalCalc.getSensoScore() == -1;
     }
 
     @Test
@@ -102,6 +93,6 @@ public class LoanApprovalCalculationTest {
 
     @Test
     void getApprovalLikelihoodAdvanced(){
-        assert advancedLoanApprovalCalc.getApprovalLikelihood(false).equals("Almost Guaranteed");
+        assert advancedLoanApprovalCalc.getApprovalLikelihood(false).equals("Very Likely");
     }
 }

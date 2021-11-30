@@ -27,7 +27,7 @@ public class LoanApprovalCalculation {
      * @throws IOException - IO exception thrown when error connecting to senso api
      * @throws InterruptedException - Interrupted exception thrown when error connecting to senso api
      */
-    public LoanApprovalCalculation(User user, HashMap<String, String> sensoInput) throws IOException, InterruptedException {
+    public LoanApprovalCalculation(User user, String sensoScore) throws IOException, InterruptedException {
         this.creditScore = Integer.parseInt(user.getCreditScore());
 
         if(Objects.equals(user.isEmployed(), "Employed")){
@@ -43,7 +43,7 @@ public class LoanApprovalCalculation {
         }
         this.PTI = Double.parseDouble(user.getPTI());
         this.DTI = Double.parseDouble(user.getDTI());
-        setSensoScore(sensoInput);
+        setSensoScore(sensoScore);
     }
 
     /**
@@ -242,8 +242,7 @@ public class LoanApprovalCalculation {
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
-    private void setSensoScore(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
-        String sensoString = calculateSensoScore(sensoInput);
+    private void setSensoScore(String sensoString) throws IOException, InterruptedException {
 
         if (constant.VERY_HIGH.equals(sensoString)) {
             this.sensoScore = constant.SENSO1;
@@ -258,24 +257,4 @@ public class LoanApprovalCalculation {
             this.sensoScore = constant.SENSO2;
         }
     }
-
-    /**
-     * Helper method that gets the Senso score from the ConnectSensoScoreAPI
-     * @param sensoInput A HashMap of the Senso input required
-     * @return A string representing the output of the Senso Score API
-     * @throws IOException exception thrown when failure in reading/writing/searching files
-     * @throws InterruptedException exception thrown when process interrupted
-     */
-    private String calculateSensoScore(HashMap<String, String> sensoInput) throws IOException, InterruptedException {
-        SensoAPIInterface connect = new ConnectSensoScoreAPI(sensoInput);
-        HashMap<String, Object> sensoReturn = connect.pingSensoAPI(sensoInput);
-        if (sensoReturn.size() > 1){
-            return "Error 400 or 500";
-        }
-        else {
-            return (String) sensoReturn.get("sensoScore");
-        }
-
-    }
-
 }

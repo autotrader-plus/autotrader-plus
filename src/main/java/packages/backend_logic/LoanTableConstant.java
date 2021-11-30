@@ -59,11 +59,11 @@ public class LoanTableConstant {
     public final int SENSO3 = 1;
     public final int SENSO4 = 2;
 
-    public final String VERY_HIGH = "Very High";
-    public final String HIGH = "High";
-    public final String MEDIUM = "Medium";
-    public final String LOW = "Low";
-    public final String VERY_LOW = "Very Low";
+    public final String VERY_HIGH = "VERY HIGH";
+    public final String HIGH = "HIGH";
+    public final String MEDIUM = "MEDIUM";
+    public final String LOW = "LOW";
+    public final String VERY_LOW = "VERY LOW";
 
     public final String GUARANTEED = "Guaranteed";
     public final String VERY_LIKELY = "Very Likely";
