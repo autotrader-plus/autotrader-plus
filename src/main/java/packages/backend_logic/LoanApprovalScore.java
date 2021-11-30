@@ -1,7 +1,7 @@
 package packages.backend_logic;
 
-import packages.connect_outer_entity.ConnectSensoScoreAPI;
-import packages.connect_outer_entity.SensoAPIInterface;
+import packages.connect_api_db.ConnectSensoScoreAPI;
+import packages.connect_api_db.SensoAPIInterface;
 import packages.exceptions.SensoConnectionFailureException;
 
 import java.io.IOException;

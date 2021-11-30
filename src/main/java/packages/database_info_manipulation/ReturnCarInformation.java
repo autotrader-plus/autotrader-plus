@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import packages.connect_outer_entity.AutoTraderDBInterface;
-import packages.connect_outer_entity.ConnectAutoTraderDB;
+import packages.connect_api_db.AutoTraderDBInterface;
+import packages.connect_api_db.ConnectAutoTraderDB;
 
 /**
  * Returns Car information from the database

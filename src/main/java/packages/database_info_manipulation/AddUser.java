@@ -1,8 +1,8 @@
 package packages.database_info_manipulation;
 
 import packages.backend_logic.UserFactory;
-import packages.connect_outer_entity.AutoTraderDBInterface;
-import packages.connect_outer_entity.ConnectAutoTraderDB;
+import packages.connect_api_db.AutoTraderDBInterface;
+import packages.connect_api_db.ConnectAutoTraderDB;
 import packages.backend_logic.User;
 
 import java.sql.ResultSet;

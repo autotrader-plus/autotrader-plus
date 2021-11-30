@@ -1,4 +1,4 @@
-package packages.connect_outer_entity;
+package packages.connect_api_db;
 
 import java.io.IOException;
 import java.net.http.HttpRequest;

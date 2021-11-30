@@ -1,4 +1,4 @@
-package packages.connect_outer_entity;
+package packages.connect_api_db;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public interface SensoAPIInterface {
     /**
-     * A method to ping senso api
+     * A default method to ping senso api (this is to avoid duplicate codes in multiple classes)
      * @param senso_input - the input mapping for senso api call
      * @return a hashmap representation of return info from senso api
      * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
@@ -32,6 +32,13 @@ public interface SensoAPIInterface {
         return request;
     }
 
+    /**
+     * A default method to get senso api response (this is to avoid duplicate codes in multiple classes)
+     * @param request the http request
+     * @return a hashmap containing the senso api response
+     * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
+     * @throws InterruptedException - exception thrown when api call is interrupted or failed
+     */
     default HashMap<String, Object> getPostResponse(HttpRequest request) throws IOException, InterruptedException {
         var client = HttpClient.newHttpClient();
 
@@ -44,5 +51,12 @@ public interface SensoAPIInterface {
         return gson.fromJson(response.body(), mapType);
     }
 
+    /**
+     * A method that should be called by other classes when they need to ping senso api
+     * @param senso_input - the necessary input in hashmap format for senso api call
+     * @return a hashmap containing return information from senso api
+     * @throws IOException - exception thrown if the input and output are missing or failed to comply with the data type
+     * @throws InterruptedException - exception thrown when api call is interrupted or failed
+     */
     HashMap<String, Object> pingSensoAPI(HashMap<String, String> senso_input) throws IOException, InterruptedException;
 }

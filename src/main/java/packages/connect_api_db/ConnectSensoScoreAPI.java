@@ -1,4 +1,4 @@
-package packages.connect_outer_entity;
+package packages.connect_api_db;
 
 import com.google.gson.Gson;
 

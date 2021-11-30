@@ -1,11 +1,7 @@
 package packages.backend_logic;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
-
-import packages.connect_outer_entity.ConnectSensoScoreAPI;
-import packages.connect_outer_entity.SensoAPIInterface;
 
 
 /**
