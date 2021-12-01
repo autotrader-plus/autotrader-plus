@@ -1,8 +1,7 @@
 package packages.server_setup;
 
 import packages.backend_logic.LoanInfoInterface;
-import packages.backend_logic.LoanResponseCalculator;
-import packages.backend_logic.Loans;
+import packages.backend_logic.LoanResponseConstructor;
 import packages.exceptions.DatabaseConnectionFailureException;
 import packages.exceptions.SensoConnectionFailureException;
 import packages.database_info_manipulation.*;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,7 +53,7 @@ public class ServerMainEndpointHandler {
             addUserToDatabase(body);
 
             // calculate loans for all cars that are filtered and create a response to send back to the client
-            LoanInfoInterface loans = new LoanResponseCalculator(body, filtered_cars);
+            LoanInfoInterface loans = new LoanResponseConstructor(body, filtered_cars);
             HashMap<String, Object> loans_list = loans.calculateLoans(body, filtered_cars);
 
             HttpResponseConstructor httpResponse = new HttpResponseConstructor(loans_list);
@@ -64,7 +62,7 @@ public class ServerMainEndpointHandler {
         } catch (SensoConnectionFailureException|DatabaseConnectionFailureException e){
             e.printStackTrace();
             System.err.println("Error: " + e.getMessage());
-        } catch (InterruptedException| IOException e){
+        } catch (IOException|InterruptedException e){
             e.printStackTrace();
             System.err.println("Process Interrupted due to server error, please make sure you are entering all information" +
                     "in the correct format.");

@@ -10,30 +10,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class LoansTest {
+class BasicLoansCreatorTest {
 
     ArrayList<HashMap<String, Object>> carList;
     HashMap<String, String> userInfo;
-    Loans loan;
-    LoanApprovalScore score; //temp
-    LoanResponseCalculator finalscore; //temp
+    BasicLoansCreator loan;
+    LoanSensoScoreCalculator score; //temp
+    LoanResponseConstructor finalscore; //temp
 
     @BeforeEach
     void setUp() throws SQLException, SensoConnectionFailureException {
         ReturnMultipleCars returnMultipleCars = new ReturnMultipleCars();
         carList = returnMultipleCars.returnAllCars();
         userInfo = new HashMap<>();
-        userInfo.put("credit-score", "750");
-        userInfo.put("monthlybudget", "360"); //360 for easy test
+        userInfo.put("credit-score", "770");
+        userInfo.put("monthlybudget", "5000"); //360 for easy test
         userInfo.put("downpayment", "200");
         userInfo.put("zip-code", "M4y111");
         userInfo.put("name", "Bob Du");
         userInfo.put("password", "123");
-        userInfo.put("monthlyincome", "8500");
-        userInfo.put("employed", "employed");
-        userInfo.put("homeowner", "homeowner");
-        userInfo.put("monthlydebt", "500");
-        loan = new Loans(userInfo, carList);
+//        userInfo.put("monthlyincome", "8500");
+//        userInfo.put("employed", "employed");
+//        userInfo.put("homeowner", "homeowner");
+//        userInfo.put("monthlydebt", "500");
+        loan = new BasicLoansCreator(userInfo, carList);
     }
     @Test
     void getLoans() throws SensoConnectionFailureException, IOException, InterruptedException { //temp exception
@@ -55,7 +55,7 @@ class LoansTest {
         // System.out.println(output3);
 
         //temp below
-        //     score = new LoanApprovalScore(userInfo, output, output2, output3, loan.getCars());
+        //     score = new LoanSensoScoreCalculator(userInfo, output, output2, output3, loan.getCars());
         //   System.out.println(1337);
         //   System.out.println(score.getLoanTerm1());
         //   HashMap<String, String> score1 = score.getLoansScore1();
@@ -77,7 +77,7 @@ class LoansTest {
         //  System.out.println(loanage3);
 
 //test for traderAutoScore
-        finalscore = new LoanResponseCalculator(userInfo, carList);
+        finalscore = new LoanResponseConstructor(userInfo, carList);
         HashMap<String, Object> outy = finalscore.getTraderAutoScore();
         System.out.println(outy);
 
