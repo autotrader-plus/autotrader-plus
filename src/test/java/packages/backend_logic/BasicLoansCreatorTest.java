@@ -15,7 +15,7 @@ class BasicLoansCreatorTest {
     ArrayList<HashMap<String, Object>> carList;
     HashMap<String, String> userInfo;
     BasicLoansCreator loan;
-    LoanSensoScoreCalculator score; //temp
+    LoansTermScoreCalculator score; //temp
     LoanResponseConstructor finalscore; //temp
 
     @BeforeEach
@@ -24,15 +24,15 @@ class BasicLoansCreatorTest {
         carList = returnMultipleCars.returnAllCars();
         userInfo = new HashMap<>();
         userInfo.put("credit-score", "770");
-        userInfo.put("monthlybudget", "5000"); //360 for easy test
+        userInfo.put("monthlybudget", "360"); //360 for easy test
         userInfo.put("downpayment", "200");
         userInfo.put("zip-code", "M4y111");
         userInfo.put("name", "Bob Du");
         userInfo.put("password", "123");
-//        userInfo.put("monthlyincome", "8500");
-//        userInfo.put("employed", "employed");
-//        userInfo.put("homeowner", "homeowner");
-//        userInfo.put("monthlydebt", "500");
+        userInfo.put("monthlyincome", "8500");
+        userInfo.put("employed", "employed");
+        userInfo.put("homeowner", "homeowner");
+        userInfo.put("monthlydebt", "500");
         loan = new BasicLoansCreator(userInfo, carList);
     }
     @Test
@@ -55,7 +55,7 @@ class BasicLoansCreatorTest {
         // System.out.println(output3);
 
         //temp below
-        //     score = new LoanSensoScoreCalculator(userInfo, output, output2, output3, loan.getCars());
+        //     score = new LoansTermScoreCalculator(userInfo, output, output2, output3, loan.getCars());
         //   System.out.println(1337);
         //   System.out.println(score.getLoanTerm1());
         //   HashMap<String, String> score1 = score.getLoansScore1();

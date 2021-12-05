@@ -21,6 +21,8 @@ public class SignInEndpointHandler {
     /**
      * This method handles HTTP request coming into the "/signin" endpoint. It processes information from the request
      * body and returns information back to the client.
+     * This endpoint is to verify whether the user information (username and password) matches the
+     * information in our database.
      *
      * @param reqBody - the body of the http request from the client
      * @return An HTTP Response back to the client.

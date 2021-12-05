@@ -29,6 +29,7 @@ public class ServerMainEndpointHandler {
     /**
      * This method handles HTTP request coming into the "/traderauto-plus" endpoint. It processes information from the request
      * body and returns information back to the client. This endpoint assumes that all users that go through here are new users.
+     * This endpoint calculates loans, and approval rate for each loan for each car.
      *
      * @param reqBody - the body of the http request from the client
      * @return A HTTP Response back to the client.

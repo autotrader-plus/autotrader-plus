@@ -6,13 +6,13 @@ package packages.backend_logic;
  */
 public class Car {
 
-    private final String year;
-    private final String brand;
-    private final String KMS;
-    private final String carType; //will be used in future
-    private final String ID;
-    private final String cost;
-    private final String dealership; //will be used in future
+    private String year;
+    private String brand;
+    private String KMS;
+    private String carType; //will be used in future
+    private String ID;
+    private String cost;
+    private String dealership; //will be used in future
 
     /**
      * Creates Car Object

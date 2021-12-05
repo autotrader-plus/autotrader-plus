@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoanResponseConstructor implements LoanInfoInterface {
-    private HashMap<String, Object> score = new HashMap<>();
+    private HashMap<String, Object> score;
     private HashMap<String, String> loanScore1;
     private HashMap<String, String> loanScore2;
     private HashMap<String, String> loanScore3;
@@ -28,17 +28,13 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         HashMap<String, Object> loans2 = loan.getLoans2();
         HashMap<String, Object> loans3 = loan.getLoans3();
         cars = loan.getCars();
-        ArrayList<HashMap<String, Object>> loansList = new ArrayList<>();
-        loansList.add(loans1);
-        loansList.add(loans2);
-        loansList.add(loans3);
-        LoanSensoScoreCalculator sensoScore = new LoanSensoScoreCalculator(user, loansList, cars);
-        loanTerm1 = sensoScore.getLoansTerm(1);
-        loanTerm2 = sensoScore.getLoansTerm(2);
-        loanTerm3 = sensoScore.getLoansTerm(3);
-        this.loanScore1 = sensoScore.getLoansScore(1);
-        this.loanScore2 = sensoScore.getLoansScore(2);
-        this.loanScore3 = sensoScore.getLoansScore(3);
+        LoansTermScoreCalculator sensoScore = new LoansTermScoreCalculator(user, loans1, loans2, loans3, cars);
+        loanTerm1 = sensoScore.getLoanTerm1();
+        loanTerm2 = sensoScore.getLoanTerm2();
+        loanTerm3 = sensoScore.getLoanTerm3();
+        this.loanScore1 = sensoScore.getLoansScore1();
+        this.loanScore2 = sensoScore.getLoansScore2();
+        this.loanScore3 = sensoScore.getLoansScore3();
         this.score = new HashMap<String, Object>();
         generateScore(user, loans1, loans2, loans3);
     }
@@ -49,19 +45,19 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         UserFactory userfactory = new UserFactory();
         User buyer = userfactory.createUser(user);
         for (String key :loanScore1.keySet()) {
-            constructLoanInfo(buyer, key, loanTerm1, loans1, loanScore1, "1");
+            createInfo(buyer, key, loanTerm1, loans1, loanScore1, "1");
         }
         for (String key :loanScore2.keySet()) {
-            constructLoanInfo(buyer, key, loanTerm2, loans2, loanScore2, "2");
+            createInfo(buyer, key, loanTerm2, loans2, loanScore2, "2");
         }
         for (String key :loanScore3.keySet()) {
-            constructLoanInfo(buyer, key, loanTerm3, loans3, loanScore3, "3");
+            createInfo(buyer, key, loanTerm3, loans3, loanScore3, "3");
         }
     }
 
-    private void constructLoanInfo(User buyer, String key, HashMap<String, Integer> loanTerm,
-                                   HashMap<String, Object> loans,
-                                   HashMap<String, String> loanScore, String num)
+    private void createInfo(User buyer, String key, HashMap<String, Integer> loanTerm,
+                            HashMap<String, Object> loans,
+                            HashMap<String, String> loanScore, String num)
             throws IOException, InterruptedException {
         LoanApprovalCalculator score = new LoanApprovalCalculator(buyer, loanScore.get(key));
         ArrayList<Object> info = new ArrayList<>();
@@ -114,7 +110,8 @@ public class LoanResponseConstructor implements LoanInfoInterface {
      * @return a hashmap of cars with the loan info for the car
      */
     @Override
-    public HashMap<String, Object> calculateLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList)
+    public HashMap<String, Object> calculateLoans(HashMap<String, String> user,
+                                                  ArrayList<HashMap<String, Object>> carList)
             throws SensoConnectionFailureException{
         try {
             LoanResponseConstructor loans = new LoanResponseConstructor(user, carList);
