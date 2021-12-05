@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class LoansTermScoreCalculator {
+public class LoansScoreCalculator {
     private HashMap<String, Integer> loanTerm1;
     private HashMap<String, Integer> loanTerm2;
     private HashMap<String, Integer> loanTerm3;
@@ -22,9 +22,9 @@ public class LoansTermScoreCalculator {
     private CarList<Car> cars;
     private User buyer;
 
-    public LoansTermScoreCalculator(HashMap<String, String> user, HashMap<String, Object> loans1,
-                                    HashMap<String, Object> loans2, HashMap<String, Object> loans3,
-                                    CarList<Car> cars) throws SensoConnectionFailureException {
+    public LoansScoreCalculator(HashMap<String, String> user, HashMap<String, Object> loans1,
+                                HashMap<String, Object> loans2, HashMap<String, Object> loans3,
+                                CarList<Car> cars) throws SensoConnectionFailureException {
         loanTerm1 = new HashMap<>();
         loanTerm2 = new HashMap<>();
         loanTerm3 = new HashMap<>();

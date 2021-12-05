@@ -23,12 +23,12 @@ public class LoanResponseConstructor implements LoanInfoInterface {
 
     public LoanResponseConstructor(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList)
             throws SensoConnectionFailureException, IOException, InterruptedException {
-        BasicLoansCreator loan = new BasicLoansCreator(user, carList);
+        BasicLoans loan = new BasicLoans(user, carList);
         HashMap<String, Object> loans1 = loan.getLoans1();
         HashMap<String, Object> loans2 = loan.getLoans2();
         HashMap<String, Object> loans3 = loan.getLoans3();
         cars = loan.getCars();
-        LoansTermScoreCalculator sensoScore = new LoansTermScoreCalculator(user, loans1, loans2, loans3, cars);
+        LoansScoreCalculator sensoScore = new LoansScoreCalculator(user, loans1, loans2, loans3, cars);
         loanTerm1 = sensoScore.getLoanTerm1();
         loanTerm2 = sensoScore.getLoanTerm2();
         loanTerm3 = sensoScore.getLoanTerm3();

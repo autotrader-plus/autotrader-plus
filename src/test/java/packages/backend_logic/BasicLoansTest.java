@@ -10,12 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class BasicLoansCreatorTest {
+class BasicLoansTest {
 
     ArrayList<HashMap<String, Object>> carList;
     HashMap<String, String> userInfo;
-    BasicLoansCreator loan;
-    LoansTermScoreCalculator score; //temp
+    BasicLoans loan;
+    LoansScoreCalculator score; //temp
     LoanResponseConstructor finalscore; //temp
 
     @BeforeEach
@@ -33,7 +33,7 @@ class BasicLoansCreatorTest {
         userInfo.put("employed", "employed");
         userInfo.put("homeowner", "homeowner");
         userInfo.put("monthlydebt", "500");
-        loan = new BasicLoansCreator(userInfo, carList);
+        loan = new BasicLoans(userInfo, carList);
     }
     @Test
     void getLoans() throws SensoConnectionFailureException, IOException, InterruptedException { //temp exception
@@ -55,7 +55,7 @@ class BasicLoansCreatorTest {
         // System.out.println(output3);
 
         //temp below
-        //     score = new LoansTermScoreCalculator(userInfo, output, output2, output3, loan.getCars());
+        //     score = new LoansScoreCalculator(userInfo, output, output2, output3, loan.getCars());
         //   System.out.println(1337);
         //   System.out.println(score.getLoanTerm1());
         //   HashMap<String, String> score1 = score.getLoansScore1();

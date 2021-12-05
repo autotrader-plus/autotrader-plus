@@ -10,10 +10,10 @@ import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * This class creates a BasicLoansCreator object that is a HashMap with keys corresponding to the IDs of Car Objects and values
+ * This class creates a BasicLoans object that is a HashMap with keys corresponding to the IDs of Car Objects and values
  * corresponding to the possible car loans for each Car based on the SensoApi
  */
-public class BasicLoansCreator {
+public class BasicLoans {
     private HashMap<String, Object> loans1;
     private HashMap<String, Object> loans2;
     private HashMap<String, Object> loans3;
@@ -21,16 +21,16 @@ public class BasicLoansCreator {
     private User buyer;
 
     /**
-     * Creates an empty HashMap BasicLoansCreator that will be storing the SensoApi return values
+     * Creates an empty HashMap BasicLoans that will be storing the SensoApi return values
      * Creates an advanced or basic User Object based on the amount of info given
      * Calculates the budget of the User
      * Creates a CarList Object consisting of only cars affordable by the User based on User budget
      * Collects and organizes Car and User data for the SensoApi call
-     * Stores the SensoApi return values in HashMap BasicLoansCreator
+     * Stores the SensoApi return values in HashMap BasicLoans
      * @param user The User Object from User.java
      * @param carList The CarList Object CarList.java
      */
-    public BasicLoansCreator(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException {
+    public BasicLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException {
         loans1 = new HashMap<>();
         loans2 = new HashMap<>();
         loans3 = new HashMap<>();
@@ -57,7 +57,7 @@ public class BasicLoansCreator {
     }
 
     /**
-     * calls the SensoApi and adds the Api return values into the BasicLoansCreator Object
+     * calls the SensoApi and adds the Api return values into the BasicLoans Object
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
@@ -124,7 +124,7 @@ public class BasicLoansCreator {
 
     /**
      * The following are getter methods
-     * @return returns BasicLoansCreator/CarList/User Object info when called
+     * @return returns BasicLoans/CarList/User Object info when called
      */
     public HashMap<String, Object> getLoans1(){
         loans1.values().removeAll(Collections.singleton(null));
