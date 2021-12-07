@@ -123,8 +123,9 @@ public class BasicLoans {
     }
 
     /**
-     * The following are getter methods
-     * @return returns BasicLoans/CarList/User Object info when called
+     * The following are BasicLoans getter methods
+     * @return returns BasicLoans (1-3) Object info when called, in the form of a HashMap<String, Object>
+     *     where the key is CarID, and element is the SensoApi return info
      */
     public HashMap<String, Object> getLoans1(){
         loans1.values().removeAll(Collections.singleton(null));
@@ -141,9 +142,16 @@ public class BasicLoans {
         return loans3;
     }
 
-
+    /**
+     * Getter method for CarList Object
+     * @return returns CarList Object (ArrayList of <Car> Objects) info when called
+     */
     public CarList<Car> getCars(){return cars;}
 
+    /**
+     * Getter method for User Object
+     * @return returns User Object info when called
+     */
     public User getBuyer(){return buyer;}
 
 }

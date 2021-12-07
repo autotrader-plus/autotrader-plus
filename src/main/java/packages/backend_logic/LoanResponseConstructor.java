@@ -21,6 +21,15 @@ public class LoanResponseConstructor implements LoanInfoInterface {
     private HashMap<String, Integer> loanTerm3;
     private CarList<Car> cars;
 
+    /**
+     * Creates an empty HashMap LoanResponseConstructor that will be storing BasicLoans
+     * and it's Loan approval likelihood score
+     * Creates an advanced or basic User Object based on the amount of info given
+     * Creates a CarList Object consisting of only cars affordable by the User based on User budget
+     * Generates Loan Approval likelihood score and stores it in LoanResponseConstructor with CarID being the key
+     * @param user The User Object from User.java
+     * @param carList ArrayList containing the carlist from database
+     */
     public LoanResponseConstructor(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList)
             throws SensoConnectionFailureException, IOException, InterruptedException {
         BasicLoans loan = new BasicLoans(user, carList);
@@ -39,6 +48,15 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         generateScore(user, loans1, loans2, loans3);
     }
 
+    /**
+     * Loops through each Loan in BasicLoan and calls createInfo
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
+     * @param buyer The User Object from User.java
+     * @param loans1 The BasicLoan Object from BasicLoans.java
+     * @param loans2 The BasicLoan Object from BasicLoans.java
+     * @param loans3 The BasicLoan Object from BasicLoans.java
+     */
     private void generateScore(HashMap<String, String> user, HashMap<String, Object> loans1,
                                HashMap<String, Object> loans2, HashMap<String, Object> loans3)
             throws IOException, InterruptedException {
@@ -55,6 +73,19 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         }
     }
 
+    /**
+     * Creates a LoanApprovalCalculator Object for the BasicLoan Object
+     * Gets the first month installment from loans HashMap
+     * Associates each loanScore with each installment
+     * Adds the loanScore + installment into score as elements with the key corresponding to the
+     * BasicLoan Object (1,2, or 3) used for generating the scores and installments
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
+     * @param buyer The User Object from User.java
+     * @param loanTerm The loanTerm HashMap from LoanScoreCalculator.java
+     * @param loans The loans HashMap from LoanScoreCalculator.java
+     * @param loanScore The loanScore HashMap from LoanScoreCalculator.java
+     */
     private void createInfo(User buyer, String key, HashMap<String, Integer> loanTerm,
                             HashMap<String, Object> loans,
                             HashMap<String, String> loanScore, String num)
@@ -66,11 +97,8 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         info.add(score.getApprovalLikelihood(basic));
         HashMap<String, Object> response = getFirstMonthLoan(key, loans);
         info.add(response);
-
         HashMap<String, ArrayList<Object>> tripleLoan = new HashMap<>();
         tripleLoan.put(num, info);
-
-//        System.out.println(tripleLoan);
         if (this.score.containsKey(key)){
             ArrayList<HashMap<String, ArrayList<Object>>> existingLoans =
                     (ArrayList<HashMap<String, ArrayList<Object>>>) this.score.get(key);
@@ -80,7 +108,6 @@ public class LoanResponseConstructor implements LoanInfoInterface {
                 existingLoans.add(tripleLoan);
                 this.score.put(key, existingLoans);
             }
-
         } else {
             ArrayList<HashMap<String, ArrayList<Object>>> loanArray = new ArrayList<>();
             loanArray.add(tripleLoan);
@@ -88,6 +115,12 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         }
     }
 
+    /**
+     * Gets the first month loan installment from BasicLoan Object
+     * @param key the CarID from Car Object from Car.java
+     * @param loans the BasicLoan Object from BasicLoan.java
+     * @return returns HashMap mapping, which is the first month loan installment from BasicLoans Object
+     */
     private HashMap<String, Object> getFirstMonthLoan(String key, HashMap<String, Object> loans) {
         ArrayList<Object> installment = (ArrayList<Object>) loans.get(key);
         Gson gsonObj = new Gson();
@@ -97,7 +130,11 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         HashMap<String, Object> response = gsonObj2.fromJson(jsonObject, mapType);
         return response;
     }
-
+    /**
+     * Getter methods for TraderAutoScore (loan score)
+     * @return returns Score, which contains a HashMap of different possible BasicLoans associated with a LoanScore (element)
+     * and matched with the corresponding CarID (key)
+     */
     public HashMap<String, Object> getTraderAutoScore(){
         return this.score;
     }
