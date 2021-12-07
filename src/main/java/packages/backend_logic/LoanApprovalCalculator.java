@@ -23,7 +23,7 @@ public class LoanApprovalCalculator {
      * @throws IOException - IO exception thrown when error connecting to senso api
      * @throws InterruptedException - Interrupted exception thrown when error connecting to senso api
      */
-    public LoanApprovalCalculator(User user, String sensoScore) throws IOException, InterruptedException {
+    public LoanApprovalCalculator(User user, String sensoScore) {
         this.creditScore = Integer.parseInt(user.getCreditScore());
 
         if(Objects.equals(user.isEmployed(), "Employed")){
@@ -238,7 +238,7 @@ public class LoanApprovalCalculator {
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
-    private void setSensoScore(String sensoString) throws IOException, InterruptedException {
+    private void setSensoScore(String sensoString) {
 
         if (constant.VERY_HIGH.equals(sensoString)) {
             this.sensoScore = constant.SENSO1;

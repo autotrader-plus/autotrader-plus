@@ -3,6 +3,7 @@ package packages.database_info_manipulation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import packages.exceptions.DatabaseConnectionFailureException;
 
 import static org.mockito.Mockito.*;
 
@@ -20,7 +21,7 @@ public class AuthenticateUserTest {
 
     @Test
     @DisplayName("Unit Testing with Mocked Connection - Success Case")
-    void checkUserSuccessMocked() throws SQLException{
+    void checkUserSuccessMocked() throws DatabaseConnectionFailureException {
         mockedConnection.checkUser("Paul", "123");
         when(mockedConnection.checkUser("Paul", "123")).thenReturn(createResponse("Success"));
 
@@ -30,7 +31,7 @@ public class AuthenticateUserTest {
 
     @Test
     @DisplayName("Unit Testing with Mocked Connection - Failed Case")
-    void checkUserFailedMocked() throws SQLException{
+    void checkUserFailedMocked() throws DatabaseConnectionFailureException {
         mockedConnection.checkUser("DNE", "DNE");
         when(mockedConnection.checkUser("DNE", "DNE")).thenReturn(createResponse("Failure"));
 
@@ -48,13 +49,13 @@ public class AuthenticateUserTest {
 
     @Test
     @DisplayName("Integration Testing - Success Case")
-    void checkUserSuccess() throws SQLException {
+    void checkUserSuccess() throws DatabaseConnectionFailureException {
         assert authenticator.checkUser("Paul", "123");
     }
 
     @Test
     @DisplayName("Integration Testing - Failed Case")
-    void checkUserFailed() throws SQLException {
+    void checkUserFailed() throws DatabaseConnectionFailureException {
         assert !authenticator.checkUser("DNE", "DNE");
     }
 

@@ -31,7 +31,7 @@ public class LoanResponseConstructor implements LoanInfoInterface {
      * @param carList ArrayList containing the carlist from database
      */
     public LoanResponseConstructor(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList)
-            throws SensoConnectionFailureException, IOException, InterruptedException {
+            throws SensoConnectionFailureException {
         BasicLoans loan = new BasicLoans(user, carList);
         HashMap<String, Object> loans1 = loan.getLoans1();
         HashMap<String, Object> loans2 = loan.getLoans2();
@@ -58,8 +58,7 @@ public class LoanResponseConstructor implements LoanInfoInterface {
      * @param loans3 The BasicLoan Object from BasicLoans.java
      */
     private void generateScore(HashMap<String, String> user, HashMap<String, Object> loans1,
-                               HashMap<String, Object> loans2, HashMap<String, Object> loans3)
-            throws IOException, InterruptedException {
+                               HashMap<String, Object> loans2, HashMap<String, Object> loans3) {
         UserFactory userfactory = new UserFactory();
         User buyer = userfactory.createUser(user);
         for (String key :loanScore1.keySet()) {
@@ -88,8 +87,7 @@ public class LoanResponseConstructor implements LoanInfoInterface {
      */
     private void createInfo(User buyer, String key, HashMap<String, Integer> loanTerm,
                             HashMap<String, Object> loans,
-                            HashMap<String, String> loanScore, String num)
-            throws IOException, InterruptedException {
+                            HashMap<String, String> loanScore, String num) {
         LoanApprovalCalculator score = new LoanApprovalCalculator(buyer, loanScore.get(key));
         ArrayList<Object> info = new ArrayList<>();
         boolean basic = buyer.getMonthlyIncome().equals("0");
@@ -150,11 +148,7 @@ public class LoanResponseConstructor implements LoanInfoInterface {
     public HashMap<String, Object> calculateLoans(HashMap<String, String> user,
                                                   ArrayList<HashMap<String, Object>> carList)
             throws SensoConnectionFailureException{
-        try {
-            LoanResponseConstructor loans = new LoanResponseConstructor(user, carList);
-            return loans.getTraderAutoScore();
-        }catch(IOException|InterruptedException e){
-            throw new SensoConnectionFailureException();
-        }
+        LoanResponseConstructor loans = new LoanResponseConstructor(user, carList);
+        return loans.getTraderAutoScore();
     }
 }

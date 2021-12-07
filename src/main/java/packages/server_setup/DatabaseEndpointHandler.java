@@ -41,13 +41,16 @@ public class DatabaseEndpointHandler {
     @PostMapping("/database")
     public String httpResponseMain(@RequestBody String reqBody) {
         try {
+            // parse request body
             HttpRequestParser parser = new HttpRequestParser();
             HashMap<String, String> body = parser.parseRequestBody(reqBody);
             System.out.println("==== Connecting to Autotrader Database ====");
 
+            // get car information
             String carID = body.get("key");
-
             HashMap<String, Object> response = getContent(Integer.parseInt(carID));
+
+            // construct http response
             HttpResponseConstructor http_response = new HttpResponseConstructor(response);
             System.out.printf("==== Returning Car Information for Car %s ====%n", carID);
             return http_response.getContent();
