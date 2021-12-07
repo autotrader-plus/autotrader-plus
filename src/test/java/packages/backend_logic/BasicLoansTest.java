@@ -77,13 +77,15 @@ class BasicLoansTest {
         //  System.out.println(loanage3);
 
 //test for traderAutoScore
-        finalscore = new LoanResponseConstructor(userInfo, carList);
-        HashMap<String, Object> outy = finalscore.getTraderAutoScore();
-        System.out.println(outy);
+        //finalscore = new LoanResponseConstructor(userInfo, carList);
+       // HashMap<String, Object> outy = finalscore.getTraderAutoScore();
+      //  System.out.println(outy);
 
         //temp above
 
         assert output.size() == 1 && output.containsKey("13");
+        assert output2.size() == 1 && output.containsKey("13");
+        assert output3.size() == 0;
 
     }
 
@@ -97,6 +99,6 @@ class BasicLoansTest {
     @Test
     void getBuyer() {
         User buyer = loan.getBuyer();
-        assert buyer.getCreditScore().equals("750") && buyer.getName().equals("Bob Du");
+        assert buyer.getCreditScore().equals("770") && buyer.getName().equals("Bob Du");
     }
 }
