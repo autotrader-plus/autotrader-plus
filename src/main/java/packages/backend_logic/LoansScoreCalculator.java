@@ -136,12 +136,4 @@ public class LoansScoreCalculator {
     public HashMap<String, Integer> getLoanTerm3(){
         return loanTerm3;
     }
-
-    public User getUser() {
-        return buyer;
-    }
-
-    public CarList<Car> getCars(){
-        return cars;
-    }
 }

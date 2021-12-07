@@ -65,16 +65,4 @@ public class LoanScoreCalculatorTest {
         assert loanTerm2.size() == 1 && loanTerm2.containsKey("13");
         assert loanTerm3.size() == 0;
     }
-    @Test
-    void getCars() {
-        CarList cars = score.getCars();
-        Car car = (Car) cars.getCar(0);
-        assert car.getBrand().equals("Mercedes-Benz S-Class");
-    }
-
-    @Test
-    void getBuyer() {
-        User buyer = score.getUser();
-        assert buyer.getCreditScore().equals("770") && buyer.getName().equals("Bob Du");
-    }
 }
