@@ -61,8 +61,8 @@ public class LoansScoreCalculator {
     }
 
     /**
-     * calculates the LoanAge of each individual loan by checking the size of the BasicLoan Object
-     * and adds LoanAge into loanTerm HashMaps
+     * Calculates the LoanAge of each individual loan by checking the size of the BasicLoan Object,
+     * Adds LoanAge into loanTerm HashMaps
      */
     private void findLoanAge(){
         for (String key :this.loans1.keySet()){
@@ -80,7 +80,7 @@ public class LoansScoreCalculator {
     }
 
     /**
-     * calls the SensoScoreApi and adds the Api return values into the LoansScoreCalculator Object
+     * Calls the SensoScoreApi and adds the Api return values into the LoansScoreCalculator Object
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
@@ -133,8 +133,8 @@ public class LoansScoreCalculator {
     }
 
     /**
-     * The following are LoansScore getter methods
-     * @return returns LoansScore (1-3) Object info when called, in the form of a HashMap<String, String>
+     * LoansScore1 getter method
+     * @return returns LoansScore1 Object info when called, in the form of a HashMap<String, String>
      *     where the key is CarID, and element is the SensoScoreApi return info
      */
     public HashMap<String, String> getLoansScore1(){
@@ -142,28 +142,48 @@ public class LoansScoreCalculator {
         return loanScore1;
     }
 
+    /**
+     * LoansScore2 getter method
+     * @return returns LoansScore2 Object info when called, in the form of a HashMap<String, String>
+     *     where the key is CarID, and element is the SensoScoreApi return info
+     */
     public HashMap<String,  String> getLoansScore2(){
         loanScore2.values().removeAll(Collections.singleton(null));
         return loanScore2;
     }
+    /**
+     * LoansScore3 getter method
+     * @return returns LoansScore3 Object info when called, in the form of a HashMap<String, String>
+     *     where the key is CarID, and element is the SensoScoreApi return info
+     */
     public HashMap<String, String> getLoansScore3(){
         loanScore3.values().removeAll(Collections.singleton(null));
         return loanScore3;
     }
 
     /**
-     * The following are loanTerm getter methods
-     * @return returns loanTerm (1-3) Object info when called, in the form of a HashMap<String, Integer>
+     * The loanTerm1 getter method
+     * @return returns loanTerm1 Object info when called, in the form of a HashMap<String, Integer>
      *     where the key is CarID, and element is the age of the loans.
      */
     public HashMap<String, Integer> getLoanTerm1(){
         return loanTerm1;
     }
 
+    /**
+     * The loanTerm2 getter method
+     * @return returns loanTerm2 Object info when called, in the form of a HashMap<String, Integer>
+     *     where the key is CarID, and element is the age of the loans.
+     */
     public HashMap<String, Integer> getLoanTerm2(){
         return loanTerm2;
     }
 
+    /**
+     * The loanTerm3 getter method
+     * @return returns loanTerm3 Object info when called, in the form of a HashMap<String, Integer>
+     *     where the key is CarID, and element is the age of the loans.
+     */
     public HashMap<String, Integer> getLoanTerm3(){
         return loanTerm3;
     }

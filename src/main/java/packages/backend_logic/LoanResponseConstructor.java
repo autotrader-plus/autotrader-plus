@@ -49,7 +49,7 @@ public class LoanResponseConstructor implements LoanInfoInterface {
     }
 
     /**
-     * Loops through each Loan in BasicLoan and calls createInfo
+     * Generates score based on the User and their 3 possible loans
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      * @param buyer The User Object from User.java
@@ -131,7 +131,7 @@ public class LoanResponseConstructor implements LoanInfoInterface {
     /**
      * Getter methods for TraderAutoScore (loan score)
      * @return returns Score, which contains a HashMap of different possible BasicLoans associated with a LoanScore (element)
-     * and matched with the corresponding CarID (key)
+     * And matched with the corresponding CarID (key)
      */
     public HashMap<String, Object> getTraderAutoScore(){
         return this.score;
@@ -139,10 +139,10 @@ public class LoanResponseConstructor implements LoanInfoInterface {
 
     /**
      * Overriden method for LoanInfoInterface that allows other classes to directly access this class through this
-     * interface method.
+     * Interface method.
      * @param user - a mapping of user info
      * @param carList - a list of cars we want the loan info for
-     * @return a hashmap of cars with the loan info for the car
+     * @return A hashmap of cars with the loan info for the car
      */
     @Override
     public HashMap<String, Object> calculateLoans(HashMap<String, String> user,
