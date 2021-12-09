@@ -2,17 +2,16 @@ package packages.backend_logic;
 
 /**
  * Represents a Car Object
- *
  */
 public class Car {
 
-    private final String year;
-    private final String brand;
-    private final String KMS;
-    private final String carType; //will be used in future
-    private final String ID;
-    private final String cost;
-    private final String dealership; //will be used in future
+    private String year;
+    private String brand;
+    private String KMS;
+    private String carType;
+    private String ID;
+    private String cost;
+    private String dealership;
 
     /**
      * Creates Car Object

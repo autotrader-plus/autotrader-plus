@@ -10,10 +10,10 @@ import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * This class creates a Loans object that is a HashMap with keys corresponding to the IDs of Car Objects and values
+ * This class creates a BasicLoans object that is a HashMap with keys corresponding to the IDs of Car Objects and values
  * corresponding to the possible car loans for each Car based on the SensoApi
  */
-public class Loans{
+public class BasicLoans {
     private HashMap<String, Object> loans1;
     private HashMap<String, Object> loans2;
     private HashMap<String, Object> loans3;
@@ -21,16 +21,16 @@ public class Loans{
     private User buyer;
 
     /**
-     * Creates an empty HashMap Loans that will be storing the SensoApi return values
+     * Creates an empty HashMap BasicLoans that will be storing the SensoApi return values
      * Creates an advanced or basic User Object based on the amount of info given
      * Calculates the budget of the User
      * Creates a CarList Object consisting of only cars affordable by the User based on User budget
      * Collects and organizes Car and User data for the SensoApi call
-     * Stores the SensoApi return values in HashMap Loans
+     * Stores the SensoApi return values in HashMap BasicLoans
      * @param user The User Object from User.java
      * @param carList The CarList Object CarList.java
      */
-    public Loans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException {
+    public BasicLoans(HashMap<String, String> user, ArrayList<HashMap<String, Object>> carList) throws SensoConnectionFailureException {
         loans1 = new HashMap<>();
         loans2 = new HashMap<>();
         loans3 = new HashMap<>();
@@ -57,7 +57,7 @@ public class Loans{
     }
 
     /**
-     * calls the SensoApi and adds the Api return values into the Loans Object
+     * Calls the SensoApi and adds the Api return values into the BasicLoans Object
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
@@ -86,7 +86,7 @@ public class Loans{
     /**
      * Creates a HashMap containing User and Car info for the SensoApi call
      * @param car The Car Object from Car.java
-     * @return returns HashMap mapping, which is all the info required for SensoApi call
+     * @return Returns HashMap mapping, which is all the info required for SensoApi call
      */
     private HashMap<String, String> makeUserInfo(Car car) {
         HashMap<String, String> mapping = new HashMap<>();
@@ -95,7 +95,8 @@ public class Loans{
         mapping.put("credit_score", buyer.getCreditScore());
         mapping.put("payment_budget", buyer.getMonthlyBudget());
         mapping.put("vehicle_make", car.getBrand());
-        mapping.put("vehicle_model", "Bob Du");
+        // vehicle model does not matter, so we just use a random string
+        mapping.put("vehicle_model", "model123");  
         mapping.put("vehicle_year", car.getYear());
         mapping.put("vehicle_kms", car.getKMS());
         mapping.put("list_price", Integer.toString(car.getPrice()));
@@ -104,7 +105,7 @@ public class Loans{
     }
 
     /**
-     * creates CarList object (cars) based on length of given carlist Arraylist
+     * Creates CarList object (cars) based on length of given carlist Arraylist
      */
     private void makeCars(ArrayList<HashMap<String, Object>> carlist, int budget) {
         for (HashMap<String, Object> stringStringHashMap : carlist) {
@@ -123,27 +124,45 @@ public class Loans{
     }
 
     /**
-     * The following are getter methods
-     * @return returns Loans/CarList/User Object info when called
+     * BasicLoans1 getter method
+     * @return Returns BasicLoans1 Object info when called, in the form of a HashMap<String, Object>
+     *     where the key is CarID, and element is the SensoApi return info
      */
     public HashMap<String, Object> getLoans1(){
         loans1.values().removeAll(Collections.singleton(null));
         return loans1;
     }
 
+    /**
+     * BasicLoans2 getter method
+     * @return Returns BasicLoans2 Object info when called, in the form of a HashMap<String, Object>
+     *     where the key is CarID, and element is the SensoApi return info
+     */
     public HashMap<String, Object> getLoans2(){
         loans2.values().removeAll(Collections.singleton(null));
         return loans2;
     }
 
+    /**
+     * BasicLoans3 getter method
+     * @return Returns BasicLoans3 Object info when called, in the form of a HashMap<String, Object>
+     *     where the key is CarID, and element is the SensoApi return info
+     */
     public HashMap<String, Object> getLoans3(){
         loans3.values().removeAll(Collections.singleton(null));
         return loans3;
     }
 
-
+    /**
+     * Getter method for CarList Object
+     * @return Returns CarList Object (ArrayList of <Car> Objects) info when called
+     */
     public CarList<Car> getCars(){return cars;}
 
+    /**
+     * Getter method for User Object
+     * @return Returns User Object info when called
+     */
     public User getBuyer(){return buyer;}
 
 }

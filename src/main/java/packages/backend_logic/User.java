@@ -7,16 +7,16 @@ import java.text.DecimalFormat;
  * Represents a User Object based on the user info inputted by the user from the frontend
  */
 public class User {
-    private final int creditScore;
-    private final int monthlyBudget;
-    private final int downPayment;
-    private final String zipCode;
-    private final String name;
-    private final int monthlyIncome;
-    private final boolean employed;
-    private final boolean homeowner;
-    private final int monthlyDebt;
-    private final String password;
+    private int creditScore;
+    private int monthlyBudget;
+    private int downPayment;
+    private String zipCode;
+    private String name;
+    private int monthlyIncome;
+    private boolean employed;
+    private boolean homeowner;
+    private int monthlyDebt;
+    private String password;
 
     /**
      * Creates a basic User Object based on provided information

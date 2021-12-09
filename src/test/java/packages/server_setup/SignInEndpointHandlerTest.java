@@ -20,7 +20,7 @@ class SignInEndpointHandlerTest {
     }
 
     @Test
-    void httpResponseSensoSuccessCredentials() {
+    void httpResponseSuccessCredentials() {
         mapping.put("username", "Paul");
         mapping.put("password", "123");
 
@@ -32,7 +32,7 @@ class SignInEndpointHandlerTest {
     }
     
     @Test
-    void httpResponseSensoFailedCredentials() {
+    void httpResponseFailedCredentials() {
         mapping.put("username", "DNE");
         mapping.put("password", "DNE");
 

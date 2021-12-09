@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @param <Car> Car Object from Car.java
  */
 public class CarList<Car> {
-    private final ArrayList<Car> carList;
+    private ArrayList<Car> carList;
 
     /**
      * Creates empty CarList

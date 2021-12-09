@@ -14,10 +14,10 @@ import packages.http_parser_constructor.HttpRequestParser;
 
 @RestController
 @CrossOrigin(origins ="*")
-public class ReturnDatabaseInfo {
+public class DatabaseEndpointHandler {
 
     /**
-     * This will return the information queried by the ReturnDatabaseInfo class
+     * This will return the information queried by the DatabaseEndpointHandler class
      * @return a hashmap for the car inforamtion
      */
     public HashMap<String, Object> getContent(int carId) throws DatabaseConnectionFailureException {
@@ -32,7 +32,8 @@ public class ReturnDatabaseInfo {
     }
 
     /**
-     * This method handles all POST request to the "/database" endpoint.
+     * This method handles all POST request to the "/database" endpoint. This endpoints deal with
+     * returning information about a car.
      * @param carId the request body needs to contain the carID
      * @return a JSON string representation of the information regarding the car with carID
      */
@@ -40,13 +41,16 @@ public class ReturnDatabaseInfo {
     @PostMapping("/database")
     public String httpResponseMain(@RequestBody String reqBody) {
         try {
+            // parse request body
             HttpRequestParser parser = new HttpRequestParser();
             HashMap<String, String> body = parser.parseRequestBody(reqBody);
             System.out.println("==== Connecting to Autotrader Database ====");
 
+            // get car information
             String carID = body.get("key");
-
             HashMap<String, Object> response = getContent(Integer.parseInt(carID));
+
+            // construct http response
             HttpResponseConstructor http_response = new HttpResponseConstructor(response);
             System.out.printf("==== Returning Car Information for Car %s ====%n", carID);
             return http_response.getContent();

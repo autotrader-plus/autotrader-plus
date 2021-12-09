@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class LoanApprovalCalculationTest {
+public class LoanApprovalCalculatorTest {
 
     User basic;
     User advanced;
     HashMap<String, String> sensoInput;
-    LoanApprovalCalculation basicLoanApprovalCalc;
-    LoanApprovalCalculation advancedLoanApprovalCalc;
+    LoanApprovalCalculator basicLoanApprovalCalc;
+    LoanApprovalCalculator advancedLoanApprovalCalc;
 
     @BeforeEach
     void setUp() throws IOException, InterruptedException {
@@ -22,8 +22,8 @@ public class LoanApprovalCalculationTest {
                 "123", 8000, true, true, 2000);
 
 
-        basicLoanApprovalCalc = new LoanApprovalCalculation(basic, "VERY HIGH");
-        advancedLoanApprovalCalc = new LoanApprovalCalculation(advanced, "VERY HIGH");
+        basicLoanApprovalCalc = new LoanApprovalCalculator(basic, "VERY HIGH");
+        advancedLoanApprovalCalc = new LoanApprovalCalculator(advanced, "VERY HIGH");
     }
 
     @Test
