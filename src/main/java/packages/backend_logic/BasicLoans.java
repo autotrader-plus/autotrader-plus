@@ -123,8 +123,8 @@ public class BasicLoans {
     }
 
     /**
-     * The following are BasicLoans getter methods
-     * @return returns BasicLoans (1-3) Object info when called, in the form of a HashMap<String, Object>
+     * BasicLoans1 getter method
+     * @return returns BasicLoans1 Object info when called, in the form of a HashMap<String, Object>
      *     where the key is CarID, and element is the SensoApi return info
      */
     public HashMap<String, Object> getLoans1(){
@@ -132,11 +132,21 @@ public class BasicLoans {
         return loans1;
     }
 
+    /**
+     * BasicLoans2 getter method
+     * @return returns BasicLoans2 Object info when called, in the form of a HashMap<String, Object>
+     *     where the key is CarID, and element is the SensoApi return info
+     */
     public HashMap<String, Object> getLoans2(){
         loans2.values().removeAll(Collections.singleton(null));
         return loans2;
     }
 
+    /**
+     * BasicLoans3 getter method
+     * @return returns BasicLoans3 Object info when called, in the form of a HashMap<String, Object>
+     *     where the key is CarID, and element is the SensoApi return info
+     */
     public HashMap<String, Object> getLoans3(){
         loans3.values().removeAll(Collections.singleton(null));
         return loans3;
