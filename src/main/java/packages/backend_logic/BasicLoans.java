@@ -57,7 +57,7 @@ public class BasicLoans {
     }
 
     /**
-     * calls the SensoApi and adds the Api return values into the BasicLoans Object
+     * Calls the SensoApi and adds the Api return values into the BasicLoans Object
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      */
@@ -86,7 +86,7 @@ public class BasicLoans {
     /**
      * Creates a HashMap containing User and Car info for the SensoApi call
      * @param car The Car Object from Car.java
-     * @return returns HashMap mapping, which is all the info required for SensoApi call
+     * @return Returns HashMap mapping, which is all the info required for SensoApi call
      */
     private HashMap<String, String> makeUserInfo(Car car) {
         HashMap<String, String> mapping = new HashMap<>();
@@ -104,7 +104,7 @@ public class BasicLoans {
     }
 
     /**
-     * creates CarList object (cars) based on length of given carlist Arraylist
+     * Creates CarList object (cars) based on length of given carlist Arraylist
      */
     private void makeCars(ArrayList<HashMap<String, Object>> carlist, int budget) {
         for (HashMap<String, Object> stringStringHashMap : carlist) {
@@ -124,7 +124,7 @@ public class BasicLoans {
 
     /**
      * BasicLoans1 getter method
-     * @return returns BasicLoans1 Object info when called, in the form of a HashMap<String, Object>
+     * @return Returns BasicLoans1 Object info when called, in the form of a HashMap<String, Object>
      *     where the key is CarID, and element is the SensoApi return info
      */
     public HashMap<String, Object> getLoans1(){
@@ -134,7 +134,7 @@ public class BasicLoans {
 
     /**
      * BasicLoans2 getter method
-     * @return returns BasicLoans2 Object info when called, in the form of a HashMap<String, Object>
+     * @return Returns BasicLoans2 Object info when called, in the form of a HashMap<String, Object>
      *     where the key is CarID, and element is the SensoApi return info
      */
     public HashMap<String, Object> getLoans2(){
@@ -144,7 +144,7 @@ public class BasicLoans {
 
     /**
      * BasicLoans3 getter method
-     * @return returns BasicLoans3 Object info when called, in the form of a HashMap<String, Object>
+     * @return Returns BasicLoans3 Object info when called, in the form of a HashMap<String, Object>
      *     where the key is CarID, and element is the SensoApi return info
      */
     public HashMap<String, Object> getLoans3(){
@@ -154,13 +154,13 @@ public class BasicLoans {
 
     /**
      * Getter method for CarList Object
-     * @return returns CarList Object (ArrayList of <Car> Objects) info when called
+     * @return Returns CarList Object (ArrayList of <Car> Objects) info when called
      */
     public CarList<Car> getCars(){return cars;}
 
     /**
      * Getter method for User Object
-     * @return returns User Object info when called
+     * @return Returns User Object info when called
      */
     public User getBuyer(){return buyer;}
 
