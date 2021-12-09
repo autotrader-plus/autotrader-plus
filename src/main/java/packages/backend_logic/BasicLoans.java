@@ -95,7 +95,8 @@ public class BasicLoans {
         mapping.put("credit_score", buyer.getCreditScore());
         mapping.put("payment_budget", buyer.getMonthlyBudget());
         mapping.put("vehicle_make", car.getBrand());
-        mapping.put("vehicle_model", "Bob Du");
+        // vehicle model does not matter, so we just use a random string
+        mapping.put("vehicle_model", "model123");  
         mapping.put("vehicle_year", car.getYear());
         mapping.put("vehicle_kms", car.getKMS());
         mapping.put("list_price", Integer.toString(car.getPrice()));
