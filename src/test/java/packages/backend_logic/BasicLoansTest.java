@@ -15,8 +15,8 @@ class BasicLoansTest {
     ArrayList<HashMap<String, Object>> carList;
     HashMap<String, String> userInfo;
     BasicLoans loan;
-    LoansScoreCalculator score; //temp
-    LoanResponseConstructor finalscore; //temp
+
+
 
     @BeforeEach
     void setUp() throws SQLException, SensoConnectionFailureException {
@@ -36,52 +36,10 @@ class BasicLoansTest {
         loan = new BasicLoans(userInfo, carList);
     }
     @Test
-    void getLoans() throws SensoConnectionFailureException, IOException, InterruptedException { //temp exception
+    void getLoans() throws SensoConnectionFailureException, IOException, InterruptedException {
         HashMap<String, Object> output = loan.getLoans1();
         HashMap<String, Object> output2 = loan.getLoans2();
         HashMap<String, Object> output3 = loan.getLoans3();
-
-        //  ArrayList hello = (ArrayList) output.get("13");
-        //System.out.println(hello.size());
-        // ArrayList hello2 = (ArrayList) output2.get("13");
-        // System.out.println(hello2.size());
-        // ArrayList hello3 = (ArrayList) output3.get("13");
-        //System.out.println(hello3.size());
-
-        //  System.out.println(output2.keySet());
-        // System.out.println(output3.keySet());
-        // System.out.println(output);
-        //System.out.println(output2);
-        // System.out.println(output3);
-
-        //temp below
-        //     score = new LoansScoreCalculator(userInfo, output, output2, output3, loan.getCars());
-        //   System.out.println(1337);
-        //   System.out.println(score.getLoanTerm1());
-        //   HashMap<String, String> score1 = score.getLoansScore1();
-        //   System.out.println(score1);
-        //    HashMap<String, Integer> loanage1 = score.getLoanTerm1();
-        //    System.out.println(1);
-        // System.out.println(loanage1);
-
-        //   HashMap<String,  String> score2 = score.getLoansScore2();
-        //    System.out.println(score2.get("13"));
-        //    HashMap<String, Integer> loanage2 = score.getLoanTerm2();
-        //   System.out.println(2);
-        // System.out.println(loanage2);
-
-        //    HashMap<String, String> score3 = score.getLoansScore3();
-        //    System.out.println(score3.get("13"));
-        //     HashMap<String, Integer> loanage3 = score.getLoanTerm3();
-        //   System.out.println(3);
-        //  System.out.println(loanage3);
-
-//test for traderAutoScore
-        //finalscore = new LoanResponseConstructor(userInfo, carList);
-       // HashMap<String, Object> outy = finalscore.getTraderAutoScore();
-      //  System.out.println(outy);
-
-        //temp above
 
         assert output.size() == 1 && output.containsKey("13");
         assert output2.size() == 1 && output.containsKey("13");
