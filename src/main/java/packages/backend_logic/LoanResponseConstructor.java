@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class puts together loan information, including possible loan offers and approval likelihood into
+ * one hashmap to return to front-end.
+ */
 public class LoanResponseConstructor implements LoanInfoInterface {
     private HashMap<String, Object> score;
     private HashMap<String, String> loanScore1;
@@ -81,9 +85,11 @@ public class LoanResponseConstructor implements LoanInfoInterface {
      * @throws IOException exception thrown when failure in reading/writing/searching files
      * @throws InterruptedException exception thrown when process interrupted
      * @param buyer The User Object from User.java
+     * @param key The key in the key set for loan scores
      * @param loanTerm The loanTerm HashMap from LoanScoreCalculator.java
      * @param loans The loans HashMap from LoanScoreCalculator.java
      * @param loanScore The loanScore HashMap from LoanScoreCalculator.java
+     * @param num the number of the loan (1, 2, or 3)
      */
     private void createInfo(User buyer, String key, HashMap<String, Integer> loanTerm,
                             HashMap<String, Object> loans,
@@ -95,6 +101,16 @@ public class LoanResponseConstructor implements LoanInfoInterface {
         info.add(score.getApprovalLikelihood(basic));
         HashMap<String, Object> response = getFirstMonthLoan(key, loans);
         info.add(response);
+        addTripleLoans(key, num, info);
+    }
+
+    /**
+     * This is a private method that adds triple loans information to the score instant variable hashmap
+     * @param key The key in the key set for loan scores
+     * @param num the number of the loan (1, 2, or 3)
+     * @param info the information to add to the score hashmap
+     */
+    private void addTripleLoans(String key, String num, ArrayList<Object> info) {
         HashMap<String, ArrayList<Object>> tripleLoan = new HashMap<>();
         tripleLoan.put(num, info);
         if (this.score.containsKey(key)){
