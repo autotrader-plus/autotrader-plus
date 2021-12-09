@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ * This class calculates the loan scores for each loan term, based on buyers and cars information.
+ */
 public class LoansScoreCalculator {
     private HashMap<String, Integer> loanTerm1;
     private HashMap<String, Integer> loanTerm2;
@@ -87,21 +90,31 @@ public class LoansScoreCalculator {
     private void callAPI() throws IOException, InterruptedException{
         for (int i = 0; i< cars.size(); i++){
             Car car = cars.getCar(i);
-            if(loanTerm1.size() != 0 && loanTerm1.get(car.getID()) != null){
-                HashMap<String, String> mapping1 = prepAPICall(car, 1);
-                SensoAPIInterface connector1 = new ConnectSensoScoreAPI(mapping1);
-                loanScore1.put(car.getID(), (String) connector1.pingSensoAPI(mapping1).get("sensoScore"));
-            }
-            if(loanTerm2.size() != 0 && loanTerm2.get(car.getID()) != null) {
-                HashMap<String, String> mapping2 = prepAPICall(car, 2);
-                SensoAPIInterface connector2 = new ConnectSensoScoreAPI(mapping2);
-                loanScore2.put(car.getID(), (String) connector2.pingSensoAPI(mapping2).get("sensoScore"));
-            }
-            if(loanTerm3.size() != 0 && loanTerm3.get(car.getID()) != null) {
-                HashMap<String, String> mapping3 = prepAPICall(car, 3);
-                SensoAPIInterface connector3 = new ConnectSensoScoreAPI(mapping3);
-                loanScore3.put(car.getID(), (String) connector3.pingSensoAPI(mapping3).get("sensoScore"));
-            }
+            addSensoScore(car);
+        }
+    }
+
+    /**
+     * Add senso score to loanScore instant variables
+     * @param car the car object on which the senso score is based on
+     * @throws IOException exception thrown when failure in reading/writing/searching files
+     * @throws InterruptedException exception thrown when process interrupted
+     */
+    private void addSensoScore(Car car) throws IOException, InterruptedException {
+        if(loanTerm1.size() != 0 && loanTerm1.get(car.getID()) != null){
+            HashMap<String, String> mapping1 = prepAPICall(car, 1);
+            SensoAPIInterface connector1 = new ConnectSensoScoreAPI(mapping1);
+            loanScore1.put(car.getID(), (String) connector1.pingSensoAPI(mapping1).get("sensoScore"));
+        }
+        if(loanTerm2.size() != 0 && loanTerm2.get(car.getID()) != null) {
+            HashMap<String, String> mapping2 = prepAPICall(car, 2);
+            SensoAPIInterface connector2 = new ConnectSensoScoreAPI(mapping2);
+            loanScore2.put(car.getID(), (String) connector2.pingSensoAPI(mapping2).get("sensoScore"));
+        }
+        if(loanTerm3.size() != 0 && loanTerm3.get(car.getID()) != null) {
+            HashMap<String, String> mapping3 = prepAPICall(car, 3);
+            SensoAPIInterface connector3 = new ConnectSensoScoreAPI(mapping3);
+            loanScore3.put(car.getID(), (String) connector3.pingSensoAPI(mapping3).get("sensoScore"));
         }
     }
 
@@ -120,6 +133,17 @@ public class LoansScoreCalculator {
         mapping.put("car_value", Integer.toString(car.getPrice()));
         mapping.put("vehicle_model", car.getBrand());
         mapping.put("loan_start_date", "2021-01-05");
+        putLoanAgeForSensoAPI(car, num, mapping);
+        return mapping;
+    }
+
+    /**
+     * Put loan age into mapping for senso api call
+     * @param car the Car object on which the senso api call is based on
+     * @param num the number of loan (1, 2, or 3)
+     * @param mapping the mapping to put the senso score into
+     */
+    private void putLoanAgeForSensoAPI(Car car, int num, HashMap<String, String> mapping) {
         if(num == 1){
             mapping.put("loan_age", Integer.toString(loanTerm1.get(car.getID())));
         }
@@ -129,7 +153,6 @@ public class LoansScoreCalculator {
         if(num == 3){
             mapping.put("loan_age", Integer.toString(loanTerm3.get(car.getID())));
         }
-        return mapping;
     }
 
     /**
@@ -162,8 +185,8 @@ public class LoansScoreCalculator {
     }
 
     /**
-     * The loanTerm1 getter method
-     * @return returns loanTerm1 Object info when called, in the form of a HashMap<String, Integer>
+     * Return information for loan term 1
+     * @return returns loanTerm 1 Object info when called, in the form of a HashMap<String, Integer>
      *     where the key is CarID, and element is the age of the loans.
      */
     public HashMap<String, Integer> getLoanTerm1(){
@@ -171,8 +194,8 @@ public class LoansScoreCalculator {
     }
 
     /**
-     * The loanTerm2 getter method
-     * @return returns loanTerm2 Object info when called, in the form of a HashMap<String, Integer>
+     * Return information for loan term 2
+     * @return returns loanTerm 2 Object info when called, in the form of a HashMap<String, Integer>
      *     where the key is CarID, and element is the age of the loans.
      */
     public HashMap<String, Integer> getLoanTerm2(){
@@ -180,8 +203,8 @@ public class LoansScoreCalculator {
     }
 
     /**
-     * The loanTerm3 getter method
-     * @return returns loanTerm3 Object info when called, in the form of a HashMap<String, Integer>
+     * Return information for loan term 3
+     * @return returns loanTerm 3 Object info when called, in the form of a HashMap<String, Integer>
      *     where the key is CarID, and element is the age of the loans.
      */
     public HashMap<String, Integer> getLoanTerm3(){
