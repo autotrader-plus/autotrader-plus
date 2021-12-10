@@ -24,7 +24,6 @@ jobs:
         cache: gradle
 
     - name: Build with Gradle
-      working-directory: ./spring-boot
       env:
         SENSO_API_URL: https://auto-loan-api.senso.ai/rate
         SENSO_API_KEY: AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs
